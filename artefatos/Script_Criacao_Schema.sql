@@ -29,7 +29,7 @@ COMMENT = 'Tabela responsavel pelos dados dos usuários do sistema.';
 DROP TABLE IF EXISTS `manager-tran-school`.`ESTADO` ;
 
 CREATE  TABLE IF NOT EXISTS `manager-tran-school`.`ESTADO` (
-  `ID_ESTADO` INT NOT NULL ,
+  `ID_ESTADO` INT NOT NULL AUTO_INCREMENT ,
   `TX_ABREVIACAO` CHAR(2) NOT NULL ,
   `TX_DESCRICAO` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`ID_ESTADO`) )
@@ -43,7 +43,7 @@ COMMENT = 'Tabela responsavel pelos dados dos estados brasileiros.';
 DROP TABLE IF EXISTS `manager-tran-school`.`CIDADE` ;
 
 CREATE  TABLE IF NOT EXISTS `manager-tran-school`.`CIDADE` (
-  `ID_CIDADE` INT NOT NULL ,
+  `ID_CIDADE` INT NOT NULL AUTO_INCREMENT ,
   `ESTADO_ID` INT NOT NULL ,
   `TX_DESCRICAO` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`ID_CIDADE`) ,
@@ -220,7 +220,7 @@ COMMENT = 'Tabela responsavel pelos relacionamentos entre clientes e lo' /* comm
 DROP TABLE IF EXISTS `manager-tran-school`.`ROTA_HISTORICO` ;
 
 CREATE  TABLE IF NOT EXISTS `manager-tran-school`.`ROTA_HISTORICO` (
-  `ID_ROTA_HISTORICO` INT NOT NULL ,
+  `ID_ROTA_HISTORICO` INT NOT NULL AUTO_INCREMENT ,
   `ROTA_ID` INT NOT NULL ,
   `DT_ROTA` DATETIME NOT NULL ,
   `DURACAO` TIME NULL ,
