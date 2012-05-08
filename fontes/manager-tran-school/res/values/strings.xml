@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, MainActivity!</string>
+    <string name="hello">Olá! Bem Vindo!</string>
     <string name="app_name">Manager-Tran-School</string>
 
+    <!-- Enum de tipo de contas de usuário. -->
+    <string name="tipo_usuario_administrador">Administrador</string>
+    <string name="tipo_usuario_padrao">Padrão</string>
+    
 </resources>
