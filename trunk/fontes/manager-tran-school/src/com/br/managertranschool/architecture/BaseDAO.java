@@ -1,5 +1,8 @@
 package com.br.managertranschool.architecture;
 
+import com.br.managertranschool.R;
+import com.br.managertranschool.architecture.exception.RegistroNaoEncontradoException;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -106,14 +109,18 @@ public abstract class BaseDAO {
      * Método executa delete do objeto através do id.
      * @param id - Id do objeto.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception Registro não foi encontrado.
      */
-    protected void delete(Long id) {
+    protected void delete(Long id) throws Exception {
 
         String whereClause = this.colunaId + "=?";
         String[] whereArgs = new String[]{String.valueOf(id)};
         
-        // TODO: Lançar exception se o retorno for igual a 0: Nenhuma coluna afetada.
-        dataBase.delete(this.table, whereClause, whereArgs);
+        int linhasAfetadas = dataBase.delete(this.table, whereClause, whereArgs);
+        
+        if (linhasAfetadas <= 0) {
+            throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
+        }
     }
 
     /**
@@ -125,7 +132,6 @@ public abstract class BaseDAO {
      */
     protected long salvar(ContentValues values) {
 
-        // TODO: Lançar exception se o retorno for igual a -1: Ocorreu erro no insert.
         return dataBase.insertOrThrow(this.table, null, values);
     }
 
@@ -135,13 +141,17 @@ public abstract class BaseDAO {
      * @param id - Id do objeto.
      * @param values - Valores para serem atualizados.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception Registro não foi encontrado.
      */
-    protected void atualizar(Long id, ContentValues values) {
+    protected void atualizar(Long id, ContentValues values) throws Exception {
 
         String whereClause = this.colunaId + "=?";
         String[] whereArgs = new String[]{String.valueOf(id)};
         
-        // TODO: Lançar exception se o retorno for igual a 0: Nenhuma coluna afetada.
-        dataBase.update(this.table, values, whereClause, whereArgs);
+        int linhasAfetadas = dataBase.update(this.table, values, whereClause, whereArgs);
+        
+        if (linhasAfetadas <= 0) {
+            throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
+        }
     }
 }
