@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Botões -->
+    <string name="btn_ok">OK</string>
+    
+    <!-- Mensagens -->
     <string name="hello">Olá! Bem Vindo!</string>
     <string name="app_name">Manager-Tran-School</string>
+    <string name="erro_desconhecido">Desculpe, ocorreu um erro interno.</string>
+    <string name="registro_nao_encontrado">Registro não encontrado. Operação não realizada.</string>
+    <string name="pesquisa_nao_encontrou_resultados">Não foram encontrados resultados para a consulta.</string>
 
-    <!-- Enum de tipo de contas de usuário. -->
+    <!-- Alerta -->
+    <string name="alert_titulo">Atenção!</string>
+    
+    <!-- Enum de tipo de contas de usuário -->
     <string name="tipo_usuario_administrador">Administrador</string>
     <string name="tipo_usuario_padrao">Padrão</string>
     

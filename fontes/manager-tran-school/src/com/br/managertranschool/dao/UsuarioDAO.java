@@ -90,7 +90,6 @@ public class UsuarioDAO extends BaseDAO {
     private ContentValues getContentValues(UsuarioVO usuario) {
 
         ContentValues values = new ContentValues();
-        values.put(UsuarioVO.ID_USUARIO, usuario.getId());
         values.put(UsuarioVO.TX_LOGIN, usuario.getLogin());
         values.put(UsuarioVO.TX_NOME, usuario.getNome());
         values.put(UsuarioVO.TX_SENHA, usuario.getSenha());
@@ -163,7 +162,6 @@ public class UsuarioDAO extends BaseDAO {
                     usuarioList.add(usuario);
                 } while (cursor.moveToNext());
             }
-
         }
 
         return usuarioList;
@@ -186,8 +184,9 @@ public class UsuarioDAO extends BaseDAO {
      * 
      * @param usuario - Objeto {@link UsuarioVO}.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception Exceção da camada de persistência.
      */
-    public void atualizar(UsuarioVO usuario) {
+    public void atualizar(UsuarioVO usuario) throws Exception {
 
         ContentValues values = this.getContentValues(usuario);
         super.atualizar(usuario.getId(), values);        
@@ -198,8 +197,9 @@ public class UsuarioDAO extends BaseDAO {
      * 
      * @param id - Id do usuário.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception Exceção da camada de persistência.
      */
-    public void delete(Long id) {   
+    public void delete(Long id) throws Exception {   
         super.delete(id);
     }
 }

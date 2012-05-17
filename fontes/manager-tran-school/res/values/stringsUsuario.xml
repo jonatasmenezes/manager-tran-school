@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Campos -->
     <string name="usuario_nome">Nome</string>
     <string name="usuario_login">Login</string>
     <string name="usuario_senha">Senha</string>
     <string name="usuario_tipo_usuario">Tipo de Conta</string>
 
+    <!-- Mensagens -->
+    <string name="usuario_id_obrigatorio">O id é obrigatório.</string>
+    <string name="usuario_login_obrigatorio">O login é obrigatório.</string>
+    <string name="usuario_senha_obrigatorio">A senha é obrigatória.</string>
+    <string name="usuario_tipo_obrigatorio">O tipo de usuário é obrigatório.</string>
+    <string name="usuario_nome_obrigatorio">O nome é obrigatório.</string>
+    
 </resources>

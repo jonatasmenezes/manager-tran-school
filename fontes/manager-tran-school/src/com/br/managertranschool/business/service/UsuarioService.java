@@ -1,10 +1,15 @@
 package com.br.managertranschool.business.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.br.managertranschool.R;
+import com.br.managertranschool.architecture.BaseService;
 import com.br.managertranschool.business.filter.UsuarioFilter;
+import com.br.managertranschool.business.list.TipoMensagemList;
 import com.br.managertranschool.business.vo.UsuarioVO;
-
+import com.br.managertranschool.dao.UsuarioDAO;
+import com.google.inject.Inject;
 
 /**
  * Classe de negocio responsavel pela entidade de Usuario.
@@ -12,7 +17,20 @@ import com.br.managertranschool.business.vo.UsuarioVO;
  * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
  * @since 03/05/2012
  */
-public class UsuarioService {
+public class UsuarioService extends BaseService {
+    
+    @Inject
+    private UsuarioDAO usuarioDAO;
+    
+    /**
+     * Construtor padrão.
+     * 
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public UsuarioService() {
+
+        super();
+    }
 
     /**
      * Método responsável em realizar a busca de usuario por id.
@@ -22,7 +40,15 @@ public class UsuarioService {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     public UsuarioVO buscarPorId(UsuarioVO usuario) {
-        return null;
+
+        this.validarIdObrigatorio(usuario);
+        UsuarioVO usuarioReturn = null;
+        
+        if (super.isValido()) {
+            usuarioReturn = usuarioDAO.buscarPorId(usuario.getId()); 
+        }
+        
+        return usuarioReturn;
     }
 
     /**
@@ -33,7 +59,15 @@ public class UsuarioService {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     public List<UsuarioVO> pesquisar(UsuarioFilter filter) {
-        return null;
+
+        List<UsuarioVO> usuarioList = new ArrayList<UsuarioVO>();
+        
+        usuarioList = usuarioDAO.pesquisar(filter);
+        if (usuarioList.isEmpty()) {
+            super.addMensagem(R.string.pesquisa_nao_encontrou_resultados, TipoMensagemList.INFORMACAO);
+        }
+        
+        return usuarioList;
     }
 
     /**
@@ -43,6 +77,12 @@ public class UsuarioService {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     public void salvar(UsuarioVO usuario) {
+
+        this.validarCamposObrigatorios(usuario);
+        
+        if (super.isValido()) {
+            usuarioDAO.salvar(usuario); 
+        }
     }
 
     /**
@@ -50,17 +90,65 @@ public class UsuarioService {
      * 
      * @param usuario - Objeto {@link UsuarioVO}.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception 
      */
-    public void atualizar(UsuarioVO usuario) {
+    public void atualizar(UsuarioVO usuario) throws Exception {
+
+        this.validarIdObrigatorio(usuario);
+        this.validarCamposObrigatorios(usuario);
+        
+        if (super.isValido()) {
+            usuarioDAO.atualizar(usuario); 
+        }
     }
-    
+
     /**
      * Método responsável em excluir dados do usuario.
      * 
      * @param usuario - Objeto {@link UsuarioVO}.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception 
      */
-    public void delete(UsuarioVO usuario) {   
+    public void delete(UsuarioVO usuario) throws Exception {
+
+        this.validarIdObrigatorio(usuario);
+        
+        if (super.isValido()) {
+            usuarioDAO.delete(usuario.getId()); 
+        }
+    }
+
+    /**
+     * Método valida se id foi informado.
+     * 
+     * @param usuario - Objeto UsuarioVO
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private void validarIdObrigatorio(UsuarioVO usuario) {
+        if (super.isNotNullAndNotEmpty(usuario.getId())) {
+            super.addMensagem(R.string.usuario_id_obrigatorio, TipoMensagemList.ERRO);
+        }
+    }
+    
+    /**
+     * Método valida se campos obrigatorios foram informados.
+     * 
+     * @param usuario - Objeto UsuarioVO
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private void validarCamposObrigatorios(UsuarioVO usuario) {
+        if (super.isNotNullAndNotEmpty(usuario.getLogin())) {
+            super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
+        }
+        if (super.isNotNullAndNotEmpty(usuario.getSenha())) {
+            super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
+        }
+        if (super.isNotNullAndNotEmpty(usuario.getTipoUsuario())) {
+            super.addMensagem(R.string.usuario_tipo_obrigatorio, TipoMensagemList.ERRO);
+        }
+        if (super.isNotNullAndNotEmpty(usuario.getNome())) {
+            super.addMensagem(R.string.usuario_nome_obrigatorio, TipoMensagemList.ERRO);
+        }
     }
     
 }
