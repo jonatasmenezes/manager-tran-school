@@ -10,12 +10,14 @@ import java.io.Serializable;
  */
 public class RotaLocalidadeVO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String TABLE = "ROTA_LOCALIDADE";
-    
+
     public static final String LOCALIDADE_ID = "LOCALIDADE_ID";
 
     private Long localidadeId;
-    
+
     public static final String ROTA_ID = "ROTA_ID";
 
     private Long rotaId;
@@ -72,6 +74,5 @@ public class RotaLocalidadeVO implements Serializable {
 
         this.rotaId = rotaId;
     }
-  
 
 }

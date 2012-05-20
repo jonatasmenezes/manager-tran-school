@@ -10,8 +10,10 @@ import java.io.Serializable;
  */
 public class RotaVO implements Serializable {
 
+    private static final long serialVersionUID = 6852180049557918050L;
+
     public static final String TABLE = "ROTA";
-    
+
     public static final String ID_ROTA = "ID_ROTA";
 
     private Long id;
@@ -19,10 +21,11 @@ public class RotaVO implements Serializable {
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
     private String descricao;
-    
+
     public static final String LOCAL_PARTIDA = "LOCAL_PARTIDA";
 
     private Long localPartida;
+
     /**
      * Construtor padrão.
      * 

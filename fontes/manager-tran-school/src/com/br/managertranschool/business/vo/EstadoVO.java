@@ -10,8 +10,10 @@ import java.io.Serializable;
  */
 public class EstadoVO implements Serializable {
 
+    private static final long serialVersionUID = 5215267636239840836L;
+
     public static final String TABLE = "ESTADO";
-    
+
     public static final String ID_ESTADO = "ID_ESTADO";
 
     private Long id;
@@ -23,6 +25,7 @@ public class EstadoVO implements Serializable {
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
     private String descricao;
+
     /**
      * Construtor padrão.
      * 
@@ -91,7 +94,5 @@ public class EstadoVO implements Serializable {
 
         this.descricao = descricao;
     }
-
- 
 
 }

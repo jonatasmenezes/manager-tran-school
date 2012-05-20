@@ -10,16 +10,18 @@ import java.io.Serializable;
  */
 public class LocalidadeVO implements Serializable {
 
+    private static final long serialVersionUID = 7075097032643255169L;
+
     public static final String TABLE = "LOCALIDADE";
-    
+
     public static final String ID_LOCALIDADE = "ID_LOCALIDADE";
 
     private Long id;
-    
+
     public static final String NR_LATITUDE = "NR_LATITUDE";
 
     private Long latitude;
-    
+
     public static final String NR_LONGITUDE = "NR_LONGITUDE";
 
     private Long longitude;
@@ -27,6 +29,7 @@ public class LocalidadeVO implements Serializable {
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
     private String descricao;
+
     /**
      * Construtor padrão.
      * 
@@ -79,7 +82,7 @@ public class LocalidadeVO implements Serializable {
 
         this.latitude = latitude;
     }
-    
+
     /**
      * @return the longitude
      */
@@ -111,7 +114,5 @@ public class LocalidadeVO implements Serializable {
 
         this.descricao = descricao;
     }
-
- 
 
 }
