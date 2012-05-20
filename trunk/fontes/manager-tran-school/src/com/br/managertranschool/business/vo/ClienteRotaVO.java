@@ -8,14 +8,16 @@ import java.io.Serializable;
  * @author Jeferson Almeida (jef.almeida.07@gmail.com)
  * @since 19/05/2012
  */
-public class RotaLocalidadeVO implements Serializable {
+public class ClienteRotaVO implements Serializable {
+
+    private static final long serialVersionUID = 250730267995309544L;
 
     public static final String TABLE = "CLIENTE_ROTA";
-    
+
     public static final String ROTA_ID = "ROTA_ID";
 
     private Long rotaId;
-    
+
     public static final String CLIENTE_ID = "CLIENTE_ID";
 
     private Long clienteId;
@@ -25,7 +27,7 @@ public class RotaLocalidadeVO implements Serializable {
      * 
      * @author Jeferson Almeida (jef.almeida.07@gmail.com)
      */
-    public RotaLocalidadeVO() {
+    public ClienteRotaVO() {
 
         super();
     }
@@ -38,7 +40,7 @@ public class RotaLocalidadeVO implements Serializable {
      */
     public static final String[] getNomesColunas() {
 
-        return new String[] { LOCALIDADE_ID, ROTA_ID };
+        return new String[] { CLIENTE_ID, ROTA_ID };
     }
 
     /**
@@ -72,6 +74,5 @@ public class RotaLocalidadeVO implements Serializable {
 
         this.clienteId = clienteId;
     }
-  
 
 }

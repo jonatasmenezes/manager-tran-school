@@ -10,8 +10,10 @@ import java.io.Serializable;
  */
 public class CidadeVO implements Serializable {
 
+    private static final long serialVersionUID = -5214794343627284854L;
+
     public static final String TABLE = "CIDADE";
-    
+
     public static final String ID_CIDADE = "ID_CIDADE";
 
     private Long id;
@@ -23,6 +25,7 @@ public class CidadeVO implements Serializable {
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
     private String descricao;
+
     /**
      * Construtor padrão.
      * 
@@ -91,7 +94,5 @@ public class CidadeVO implements Serializable {
 
         this.descricao = descricao;
     }
-
- 
 
 }

@@ -10,12 +10,14 @@ import java.io.Serializable;
  */
 public class ClienteLocalidadeVO implements Serializable {
 
+    private static final long serialVersionUID = 8917598711802630236L;
+
     public static final String TABLE = "CLIENTE_LOCALIDADE";
-    
+
     public static final String LOCALIDADE_ID = "LOCALIDADE_ID";
 
     private Long localidadeId;
-    
+
     public static final String CLIENTE_ID = "CLIENTE_ID";
 
     private Long clienteId;
@@ -72,6 +74,5 @@ public class ClienteLocalidadeVO implements Serializable {
 
         this.clienteId = clienteId;
     }
-  
 
 }

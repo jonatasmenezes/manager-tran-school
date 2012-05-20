@@ -1,6 +1,9 @@
 package com.br.managertranschool.business.vo;
 
 import java.io.Serializable;
+import java.util.Date;
+
+import android.text.format.Time;
 
 /**
  * Classe VO responsável pela entidade de ROTA_HISTORICO.
@@ -10,16 +13,18 @@ import java.io.Serializable;
  */
 public class RotaHistoricoVO implements Serializable {
 
+    private static final long serialVersionUID = -1450916171568473727L;
+
     public static final String TABLE = "ROTA_HISTORICO";
-    
+
     public static final String ID_ROTA_HISTORICO = "ID_ROTA_HISTORICO";
 
     private Long id;
-    
+
     public static final String ROTA_ID = "ROTA_ID";
 
     private Long rotaId;
-    
+
     public static final String DT_ROTA = "DT_ROTA";
 
     private Date data;
@@ -27,10 +32,11 @@ public class RotaHistoricoVO implements Serializable {
     public static final String DURACAO = "DURACAO";
 
     private Time duracao;
-    
+
     public static final String USUARIO_ID = "USUARIO_ID";
 
     private Long usuarioId;
+
     /**
      * Construtor padrão.
      * 
@@ -83,7 +89,7 @@ public class RotaHistoricoVO implements Serializable {
 
         this.rotaId = rotaId;
     }
-    
+
     /**
      * @return the data
      */
@@ -131,6 +137,5 @@ public class RotaHistoricoVO implements Serializable {
 
         this.id = usuarioId;
     }
- 
 
 }
