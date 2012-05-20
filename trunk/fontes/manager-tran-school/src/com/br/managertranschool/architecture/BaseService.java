@@ -67,7 +67,7 @@ public class BaseService {
         if (object != null) {
             isNotNull = true;
             if (object instanceof String) {
-                isNotNull = !object.toString().trim().isEmpty();
+                isNotNull = object.toString().trim() != "";
             }
         }
 

@@ -92,7 +92,7 @@ public class BaseActivity extends RoboActivity {
      */
     protected void exibirInformacao(String mensagem) {
 
-        if (mensagem != null && !mensagem.trim().isEmpty()) {
+        if (mensagem != null && mensagem.trim() != "") {
             
             Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_LONG).show();
         }
@@ -107,7 +107,7 @@ public class BaseActivity extends RoboActivity {
      */
     protected void exibirAlert(String mensagem, String textoButton) {
 
-        if (mensagem != null && !mensagem.trim().isEmpty()) {
+        if (mensagem != null && mensagem.trim() != "") {
             
             Builder alerta = new Builder(getApplicationContext());
             alerta.setTitle(R.string.alert_titulo);

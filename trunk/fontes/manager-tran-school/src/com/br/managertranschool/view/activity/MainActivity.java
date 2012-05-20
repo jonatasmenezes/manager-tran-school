@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
+import com.br.managertranschool.architecture.database.DatabaseCreate;
 
 /**
  * Classe activity responsavel pela view principal do aplicativo.
@@ -19,5 +20,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        new DatabaseCreate(this);
     }
 }

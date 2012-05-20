@@ -1,11 +1,14 @@
 package com.br.managertranschool.architecture;
 
-import com.br.managertranschool.R;
-import com.br.managertranschool.architecture.exception.RegistroNaoEncontradoException;
-
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.br.managertranschool.R;
+import com.br.managertranschool.architecture.database.DatabaseCreate;
+import com.br.managertranschool.architecture.exception.RegistroNaoEncontradoException;
+import com.google.inject.Inject;
 
 /**
  * Classe Pai de todas classes DAO da aplicação.
@@ -22,6 +25,9 @@ public abstract class BaseDAO {
     protected String colunaId;
     
     protected String[] colunas;
+    
+    @Inject
+    protected Context context;
         
     /**
      * Construtor padrão.
@@ -31,6 +37,7 @@ public abstract class BaseDAO {
     public BaseDAO() {
 
         super();
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
     }
     
     /**
@@ -86,7 +93,7 @@ public abstract class BaseDAO {
         String[] selectionArgs = new String[values.size()];
         int count = 0;
         
-        for (String item : values.keySet()) {
+        /*for (String item : values.keySet()) {
             if (count != 0) {
                 selection.append(" AND ");
             }
@@ -94,7 +101,7 @@ public abstract class BaseDAO {
             selection.append("=?");            
             selectionArgs[count] = values.getAsString(item);
             count++;
-        }
+        }*/
         
         Cursor cursor = dataBase.query(this.table, this.colunas, selection.toString(), selectionArgs, null, null, null);
         
