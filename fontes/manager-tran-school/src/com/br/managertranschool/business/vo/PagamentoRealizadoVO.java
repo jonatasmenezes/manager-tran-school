@@ -1,6 +1,7 @@
 package com.br.managertranschool.business.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Classe VO responsável pela entidade de PAGAMENTO_REALIZADO.
@@ -9,8 +10,10 @@ import java.io.Serializable;
  * @since 20/05/2012
  */
 public class PagamentoRealizadoVO implements Serializable {
-
+ 
     public static final String TABLE = "PAGAMENTO_REALIZADO";
+    
+    private static final long serialVersionUID = -5656410932036084432L;
     
     public static final String ID_PAGAMENTO_REALIZADO = "ID_PAGAMENTO_REALIZADO";
 
