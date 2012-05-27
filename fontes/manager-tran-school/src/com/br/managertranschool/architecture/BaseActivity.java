@@ -4,6 +4,7 @@ import java.util.List;
 
 import roboguice.activity.RoboActivity;
 import android.app.AlertDialog.Builder;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -19,6 +20,11 @@ import com.br.managertranschool.business.vo.MensagemVO;
  */
 public class BaseActivity extends RoboActivity {
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+    
     /**
      * Construtor padrão.
      * 

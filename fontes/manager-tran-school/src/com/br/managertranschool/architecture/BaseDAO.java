@@ -1,5 +1,7 @@
 package com.br.managertranschool.architecture;
 
+import java.util.Map.Entry;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -93,16 +95,15 @@ public abstract class BaseDAO {
         String[] selectionArgs = new String[values.size()];
         int count = 0;
         
-        // TODO
-        /*for (String item : values.keySet()) {
+        for (Entry<String, Object> entry : values.valueSet()) {
             if (count != 0) {
                 selection.append(" AND ");
             }
-            selection.append(item);
-            selection.append("=?");            
-            selectionArgs[count] = values.getAsString(item);
+            selection.append(entry.getKey());
+            selection.append("=?");
+            selectionArgs[count] = String.valueOf(entry.getValue());
             count++;
-        }*/
+        }
         
         Cursor cursor = dataBase.query(this.table, this.colunas, selection.toString(), selectionArgs, null, null, null);
         
