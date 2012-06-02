@@ -113,6 +113,7 @@ public class UsuarioDAO extends BaseDAO {
 
         if (cursor != null) {
             usuario = this.getUsuario(cursor);
+            cursor.close();
         }
 
         return usuario;
@@ -161,6 +162,7 @@ public class UsuarioDAO extends BaseDAO {
                     usuario = this.getUsuario(cursor);
                     usuarioList.add(usuario);
                 } while (cursor.moveToNext());
+                cursor.close();
             }
         }
 
