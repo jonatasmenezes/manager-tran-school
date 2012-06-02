@@ -20,7 +20,7 @@ import com.google.inject.Inject;
  */
 public abstract class BaseDAO {
 
-    protected static SQLiteDatabase dataBase;
+    protected SQLiteDatabase dataBase;
     
     protected String table;
     
@@ -39,7 +39,6 @@ public abstract class BaseDAO {
     public BaseDAO() {
 
         super();
-        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
     }
     
     /**
@@ -71,11 +70,15 @@ public abstract class BaseDAO {
      */
     protected Cursor findById(Long id) {
         
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
+        
         String selection = this.colunaId + "=?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
         
         Cursor cursor = dataBase.query(this.table, this.colunas, selection, selectionArgs, null, null, null);
 
+        dataBase.close();
+        
         if (cursor.moveToFirst()) {
             return cursor;
         }
@@ -90,6 +93,8 @@ public abstract class BaseDAO {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     protected Cursor pesquisar(ContentValues values) {
+        
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
         
         StringBuilder selection = new StringBuilder();
         String[] selectionArgs = new String[values.size()];
@@ -107,6 +112,8 @@ public abstract class BaseDAO {
         
         Cursor cursor = dataBase.query(this.table, this.colunas, selection.toString(), selectionArgs, null, null, null);
         
+        dataBase.close();
+        
         if (cursor.moveToFirst()) {
             return cursor;
         }
@@ -122,10 +129,14 @@ public abstract class BaseDAO {
      */
     protected void delete(Long id) throws Exception {
 
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
+        
         String whereClause = this.colunaId + "=?";
         String[] whereArgs = new String[]{String.valueOf(id)};
         
         int linhasAfetadas = dataBase.delete(this.table, whereClause, whereArgs);
+        
+        dataBase.close();
         
         if (linhasAfetadas <= 0) {
             throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
@@ -141,7 +152,13 @@ public abstract class BaseDAO {
      */
     protected long salvar(ContentValues values) {
 
-        return dataBase.insertOrThrow(this.table, null, values);
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
+        
+        long retorno = dataBase.insertOrThrow(this.table, null, values); 
+        
+        dataBase.close();
+        
+        return retorno;
     }
 
     /**
@@ -154,10 +171,14 @@ public abstract class BaseDAO {
      */
     protected void atualizar(Long id, ContentValues values) throws Exception {
 
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
+        
         String whereClause = this.colunaId + "=?";
         String[] whereArgs = new String[]{String.valueOf(id)};
         
         int linhasAfetadas = dataBase.update(this.table, values, whereClause, whereArgs);
+        
+        dataBase.close();
         
         if (linhasAfetadas <= 0) {
             throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);

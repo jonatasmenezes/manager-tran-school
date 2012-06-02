@@ -82,6 +82,7 @@ public class UsuarioService extends BaseService {
         
         if (super.isValido()) {
             usuarioDAO.salvar(usuario); 
+            super.addMensagem(R.string.inclusao_sucesso, TipoMensagemList.INFORMACAO);
         }
     }
 
@@ -99,6 +100,7 @@ public class UsuarioService extends BaseService {
         
         if (super.isValido()) {
             usuarioDAO.atualizar(usuario); 
+            super.addMensagem(R.string.alteracao_sucesso, TipoMensagemList.INFORMACAO);
         }
     }
 
@@ -115,6 +117,7 @@ public class UsuarioService extends BaseService {
         
         if (super.isValido()) {
             usuarioDAO.delete(usuario.getId()); 
+            super.addMensagem(R.string.exclusao_sucesso, TipoMensagemList.INFORMACAO);
         }
     }
 

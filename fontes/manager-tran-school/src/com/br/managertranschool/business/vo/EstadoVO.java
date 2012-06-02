@@ -16,11 +16,7 @@ public class EstadoVO implements Serializable {
 
     public static final String ID_ESTADO = "ID_ESTADO";
 
-    private Long id;
-
-    public static final String TX_ABREVIACAO = "TX_ABREVIACAO";
-
-    private String abreviacao;
+    private String id;
 
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
@@ -44,13 +40,13 @@ public class EstadoVO implements Serializable {
      */
     public static final String[] getNomesColunas() {
 
-        return new String[] { ID_ESTADO, TX_ABREVIACAO, TX_DESCRICAO };
+        return new String[] { ID_ESTADO, TX_DESCRICAO };
     }
 
     /**
      * @return the id
      */
-    public Long getId() {
+    public String getId() {
 
         return id;
     }
@@ -58,25 +54,9 @@ public class EstadoVO implements Serializable {
     /**
      * @param id - the id to set
      */
-    public void setId(Long id) {
+    public void setId(String id) {
 
         this.id = id;
-    }
-
-    /**
-     * @return the abreviacao
-     */
-    public String getAbreviacao() {
-
-        return abreviacao;
-    }
-
-    /**
-     * @param abreviacao - the abreviacao to set
-     */
-    public void setAbreviacao(String abreviacao) {
-
-        this.abreviacao = abreviacao;
     }
 
     /**

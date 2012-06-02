@@ -49,7 +49,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        Log.i(this.getClass().getName(), "android.database.sqlite.SQLiteOpenHelper#onCreate(" + database.toString() + ")");
+        Log.i(this.getClass().getName(), "SQLiteOpenHelper #onCreate");
 
         // Criar tabelas na base de dados.
         for (String script : scriptCreateTables) {
@@ -72,13 +72,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int versaoAnterior, int versaoAtual) {
 
-        Log.i(this.getClass().getName(), "android.database.sqlite.SQLiteOpenHelper#onUpgrade("
-            + database.toString()
-            + ", "
-            + versaoAnterior
-            + ", "
-            + versaoAtual
-            + ")");
+        Log.i(this.getClass().getName(), "SQLiteOpenHelper #onUpgrade(" + versaoAnterior + ", " + versaoAtual + ")");
 
         // Deleta tabelas que possui alterações para serem feitas na base.
         for (String script : scriptDropTables) {
