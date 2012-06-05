@@ -125,7 +125,7 @@ public class RotaHistoricoVO implements Serializable {
     /**
      * @return the usuarioId
      */
-    public Long getusUarioId() {
+    public Long getUsuarioId() {
 
         return usuarioId;
     }
