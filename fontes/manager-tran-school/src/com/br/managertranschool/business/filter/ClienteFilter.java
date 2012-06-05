@@ -48,7 +48,7 @@ public class ClienteFilter implements Serializable{
     }
 
     /**
-     * @param usuario - the usuario to set
+     * @param cliente - the cliente to set
      */
     public void setCliente(ClienteVO cliente) {
 

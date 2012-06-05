@@ -30,7 +30,7 @@ public class RotaFilter  implements Serializable{
     /**
      * Construtor com argumento.
      * 
-     * @param usuario - Objeto {@link RotaVO}
+     * @param rota - Objeto {@link RotaVO}
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     public RotaFilter(RotaVO rota) {
