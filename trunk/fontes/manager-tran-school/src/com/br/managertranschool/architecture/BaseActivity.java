@@ -115,11 +115,12 @@ public class BaseActivity extends RoboActivity {
 
         if (mensagem != null && mensagem.trim() != "") {
             
-            Builder alerta = new Builder(getApplicationContext());
+            Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_LONG).show();
+            /*Builder alerta = new Builder(this.getApplicationContext());
             alerta.setTitle(R.string.alert_titulo);
             alerta.setMessage(mensagem);
             alerta.setNeutralButton(textoButton, null);
-            alerta.show();
+            alerta.show();*/
         }
     }
 

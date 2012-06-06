@@ -3,13 +3,14 @@ package com.br.managertranschool.business.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseService;
 import com.br.managertranschool.business.filter.UsuarioFilter;
 import com.br.managertranschool.business.list.TipoMensagemList;
 import com.br.managertranschool.business.vo.UsuarioVO;
 import com.br.managertranschool.dao.UsuarioDAO;
-import com.google.inject.Inject;
 
 /**
  * Classe de negocio responsavel pela entidade de Usuario.
@@ -140,16 +141,16 @@ public class UsuarioService extends BaseService {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     private void validarCamposObrigatorios(UsuarioVO usuario) {
-        if (super.isNotNullAndNotEmpty(usuario.getLogin())) {
+        if (!super.isNotNullAndNotEmpty(usuario.getLogin())) {
             super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
         }
-        if (super.isNotNullAndNotEmpty(usuario.getSenha())) {
+        if (!super.isNotNullAndNotEmpty(usuario.getSenha())) {
             super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
         }
-        if (super.isNotNullAndNotEmpty(usuario.getTipoUsuario())) {
+        if (!super.isNotNullAndNotEmpty(usuario.getTipoUsuario())) {
             super.addMensagem(R.string.usuario_tipo_obrigatorio, TipoMensagemList.ERRO);
         }
-        if (super.isNotNullAndNotEmpty(usuario.getNome())) {
+        if (!super.isNotNullAndNotEmpty(usuario.getNome())) {
             super.addMensagem(R.string.usuario_nome_obrigatorio, TipoMensagemList.ERRO);
         }
     }
