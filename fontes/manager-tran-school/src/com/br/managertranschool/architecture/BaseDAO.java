@@ -1,16 +1,22 @@
 package com.br.managertranschool.architecture;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map.Entry;
 
+import javax.inject.Inject;
+
+import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.format.Time;
 
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.database.DatabaseCreate;
 import com.br.managertranschool.architecture.exception.RegistroNaoEncontradoException;
-import com.google.inject.Inject;
 
 /**
  * Classe Pai de todas classes DAO da aplicação.
@@ -29,8 +35,8 @@ public abstract class BaseDAO {
     protected String[] colunas;
     
     @Inject
-    protected Context context;
-        
+    private Application context;
+    
     /**
      * Construtor padrão.
      * 
@@ -183,5 +189,81 @@ public abstract class BaseDAO {
         if (linhasAfetadas <= 0) {
             throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
         }
+    }
+    
+    /**
+     * Método obtém data através de string obtida do cursor.
+     * 
+     * @param data - Data a ser formatada.
+     * @return Obtejo Date.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected Date obterDate(String data) {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date retorno;
+        
+        try {
+            retorno = format.parse(data);
+        } catch (ParseException e) {
+            retorno = null;
+        }
+        
+        return retorno;
+    }
+    
+    /**
+     * Método obtém data em string através de data passada por parametro.
+     * 
+     * @param data - Data a ser formatada.
+     * @return Obtejo String.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected String obterDateString(Date data) {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        return format.format(data);
+    }
+    
+    /**
+     * Método obtém time através de string obtida do cursor.
+     * 
+     * @param data - Time a ser formatado.
+     * @return Obtejo Time.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected Time obterTime(String time) {
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        Time retorno = new Time();
+        
+        try {
+            retorno.set(format.parse(time).getTime());
+        } catch (ParseException e) {
+            retorno = null;
+        }
+        
+        return retorno;
+    }
+    
+    /**
+     * Método obtém time em string através do time passada por parametro.
+     * 
+     * @param time - Time a ser formatado.
+     * @return Obtejo String.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected String obterTimeString(Time time) {
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        String retorno;
+        
+        try {
+            retorno = format.format(time);
+        } catch (IllegalArgumentException e) {
+            retorno = null;
+        }
+        
+        return retorno;
     }
 }
