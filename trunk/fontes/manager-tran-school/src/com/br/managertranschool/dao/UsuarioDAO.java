@@ -26,6 +26,9 @@ public class UsuarioDAO extends BaseDAO {
     public UsuarioDAO() {
 
         super();
+        this.setNomeTabela();
+        this.setNomeColunaId();
+        this.setNomeColunas();
     }
 
     /*

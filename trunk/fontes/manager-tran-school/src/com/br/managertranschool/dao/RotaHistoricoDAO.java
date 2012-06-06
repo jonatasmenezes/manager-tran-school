@@ -18,7 +18,7 @@ import com.br.managertranschool.business.vo.RotaHistoricoVO;
  * @author Jeferson Almeida (jef.henrique.07@gmail.com)
  * @since 05/06/2012
  */
-public class RotaHistoricoDAO extends BaseDAO{
+public class RotaHistoricoDAO extends BaseDAO {
 
     /**
      * Construtor padrão.
@@ -80,8 +80,8 @@ public class RotaHistoricoDAO extends BaseDAO{
         /*
          * Verificar qual get eu coloco pois esses campos são datas e não existe getData
          */
-        rotaHistorico.setData(cursor.get(cursor.getColumnIndex(RotaHistoricoVO.DT_ROTA)));
-        rotaHistorico.setDuracao(cursor.get(cursor.getColumnIndex(RotaHistoricoVO.DURACAO)));
+        rotaHistorico.setData(super.obterDate(cursor.getString(cursor.getColumnIndex(RotaHistoricoVO.DT_ROTA))));
+        rotaHistorico.setDuracao(super.obterTime(cursor.getString(cursor.getColumnIndex(RotaHistoricoVO.DURACAO))));
         
         
         return rotaHistorico;
@@ -98,12 +98,12 @@ public class RotaHistoricoDAO extends BaseDAO{
 
         ContentValues values = new ContentValues();
         values.put(RotaHistoricoVO.ROTA_ID, rotaHistorico.getRotaId());
-        values.put(RotaHistoricoVO.USUARIO_ID, rotaHistorico.getusUarioId());
+        values.put(RotaHistoricoVO.USUARIO_ID, rotaHistorico.getUsuarioId());
         /*
          * problema com datas denovo
          **/
-        values.put(RotaHistoricoVO.DURACAO, rotaHistorico.getDuracao());
-        values.put(RotaHistoricoVO.DT_ROTA, rotaHistorico.getData());
+        values.put(RotaHistoricoVO.DT_ROTA, super.obterDateString(rotaHistorico.getData()));
+        values.put(RotaHistoricoVO.DURACAO, super.obterTimeString(rotaHistorico.getDuracao()));
         
         return values;
     }
@@ -158,11 +158,11 @@ public class RotaHistoricoDAO extends BaseDAO{
             }
             // datas again
             if (filter.getRotaHistorico().getData() != null) {
-                values.put(RotaHistoricoVO.DT_ROTA, filter.getRotaHistorico().getData());
+                values.put(RotaHistoricoVO.DT_ROTA, super.obterDateString(filter.getRotaHistorico().getData()));
             }
             
             if (filter.getRotaHistorico().getDuracao() != null) {
-                values.put(RotaHistoricoVO.DURACAO, filter.getRotaHistorico().getDuracao());
+                values.put(RotaHistoricoVO.DURACAO, super.obterTimeString(filter.getRotaHistorico().getDuracao()));
             }
             
             Cursor cursor = super.pesquisar(values);
