@@ -8,7 +8,6 @@ import android.database.Cursor;
 
 import com.br.managertranschool.architecture.BaseDAO;
 import com.br.managertranschool.business.filter.CidadeFilter;
-import com.br.managertranschool.business.vo.ClienteVO;
 import com.br.managertranschool.business.vo.CidadeVO;
 
 
@@ -68,7 +67,7 @@ public class CidadeDAO extends BaseDAO{
      * Método obtem um objeto cidade através do cursor passado por parametro.
      * 
      * @param cursor -Objeto {@link Cursor}.
-     * @return Objeto {@link ClienteVO}.
+     * @return Objeto {@link CidadeVO}.
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private CidadeVO getCidade(Cursor cursor) {
@@ -84,7 +83,7 @@ public class CidadeDAO extends BaseDAO{
     /**
      * Método obtem um objeto ContentValues através da cidade passada por parametro.
      * 
-     * @param cliente - Objeto {@link CidadeVO}.
+     * @param Cidade - Objeto {@link CidadeVO}.
      * @return Objeto {@link ContentValues}.
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
