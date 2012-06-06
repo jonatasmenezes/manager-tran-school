@@ -81,21 +81,6 @@ public class EstadoDAO extends BaseDAO{
     }
     
     /**
-     * Método obtem um objeto ContentValues através da estado passada por parametro.
-     * 
-     * @param cliente - Objeto {@link EstadoVO}.
-     * @return Objeto {@link ContentValues}.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     */
-    private ContentValues getContentValues(EstadoVO estado) {
-
-        ContentValues values = new ContentValues();
-        values.put(EstadoVO.TX_DESCRICAO, estado.getDescricao());      
-
-        return values;
-    }
-    
-    /**
      * Método busca Estado por id.
      * 
      * @param id - Id da estado.
@@ -154,42 +139,4 @@ public class EstadoDAO extends BaseDAO{
 
         return estadoList;
     }
-    
-    /**
-     * Método insere uma nova estado na base.
-     * 
-     * @param estado - Objeto {@link EstadoVO}.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     */
-    public void salvar(EstadoVO estado) {
-
-        ContentValues values = this.getContentValues(estado);        
-        estado.setId(super.salvar(values));
-    }
-
-    /**
-     * Método atualizar a estado na base de acordo com o id.
-     * 
-     * @param estado - Objeto {@link EstadoVO}.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     * @throws Exception Exceção da camada de persistência.
-     */
-    public void atualizar(EstadoVO estado) throws Exception {
-
-        ContentValues values = this.getContentValues(estado);
-        super.atualizar(estado.getId(), values);        
-    }
-    
-    /**
-     * Método deleta Estado da base de acordo com o id.
-     * 
-     * @param id - Id da estado.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     * @throws Exception Exceção da camada de persistência.
-     */
-    public void delete(String id) throws Exception {   
-        super.delete(id);
-    }
-        
-    
 }
