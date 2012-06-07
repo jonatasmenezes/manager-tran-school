@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:padding="5dp"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+<Button
+	android:id="@+id/btn_entrar"
+	android:layout_width="80dp"
+	android:layout_height="wrap_content"
+	android:text="@string/btn_entrar"
+	android:layout_below="@+id/usuarioSenha"
+	android:layout_toLeftOf="@+id/btn_cancelar" />
+<EditText
+	android:id="@+id/usuarioSenha"
+	android:layout_width="250dp"
+	android:layout_height="40dp"
+	android:inputType="textPassword"
+	android:textSize="18sp"
+	android:layout_alignTop="@+id/label_usuario_senha"
+	android:layout_alignLeft="@+id/usuarioLogin" />
+<TextView
+	android:id="@+id/label_usuario_senha"
+	android:layout_width="60dp"
+	android:layout_height="40dp"
+	android:textSize="20sp"
+	android:layout_centerHorizontal="true"
+	android:text="@string/usuario_senha"
+	android:layout_below="@+id/usuarioLogin"
+	android:layout_toLeftOf="@+id/usuarioLogin" />
+<EditText
+	android:id="@+id/usuarioLogin"
+	android:layout_width="250dp"
+	android:layout_height="40dp"
+	android:inputType="text"
+	android:textSize="15sp"
+	android:layout_alignTop="@+id/label_usuario_login"
+	android:layout_toRightOf="@+id/label_usuario_login" />
+<TextView
+    android:id="@+id/label_usuario_login"
+	android:layout_width="60dp"
+	android:layout_height="40dp"
+	android:textSize="20sp"
+	android:layout_centerHorizontal="true"
+	android:text="@string/usuario_login"
+	android:layout_below="@+id/label_login"
+	android:layout_alignParentLeft="true" />
+<TextView
+	android:id="@+id/label_login"
+	android:layout_width="wrap_content"
+	android:layout_height="30dp"
+	android:text="@string/label_login"
+	android:textSize="30sp"
+	android:gravity="center"
+	android:layout_alignParentTop="true"
+	android:layout_centerHorizontal="true" />
+
+<Button
+    android:id="@+id/btn_cancelar"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    android:layout_alignBaseline="@+id/btn_entrar"
+    android:layout_alignBottom="@+id/btn_entrar"
+    android:layout_alignParentRight="true"
+    android:text="@string/btn_cancelar" />
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.br.managertranschool.architecture.database;
 
+import com.br.managertranschool.business.list.TipoUsuarioList;
 import com.br.managertranschool.business.vo.CidadeVO;
 import com.br.managertranschool.business.vo.ClienteLocalidadeVO;
 import com.br.managertranschool.business.vo.ClienteRotaVO;
@@ -43,6 +44,22 @@ public class DatabaseCreate {
     }
 
     /**
+     * Obtém usuário do sistema a ser inserido na criação da base.
+     * 
+     * @return - {@link UsuarioVO}
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private UsuarioVO obterUsuarioSistema() {
+        UsuarioVO usuario = new UsuarioVO();
+        usuario.setLogin("system");
+        usuario.setSenha("systemMTSsystem");
+        usuario.setTipoUsuario(TipoUsuarioList.ADMINISTRADOR.getCodigo());
+        usuario.setNome("system");
+
+        return usuario;
+    }
+    
+    /**
      * Método obtém script de criação das tabelas da base.
      * 
      * @return Array de scripts.
@@ -76,7 +93,7 @@ public class DatabaseCreate {
      */
     private String[] getScriptInsert() {
 
-        return new String[] { this.getInsertIntoEstado(), this.getInsertIntoCidade() };
+        return new String[] { this.getInsertIntoUsuario(), this.getInsertIntoEstado(), this.getInsertIntoCidade() };
     }
 
     /**
@@ -819,6 +836,24 @@ public class DatabaseCreate {
         script.append(defaultInsertCidade).append(" VALUES  (293350, 'WENCESLAU GUIMARAES', 'BA'); ");
         script.append(defaultInsertCidade).append(" VALUES  (293360, 'XIQUE-XIQUE', 'BA'); ");
                 
+        return script.toString();
+    }
+    
+    /**
+     * Método obtém script de insert da tabela USUARIO com usuário do sistema.
+     * 
+     * @return Script
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private String getInsertIntoUsuario() {
+
+        StringBuilder script = new StringBuilder();
+        String defaultInsertUsuario = "INSERT INTO " + UsuarioVO.TABLE + " (" + UsuarioVO.TX_LOGIN + ", " + UsuarioVO.TX_SENHA + ", " + UsuarioVO.TIPO_USUARIO + ", " + UsuarioVO.TX_NOME + ")";
+        
+        UsuarioVO usuario = this.obterUsuarioSistema();
+        
+        script.append(defaultInsertUsuario).append(" VALUES ('" + usuario.getLogin() + "', '" + usuario.getSenha() + "', " + usuario.getTipoUsuario() + ", '" + usuario.getNome() + "'); ");
+
         return script.toString();
     }
     

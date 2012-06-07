@@ -123,13 +123,45 @@ public class UsuarioService extends BaseService {
     }
 
     /**
+     * Método responsável em realizar a autenticação de usuario.
+     * 
+     * @param usuario - Objeto {@link UsuarioVO}.
+     * @return Objeto {@link UsuarioVO}.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public UsuarioVO autenticarUsuario(UsuarioVO usuario) {
+
+        UsuarioVO usuarioReturn = null;
+        
+        if (!super.isNotNullAndNotEmpty(usuario.getLogin())) {
+            super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
+        }
+        
+        if (!super.isNotNullAndNotEmpty(usuario.getSenha())) {
+            super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
+        }
+       
+        if (super.isValido()) {
+            UsuarioFilter filter = new UsuarioFilter(usuario);
+            
+            List<UsuarioVO> usuarioList = usuarioDAO.pesquisar(filter);
+            
+            if (!usuarioList.isEmpty()) {
+                usuarioReturn = usuarioList.get(0);
+            }
+        }
+        
+        return usuarioReturn;
+    }
+    
+    /**
      * Método valida se id foi informado.
      * 
      * @param usuario - Objeto UsuarioVO
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     private void validarIdObrigatorio(UsuarioVO usuario) {
-        if (super.isNotNullAndNotEmpty(usuario.getId())) {
+        if (!super.isNotNullAndNotEmpty(usuario.getId())) {
             super.addMensagem(R.string.usuario_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }

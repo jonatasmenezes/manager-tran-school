@@ -45,6 +45,22 @@ public class UsuarioVO implements Serializable {
     }
 
     /**
+     * Construtor utilizando argumentos.
+     * 
+     * @param login - Login do usuario.
+     * @param senha - Senha do usuario.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public UsuarioVO(String login, String senha) {
+
+        super();
+        this.login = login;
+        this.senha = senha;
+    }
+
+
+
+    /**
      * Método obtem nome das colunas da tabela USUARIO
      * 
      * @return Array de string

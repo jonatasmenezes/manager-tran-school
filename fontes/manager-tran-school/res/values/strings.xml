@@ -3,6 +3,9 @@
 
     <!-- Botões -->
     <string name="btn_ok">OK</string>
+    <string name="btn_entrar">Entrar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_salvar">Salvar</string>
     
     <!-- Mensagens -->
     <string name="hello">Olá! Bem Vindo!</string>
@@ -13,6 +16,7 @@
     <string name="inclusao_sucesso">Incluído(a) com sucesso!</string>
     <string name="alteracao_sucesso">Alterado(a) com sucesso!</string>
     <string name="exclusao_sucesso">Excluido(a) com sucesso!</string>
+    <string name="exclusao_sucesso">É necessário incluir um usuário para correta utilização.</string>
 
     <!-- Alerta -->
     <string name="alert_titulo">Atenção!</string>
@@ -20,5 +24,9 @@
     <!-- Enum de tipo de contas de usuário -->
     <string name="tipo_usuario_administrador">Administrador</string>
     <string name="tipo_usuario_padrao">Padrão</string>
+    
+    <!-- Label -->
+    <string name="label_login">LOGIN</string>
+    <string name="label_incluir_usuario">INCLUIR USUÁRIO</string>
     
 </resources>

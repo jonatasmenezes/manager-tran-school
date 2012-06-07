@@ -3,7 +3,8 @@ package com.br.managertranschool.architecture;
 import java.util.List;
 
 import roboguice.activity.RoboActivity;
-import android.app.AlertDialog.Builder;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -115,12 +116,14 @@ public class BaseActivity extends RoboActivity {
 
         if (mensagem != null && mensagem.trim() != "") {
             
-            Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_LONG).show();
-            /*Builder alerta = new Builder(this.getApplicationContext());
+            AlertDialog alerta = new AlertDialog.Builder(this).create();            
             alerta.setTitle(R.string.alert_titulo);
             alerta.setMessage(mensagem);
-            alerta.setNeutralButton(textoButton, null);
-            alerta.show();*/
+            alerta.setButton(textoButton, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+             } });
+            alerta.show();
         }
     }
 

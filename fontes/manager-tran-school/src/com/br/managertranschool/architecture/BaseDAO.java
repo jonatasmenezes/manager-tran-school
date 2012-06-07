@@ -82,9 +82,6 @@ public abstract class BaseDAO {
         String[] selectionArgs = new String[]{String.valueOf(id)};
         
         Cursor cursor = dataBase.query(this.table, this.colunas, selection, selectionArgs, null, null, null);
-
-        dataBase.close();
-        
         if (cursor.moveToFirst()) {
             return cursor;
         }
@@ -115,10 +112,8 @@ public abstract class BaseDAO {
             selectionArgs[count] = String.valueOf(entry.getValue());
             count++;
         }
-        
-        Cursor cursor = dataBase.query(this.table, this.colunas, selection.toString(), selectionArgs, null, null, null);
-        
-        dataBase.close();
+                
+        Cursor cursor = dataBase.query(this.table, this.colunas, selection.length() > 0 ? selection.toString() : null, selectionArgs.length > 0 ? selectionArgs : null, null, null, null);
         
         if (cursor.moveToFirst()) {
             return cursor;
@@ -142,8 +137,6 @@ public abstract class BaseDAO {
         
         int linhasAfetadas = dataBase.delete(this.table, whereClause, whereArgs);
         
-        dataBase.close();
-        
         if (linhasAfetadas <= 0) {
             throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
         }
@@ -161,8 +154,6 @@ public abstract class BaseDAO {
         dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
         
         long retorno = dataBase.insertOrThrow(this.table, null, values); 
-        
-        dataBase.close();
         
         return retorno;
     }
@@ -183,8 +174,6 @@ public abstract class BaseDAO {
         String[] whereArgs = new String[]{String.valueOf(id)};
         
         int linhasAfetadas = dataBase.update(this.table, values, whereClause, whereArgs);
-        
-        dataBase.close();
         
         if (linhasAfetadas <= 0) {
             throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
