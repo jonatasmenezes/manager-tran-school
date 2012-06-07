@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/label_login"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/label_incluir_usuario"
+        android:textSize="30sp" />
+
+    <TableRow
+        android:id="@+id/table_row_header"
+        android:padding="20dp" >
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_usuario_nome"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/usuario_nome"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/usuarioNome"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_usuario_login"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/usuario_login"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/usuarioLogin"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_usuario_senha"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/usuario_senha"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/usuarioSenha"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_usuario_tipo_usuario"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/usuario_tipo_usuario"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/usuarioTipoUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left" />
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_salvar"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80dp"
+            android:text="@string/btn_salvar" />
+        <Button
+            android:id="@+id/btn_cancelar"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/btn_cancelar" />
+
+    </RelativeLayout>
+
+</TableLayout>

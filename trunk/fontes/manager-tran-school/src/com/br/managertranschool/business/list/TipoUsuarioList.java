@@ -45,4 +45,22 @@ public enum TipoUsuarioList {
         return nome;
     }
 
+    /**
+     * Método responsável por obter o id do resource no tipo de usuario por codigo.
+     * 
+     * @param codigo - Código do tipo.
+     * @return - Resource id.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public static TipoUsuarioList obterResourceIdByCodigo(int codigo) {
+
+        for (final TipoUsuarioList tipo : values()) {
+            if (tipo.getCodigo() == codigo) {
+                return tipo;
+            }
+        }
+        
+        return null;
+    }
+    
 }
