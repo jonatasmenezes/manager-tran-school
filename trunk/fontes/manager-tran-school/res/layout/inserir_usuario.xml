@@ -76,7 +76,6 @@
     </TableRow>
 
     <TableRow>
-
         <TextView
             android:id="@+id/label_usuario_tipo_usuario"
             android:layout_width="125dp"

@@ -128,6 +128,8 @@ public class ClienteDAO extends BaseDAO{
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return cliente;
 
     }
@@ -196,6 +198,8 @@ public class ClienteDAO extends BaseDAO{
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            
+            super.dataBase.close();
         }
 
         return clienteList;
@@ -212,6 +216,7 @@ public class ClienteDAO extends BaseDAO{
 
         ContentValues values = this.getContentValues(cliente);        
         cliente.setId(super.salvar(values));
+        super.dataBase.close();
     }
 
     /**
@@ -224,7 +229,8 @@ public class ClienteDAO extends BaseDAO{
     public void atualizar(ClienteVO cliente) throws Exception {
 
         ContentValues values = this.getContentValues(cliente);
-        super.atualizar(cliente.getId(), values);        
+        super.atualizar(cliente.getId(), values);  
+        super.dataBase.close();
     }
     
     /**
@@ -236,6 +242,7 @@ public class ClienteDAO extends BaseDAO{
      */
     public void delete(Long id) throws Exception {   
         super.delete(id);
+        super.dataBase.close();
     }
     
      

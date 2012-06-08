@@ -98,6 +98,8 @@ public class EstadoDAO extends BaseDAO{
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return estado;
 
     }
@@ -135,6 +137,8 @@ public class EstadoDAO extends BaseDAO{
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            
+            super.dataBase.close();
         }
 
         return estadoList;

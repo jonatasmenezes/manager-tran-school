@@ -126,6 +126,8 @@ public class RotaHistoricoDAO extends BaseDAO {
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return rotaHistorico;
 
     }
@@ -174,6 +176,8 @@ public class RotaHistoricoDAO extends BaseDAO {
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            
+            super.dataBase.close();
         }
 
         return rotaHistoricoList;
@@ -189,6 +193,7 @@ public class RotaHistoricoDAO extends BaseDAO {
 
         ContentValues values = this.getContentValues(rotaHistorico);        
         rotaHistorico.setId(super.salvar(values));
+        super.dataBase.close();
     }
 
     /**
@@ -201,7 +206,8 @@ public class RotaHistoricoDAO extends BaseDAO {
     public void atualizar(RotaHistoricoVO rotaHistorico) throws Exception {
 
         ContentValues values = this.getContentValues(rotaHistorico);
-        super.atualizar(rotaHistorico.getId(), values);        
+        super.atualizar(rotaHistorico.getId(), values); 
+        super.dataBase.close();
     }
     
     /**
@@ -213,6 +219,7 @@ public class RotaHistoricoDAO extends BaseDAO {
      */
     public void delete(Long id) throws Exception {   
         super.delete(id);
+        super.dataBase.close();
     }
         
     
