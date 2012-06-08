@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Campos -->
+    <string name="rota_historico_id">Id</string>
+    <string name="rota_historico_rota_id">Rota</string>
+    <string name="rota_historico_data">Data</string>
+    <string name="rota_historico_usuario_id">Usuário</string>
+    <string name="rota_historico_duracao">Duração</string>
+    
+
+    <!-- Mensagens -->
+    <string name="rota_historico_id_obrigatorio">O id é obrigatório.</string>
+    <string name="rota_historico_rota_id_obrigatorio">A rota é obrigatória.</string>
+    <string name="rota_historico_data_obrigatorio">A data é obrigatória.</string>
+    <string name="rota_historico_usuario_id_obrigatorio">O usuário é obrigatório.</string>
+    
+</resources>

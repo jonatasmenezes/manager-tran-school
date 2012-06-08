@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Campos -->
+    <string name="cliente_id">Id</string>
+    <string name="cliente_nome">Nome</string>
+    <string name="cliente_endereco">Endereço</string>
+    <string name="cliente_cidade_id">Cidade</string>
+    <string name="cliente_cep">CEP</string>
+    <string name="cliente_cpf">CPF</string>
+    <string name="cliente_bairro">Bairro</string>
+    <string name="cliente_email">Email</string>
+    <string name="cliente_telefone_primario">Telefone Primário</string>
+    <string name="cliente_telefone_secundario">Telefone Secundário</string>
+
+    <!-- Mensagens -->
+    <string name="cliente_id_obrigatorio">O id é obrigatório.</string>
+    <string name="cliente_nome_obrigatorio">O nome é obrigatório.</string>
+    <string name="cliente_endereco_obrigatorio">O endereço é obrigatório.</string>
+    <string name="cliente_bairro_obrigatorio">O bairro de usuário é obrigatório.</string>
+    <string name="cliente_cidade_obrigatorio">A cidade é obrigatória.</string>
+    <string name="cliente_cpf_obrigatorio">O cpf é obrigatório.</string>
+    
+</resources>
