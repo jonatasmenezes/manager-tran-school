@@ -114,6 +114,8 @@ public class CidadeDAO extends BaseDAO{
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return cidade;
 
     }
@@ -155,6 +157,7 @@ public class CidadeDAO extends BaseDAO{
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            super.dataBase.close();
         }
 
         return cidadeList;
@@ -170,6 +173,7 @@ public class CidadeDAO extends BaseDAO{
 
         ContentValues values = this.getContentValues(cidade);        
         cidade.setId(super.salvar(values));
+        super.dataBase.close();
     }
 
     /**
@@ -182,7 +186,8 @@ public class CidadeDAO extends BaseDAO{
     public void atualizar(CidadeVO cidade) throws Exception {
 
         ContentValues values = this.getContentValues(cidade);
-        super.atualizar(cidade.getId(), values);        
+        super.atualizar(cidade.getId(), values);
+        super.dataBase.close();
     }
     
     /**
@@ -194,6 +199,7 @@ public class CidadeDAO extends BaseDAO{
      */
     public void delete(Long id) throws Exception {   
         super.delete(id);
+        super.dataBase.close();
     }
         
     

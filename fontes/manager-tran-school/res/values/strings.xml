@@ -16,7 +16,7 @@
     <string name="inclusao_sucesso">Incluído(a) com sucesso!</string>
     <string name="alteracao_sucesso">Alterado(a) com sucesso!</string>
     <string name="exclusao_sucesso">Excluido(a) com sucesso!</string>
-    <string name="exclusao_sucesso">É necessário incluir um usuário para correta utilização.</string>
+    <string name="necessario_incluir_usuario_inicial">É necessário incluir um usuário inicial utilização.</string>
 
     <!-- Alerta -->
     <string name="alert_titulo">Atenção!</string>

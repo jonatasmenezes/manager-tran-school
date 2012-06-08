@@ -118,6 +118,8 @@ public class LocalidadeDAO extends BaseDAO{
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return localidade;
 
     }
@@ -163,6 +165,7 @@ public class LocalidadeDAO extends BaseDAO{
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            super.dataBase.close();
         }
 
         return localidadeList;
@@ -178,6 +181,7 @@ public class LocalidadeDAO extends BaseDAO{
 
         ContentValues values = this.getContentValues(localidade);        
         localidade.setId(super.salvar(values));
+        super.dataBase.close();
     }
 
     /**
@@ -190,7 +194,8 @@ public class LocalidadeDAO extends BaseDAO{
     public void atualizar(LocalidadeVO localidade) throws Exception {
 
         ContentValues values = this.getContentValues(localidade);
-        super.atualizar(localidade.getId(), values);        
+        super.atualizar(localidade.getId(), values);  
+        super.dataBase.close();
     }
     
     /**
@@ -202,6 +207,7 @@ public class LocalidadeDAO extends BaseDAO{
      */
     public void delete(Long id) throws Exception {   
         super.delete(id);
+        super.dataBase.close();
     }
         
     

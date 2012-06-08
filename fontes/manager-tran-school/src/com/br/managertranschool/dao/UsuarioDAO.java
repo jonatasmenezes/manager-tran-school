@@ -119,6 +119,8 @@ public class UsuarioDAO extends BaseDAO {
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return usuario;
 
     }
@@ -167,8 +169,9 @@ public class UsuarioDAO extends BaseDAO {
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            super.dataBase.close();
         }
-
+        
         return usuarioList;
     }
 
@@ -182,6 +185,7 @@ public class UsuarioDAO extends BaseDAO {
 
         ContentValues values = this.getContentValues(usuario);        
         usuario.setId(super.salvar(values));
+        super.dataBase.close();
     }
 
     /**
@@ -194,7 +198,8 @@ public class UsuarioDAO extends BaseDAO {
     public void atualizar(UsuarioVO usuario) throws Exception {
 
         ContentValues values = this.getContentValues(usuario);
-        super.atualizar(usuario.getId(), values);        
+        super.atualizar(usuario.getId(), values);  
+        super.dataBase.close();
     }
     
     /**
@@ -206,5 +211,6 @@ public class UsuarioDAO extends BaseDAO {
      */
     public void delete(Long id) throws Exception {   
         super.delete(id);
+        super.dataBase.close();
     }
 }

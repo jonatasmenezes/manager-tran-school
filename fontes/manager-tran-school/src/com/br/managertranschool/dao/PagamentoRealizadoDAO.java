@@ -117,6 +117,8 @@ public class PagamentoRealizadoDAO extends BaseDAO{
             cursor.close();
         }
 
+        super.dataBase.close();
+        
         return pagamentoRealizado;
 
     }
@@ -162,6 +164,8 @@ public class PagamentoRealizadoDAO extends BaseDAO{
                 } while (cursor.moveToNext());
                 cursor.close();
             }
+            
+            super.dataBase.close();
         }
 
         return pagamentoRealizadoList;
@@ -177,6 +181,7 @@ public class PagamentoRealizadoDAO extends BaseDAO{
 
         ContentValues values = this.getContentValues(pagamentoRealizado);        
         pagamentoRealizado.setId(super.salvar(values));
+        super.dataBase.close();
     }
 
     /**
@@ -189,7 +194,8 @@ public class PagamentoRealizadoDAO extends BaseDAO{
     public void atualizar(PagamentoRealizadoVO pagamentoRealizado) throws Exception {
 
         ContentValues values = this.getContentValues(pagamentoRealizado);
-        super.atualizar(pagamentoRealizado.getId(), values);        
+        super.atualizar(pagamentoRealizado.getId(), values);  
+        super.dataBase.close();
     }
     
     /**
@@ -201,6 +207,7 @@ public class PagamentoRealizadoDAO extends BaseDAO{
      */
     public void delete(Long id) throws Exception {   
         super.delete(id);
+        super.dataBase.close();
     }
         
     

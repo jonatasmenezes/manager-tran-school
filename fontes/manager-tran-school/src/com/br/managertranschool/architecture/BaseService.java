@@ -99,7 +99,9 @@ public class BaseService {
      */
     public List<MensagemVO> getMensagens() {
 
-        return mensagens;
+        List<MensagemVO> retorno = this.mensagens;
+        this.mensagens.clear();
+        return retorno;
     }
 
 }
