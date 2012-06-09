@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Campos -->
+    <string name="pagamento_id">Id</string>
+    <string name="pagamento_cliente_id">Cliente</string>
+    <string name="pagamento_tipo_pagamento">Tipo de Pagamento</string>
+    <string name="pagamento_valor">Valor</string>
+    <string name="pagamento_vencimento">Vencimento</string>
+
+
+    <!-- Mensagens -->
+    <string name="pagamento_id_obrigatorio">O id é obrigatório.</string>
+    <string name="pagamento_cliente_id_obrigatorio">O cliente é obrigatório.</string>
+    <string name="pagamento_vencimento_obrigatorio">O vencimento é obrigatório.</string>
+    <string name="pagamento_valor_obrigatorio">O valor é obrigatório.</string>
+    <string name="pagamento_tipo_pagamento_obrigatorio">O tipo de pagamento é obrigatório.</string>
+    
+</resources>
