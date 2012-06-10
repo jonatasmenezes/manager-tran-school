@@ -97,7 +97,7 @@ public class RotaHistoricoService extends BaseService {
      */
     public void atualizar(RotaHistoricoVO rotaHistorico) throws Exception {
         
-        rotaHistorico.setData(new Date());
+        
         
         this.validarIdObrigatorio(rotaHistorico);
         this.validarCamposObrigatorios(rotaHistorico);
@@ -157,6 +157,11 @@ public class RotaHistoricoService extends BaseService {
             super.addMensagem(R.string.rota_historico_usuario_id_obrigatorio, TipoMensagemList.ERRO);
         }
 
+    }
+  
+    public void iniciarViagem(RotaHistoricoVO rotaHistorico){
+        rotaHistorico.setData(new Date());
+        salvar(rotaHistorico);
     }
     
 }
