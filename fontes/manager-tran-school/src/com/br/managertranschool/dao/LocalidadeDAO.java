@@ -77,8 +77,8 @@ public class LocalidadeDAO extends BaseDAO{
         LocalidadeVO localidade = new LocalidadeVO();
         localidade.setId(cursor.getLong(cursor.getColumnIndexOrThrow(LocalidadeVO.ID_LOCALIDADE)));
         localidade.setDescricao(cursor.getString(cursor.getColumnIndex(LocalidadeVO.TX_DESCRICAO)));
-        localidade.setLatitude(cursor.getLong(cursor.getColumnIndex(LocalidadeVO.NR_LATITUDE)));
-        localidade.setLongitude(cursor.getLong(cursor.getColumnIndex(LocalidadeVO.NR_LONGITUDE)));
+        localidade.setLatitude(cursor.getDouble(cursor.getColumnIndex(LocalidadeVO.NR_LATITUDE)));
+        localidade.setLongitude(cursor.getDouble(cursor.getColumnIndex(LocalidadeVO.NR_LONGITUDE)));
         
         return localidade;
     }

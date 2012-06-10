@@ -20,11 +20,11 @@ public class LocalidadeVO implements Serializable {
 
     public static final String NR_LATITUDE = "NR_LATITUDE";
 
-    private Long latitude;
+    private Double latitude;
 
     public static final String NR_LONGITUDE = "NR_LONGITUDE";
 
-    private Long longitude;
+    private Double longitude;
 
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
@@ -70,7 +70,7 @@ public class LocalidadeVO implements Serializable {
     /**
      * @return the latitude
      */
-    public Long getLatitude() {
+    public Double getLatitude() {
 
         return latitude;
     }
@@ -78,7 +78,7 @@ public class LocalidadeVO implements Serializable {
     /**
      * @param latitude - the latitude to set
      */
-    public void setLatitude(Long latitude) {
+    public void setLatitude(Double latitude) {
 
         this.latitude = latitude;
     }
@@ -86,7 +86,7 @@ public class LocalidadeVO implements Serializable {
     /**
      * @return the longitude
      */
-    public Long getLongitude() {
+    public Double getLongitude() {
 
         return longitude;
     }
@@ -94,7 +94,7 @@ public class LocalidadeVO implements Serializable {
     /**
      * @param longitude - the longitude to set
      */
-    public void setLongitude(Long longitude) {
+    public void setLongitude(Double longitude) {
 
         this.longitude = longitude;
     }
