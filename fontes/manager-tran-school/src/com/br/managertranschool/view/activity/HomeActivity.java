@@ -7,6 +7,7 @@ import java.util.Map;
 
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -64,7 +65,8 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener {
         if (HomeMenuList.CLIENTES.getCodigo() == codigo) {
             super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.CLIENTES.getDescricao()));
         } else if (HomeMenuList.USUARIOS.getCodigo() == codigo) {
-            super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.USUARIOS.getDescricao()));
+            Intent it = new Intent(this, PesquisarUsuarioActivity.class); 
+            super.startActivity(it);
         } else if (HomeMenuList.ROTAS.getCodigo() == codigo) {
             super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.ROTAS.getDescricao()));
         } else if (HomeMenuList.LOCALIDADES.getCodigo() == codigo) {

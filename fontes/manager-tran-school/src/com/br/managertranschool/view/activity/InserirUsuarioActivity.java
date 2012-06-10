@@ -55,6 +55,8 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
     private Button btnCancelar;
     
     private String activityChamadora;
+    
+    private Long idUsuario;
 
     /*
      * (non-Javadoc)
@@ -65,7 +67,8 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        activityChamadora = super.getIntent().getStringExtra("activityChamadora");
+        this.activityChamadora = super.getIntent().getStringExtra("activityChamadora");
+        this.idUsuario = super.getIntent().getLongExtra(UsuarioVO.ID_USUARIO, Long.MIN_VALUE);
         
         String[] from = {"Nome"};
         int[] to = {android.R.id.text1};
@@ -75,6 +78,10 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
         
         this.btnSalvar.setOnClickListener(this);
         this.btnCancelar.setOnClickListener(this);
+        
+        if (this.idUsuario != null && this.idUsuario > 0) {
+            this.carregarDadosUsuario();
+        }
     }
 
     /*
@@ -92,7 +99,7 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
                 String senha = usuarioSenha.getText().toString();
                 Integer tipo = null;
                 
-                Map<String, String> item = (Map<String, String>) usuarioTipoUsuario.getSelectedItem();
+                Map<String, String> item = super.getSelectedItem(usuarioTipoUsuario);
                 
                 tipo = Integer.valueOf(item.get("Codigo"));
                 
@@ -102,7 +109,14 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
                 usuario.setSenha(senha);
                 usuario.setTipoUsuario(tipo);
 
-                usuarioService.salvar(usuario);
+                if (this.idUsuario != null && this.idUsuario > 0) {
+                    usuario.setId(this.idUsuario);
+                    usuarioService.atualizar(usuario);
+                } else {
+                    
+                    usuarioService.salvar(usuario);
+                }
+                
                 
                 if (usuarioService.isValido()) {
                     
@@ -148,4 +162,18 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
         return retornoList;
     }
 
+    /**
+     * Método popula dados da tela com usuário.
+     * 
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private void carregarDadosUsuario() {
+
+        UsuarioVO usuario = usuarioService.buscarPorId(new UsuarioVO(this.idUsuario));
+        this.usuarioNome.setText(usuario.getNome());
+        this.usuarioLogin.setText(usuario.getLogin());
+        this.usuarioSenha.setText(usuario.getSenha());
+        this.usuarioTipoUsuario.setSelection(super.obterPosicaoSpinner(this.usuarioTipoUsuario, "Codigo", usuario.getTipoUsuario()));
+    }
+    
 }

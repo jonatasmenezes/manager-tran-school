@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.br.managertranschool.R;
@@ -33,6 +34,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     @InjectView(R.id.usuarioSenha)
     private EditText usuarioSenha;
 
+    @InjectView(R.id.btn_entrar)
+    private Button btnEntrar;
+    
+    @InjectView(R.id.btn_cancelar)
+    private Button btnCancelar;
+    
     /*
      * (non-Javadoc)
      * 
@@ -42,6 +49,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        this.btnEntrar.setOnClickListener(this);
+        this.btnCancelar.setOnClickListener(this);
     }
 
     /*
@@ -67,7 +76,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 super.setMessages(usuarioService.getMensagens());
 
             } else if (v.getId() == R.id.btn_cancelar) {
-                super.finalize();
+                super.finish();
             }
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);
