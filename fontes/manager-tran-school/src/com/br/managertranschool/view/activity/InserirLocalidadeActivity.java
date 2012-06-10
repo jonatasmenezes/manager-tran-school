@@ -1,21 +1,14 @@
 package com.br.managertranschool.view.activity;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
 import com.br.managertranschool.business.service.LocalidadeService;
@@ -23,10 +16,10 @@ import com.br.managertranschool.business.vo.LocalidadeVO;
 
 
 /**
- * Classe activity responsavel pela view de inserir novo usuário.
+ * Classe activity responsavel pela view de inserir nova localidade.
  * 
  * @author Jeferson Almeida (jef.henrique.07@gmail.com)
- * @since 07/06/2012
+ * @since 09/06/2012
  */
 @ContentView(R.layout.inserir_localidade)
 public class InserirLocalidadeActivity extends BaseActivity implements OnClickListener {
