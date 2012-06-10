@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Campos -->
-    <string name="cliente_localidade_cliente_id">Cliente Id</string>
-    <string name="cliente_localidade_localidade_id">Localidade Id</string>
-
     <!-- Mensagens -->
-    <string name="cliente_localidade_cliente_id_obrigatorio">O id do cliente é obrigatório.</string>
-    <string name="cliente_localidade_localidade_id_obrigatorio">O id da localidade é obrigatório.</string>
+    <string name="cliente_localidade_id_localidade_obrigatorio">A localidade é obrigatória.</string>
+    <string name="cliente_localidade_id_cliente_obrigatorio">O id do cliente é obrigatório.</string>
     
 </resources>
