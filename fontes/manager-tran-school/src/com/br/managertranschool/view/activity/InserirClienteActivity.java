@@ -126,7 +126,7 @@ public class InserirClienteActivity extends BaseActivity implements OnClickListe
         SimpleAdapter adapter = new SimpleAdapter(this, this.obterCidades(), android.R.layout.simple_spinner_item, from, to);
         clienteCidade.setAdapter(adapter);
         
-        from = new String[] {"Codigo"};
+        from = new String[] {"Nome"};
         to = new int[] {android.R.id.text1};
         
         adapter = new SimpleAdapter(this, this.obterTiposPagamento(), android.R.layout.simple_spinner_item, from, to);

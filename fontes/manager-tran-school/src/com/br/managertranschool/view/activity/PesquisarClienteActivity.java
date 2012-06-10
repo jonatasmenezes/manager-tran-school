@@ -23,7 +23,9 @@ import android.widget.Spinner;
 
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
+import com.br.managertranschool.business.filter.CidadeFilter;
 import com.br.managertranschool.business.filter.ClienteFilter;
+import com.br.managertranschool.business.service.CidadeService;
 import com.br.managertranschool.business.service.ClienteService;
 import com.br.managertranschool.business.vo.CidadeVO;
 import com.br.managertranschool.business.vo.ClienteVO;
@@ -39,6 +41,9 @@ public class PesquisarClienteActivity extends BaseActivity implements OnClickLis
 
     @Inject
     private ClienteService clienteService;
+    
+    @Inject
+    private CidadeService cidadeService;
 
     @InjectView(R.id.clienteNome)
     private EditText clienteNome;
@@ -71,6 +76,12 @@ public class PesquisarClienteActivity extends BaseActivity implements OnClickLis
 
         super.onCreate(savedInstanceState);
         
+        String[] from = {CidadeVO.TX_DESCRICAO};
+        int[] to = {android.R.id.text1};
+        
+        SimpleAdapter adapter = new SimpleAdapter(this, this.obterCidades(), android.R.layout.simple_spinner_item, from, to);
+        clienteCidade.setAdapter(adapter);
+        
         this.btnNovo.setOnClickListener(this);
         this.btnPesquisar.setOnClickListener(this);
         clientesList.setOnItemClickListener(this);
@@ -91,8 +102,10 @@ public class PesquisarClienteActivity extends BaseActivity implements OnClickLis
                 String bairro = this.clienteBairro.getText().toString();
                 Long cidade = null;
                 
-                Map<String, String> selectedItem = super.getSelectedItem(this.clienteCidade);                
-                cidade = Long.valueOf(selectedItem.get(CidadeVO.ID_CIDADE));
+                Map<String, String> selectedItem = super.getSelectedItem(this.clienteCidade);
+                if (selectedItem.get(CidadeVO.ID_CIDADE) != null && !selectedItem.get(CidadeVO.ID_CIDADE).equals(String.valueOf(0))) {
+                    cidade = Long.valueOf(selectedItem.get(CidadeVO.ID_CIDADE));
+                }
                 
                 ClienteVO cliente = new ClienteVO();
                 cliente.setNome(nome);
@@ -162,5 +175,30 @@ public class PesquisarClienteActivity extends BaseActivity implements OnClickLis
         
         SimpleAdapter adapter = new SimpleAdapter(this, mapList, android.R.layout.simple_list_item_2, from, to);
         clientesList.setAdapter(adapter);
-    }    
+    }   
+    
+    /**
+     * Método obtem lista de cidades do drop down.
+     * 
+     * @return Lista de {@link Map}.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private List<Map<String, String>> obterCidades() {
+        List<Map<String, String>> retornoList = new ArrayList<Map<String,String>>();
+        Map<String, String> map = new HashMap<String, String>();
+        map.put(CidadeVO.ID_CIDADE, String.valueOf(0));
+        map.put(CidadeVO.TX_DESCRICAO, super.getString(R.string.label_spinner_selecione));
+        retornoList.add(map);
+        
+        List<CidadeVO> cidadeList = this.cidadeService.pesquisar(new CidadeFilter(new CidadeVO("BA")));
+        
+        for (CidadeVO cidade : cidadeList) {
+            map = new HashMap<String, String>();
+            map.put(CidadeVO.ID_CIDADE, String.valueOf(cidade.getId()));
+            map.put(CidadeVO.TX_DESCRICAO, cidade.getDescricao());
+            retornoList.add(map);
+        }
+                
+        return retornoList;
+    }
 }
