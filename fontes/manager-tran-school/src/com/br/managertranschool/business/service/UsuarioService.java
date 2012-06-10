@@ -133,11 +133,11 @@ public class UsuarioService extends BaseService {
 
         UsuarioVO usuarioReturn = null;
         
-        if (!super.isNotNullAndNotEmpty(usuario.getLogin())) {
+        if (!super.isNullOrEmpty(usuario.getLogin())) {
             super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(usuario.getSenha())) {
+        if (!super.isNullOrEmpty(usuario.getSenha())) {
             super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
         }
        
@@ -161,7 +161,7 @@ public class UsuarioService extends BaseService {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     private void validarIdObrigatorio(UsuarioVO usuario) {
-        if (!super.isNotNullAndNotEmpty(usuario.getId())) {
+        if (super.isNullOrEmpty(usuario.getId())) {
             super.addMensagem(R.string.usuario_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -173,16 +173,16 @@ public class UsuarioService extends BaseService {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     private void validarCamposObrigatorios(UsuarioVO usuario) {
-        if (!super.isNotNullAndNotEmpty(usuario.getLogin())) {
+        if (super.isNullOrEmpty(usuario.getLogin())) {
             super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
         }
-        if (!super.isNotNullAndNotEmpty(usuario.getSenha())) {
+        if (super.isNullOrEmpty(usuario.getSenha())) {
             super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
         }
-        if (!super.isNotNullAndNotEmpty(usuario.getTipoUsuario())) {
+        if (super.isNullOrEmpty(usuario.getTipoUsuario())) {
             super.addMensagem(R.string.usuario_tipo_obrigatorio, TipoMensagemList.ERRO);
         }
-        if (!super.isNotNullAndNotEmpty(usuario.getNome())) {
+        if (super.isNullOrEmpty(usuario.getNome())) {
             super.addMensagem(R.string.usuario_nome_obrigatorio, TipoMensagemList.ERRO);
         }
     }

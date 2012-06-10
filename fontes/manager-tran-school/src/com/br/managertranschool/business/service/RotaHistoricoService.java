@@ -133,7 +133,7 @@ public class RotaHistoricoService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(RotaHistoricoVO rotaHistorico) {
-        if (!super.isNotNullAndNotEmpty(rotaHistorico.getId())) {
+        if (super.isNullOrEmpty(rotaHistorico.getId())) {
             super.addMensagem(R.string.rota_historico_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -145,15 +145,15 @@ public class RotaHistoricoService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarCamposObrigatorios(RotaHistoricoVO rotaHistorico) {
-        if (!super.isNotNullAndNotEmpty(rotaHistorico.getRotaId())) {
+        if (super.isNullOrEmpty(rotaHistorico.getRotaId())) {
             super.addMensagem(R.string.rota_historico_rota_id_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(rotaHistorico.getData())) {
+        if (super.isNullOrEmpty(rotaHistorico.getData())) {
             super.addMensagem(R.string.rota_historico_data_obrigatorio, TipoMensagemList.ERRO);
         }        
         
-        if (!super.isNotNullAndNotEmpty(rotaHistorico.getUsuarioId())) {
+        if (super.isNullOrEmpty(rotaHistorico.getUsuarioId())) {
             super.addMensagem(R.string.rota_historico_usuario_id_obrigatorio, TipoMensagemList.ERRO);
         }
 

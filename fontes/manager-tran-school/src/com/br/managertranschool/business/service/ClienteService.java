@@ -130,7 +130,7 @@ public class ClienteService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(ClienteVO cliente) {
-        if (!super.isNotNullAndNotEmpty(cliente.getId())) {
+        if (super.isNullOrEmpty(cliente.getId())) {
             super.addMensagem(R.string.cliente_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -142,23 +142,23 @@ public class ClienteService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarCamposObrigatorios(ClienteVO cliente) {
-        if (!super.isNotNullAndNotEmpty(cliente.getCpf())) {
+        if (super.isNullOrEmpty(cliente.getCpf())) {
             super.addMensagem(R.string.cliente_cpf_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(cliente.getNome())) {
+        if (super.isNullOrEmpty(cliente.getNome())) {
             super.addMensagem(R.string.cliente_nome_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(cliente.getCidadeId())) {
+        if (super.isNullOrEmpty(cliente.getCidadeId())) {
             super.addMensagem(R.string.cliente_cidade_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(cliente.getEndereco())) {
+        if (super.isNullOrEmpty(cliente.getEndereco())) {
             super.addMensagem(R.string.cliente_endereco_obrigatorio, TipoMensagemList.ERRO);
         }
        
-        if (!super.isNotNullAndNotEmpty(cliente.getBairro())) {
+        if (super.isNullOrEmpty(cliente.getBairro())) {
             super.addMensagem(R.string.cliente_bairro_obrigatorio, TipoMensagemList.ERRO);
         }
     }

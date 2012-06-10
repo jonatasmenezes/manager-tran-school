@@ -130,7 +130,7 @@ public class LocalidadeService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(LocalidadeVO localidade) {
-        if (!super.isNotNullAndNotEmpty(localidade.getId())) {
+        if (super.isNullOrEmpty(localidade.getId())) {
             super.addMensagem(R.string.localidade_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -142,15 +142,15 @@ public class LocalidadeService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarCamposObrigatorios(LocalidadeVO localidade) {
-        if (!super.isNotNullAndNotEmpty(localidade.getLatitude())) {
+        if (super.isNullOrEmpty(localidade.getLatitude())) {
             super.addMensagem(R.string.localidade_latitude_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(localidade.getLongitude())) {
+        if (super.isNullOrEmpty(localidade.getLongitude())) {
             super.addMensagem(R.string.localidade_longitude_obrigatorio, TipoMensagemList.ERRO);
         }        
         
-        if (!super.isNotNullAndNotEmpty(localidade.getDescricao())) {
+        if (super.isNullOrEmpty(localidade.getDescricao())) {
             super.addMensagem(R.string.localidade_descricao_obrigatorio, TipoMensagemList.ERRO);
         }
 

@@ -130,7 +130,7 @@ public class CidadeService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(CidadeVO cidade) {
-        if (!super.isNotNullAndNotEmpty(cidade.getId())) {
+        if (super.isNullOrEmpty(cidade.getId())) {
             super.addMensagem(R.string.cidade_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -142,11 +142,11 @@ public class CidadeService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarCamposObrigatorios(CidadeVO cidade) {
-        if (!super.isNotNullAndNotEmpty(cidade.getEstadoId())) {
+        if (super.isNullOrEmpty(cidade.getEstadoId())) {
             super.addMensagem(R.string.cidade_estado_id_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(cidade.getDescricao())) {
+        if (super.isNullOrEmpty(cidade.getDescricao())) {
             super.addMensagem(R.string.cidade_descricao_obrigatorio, TipoMensagemList.ERRO);
         }
 
