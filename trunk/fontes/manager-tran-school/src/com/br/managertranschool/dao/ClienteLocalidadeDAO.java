@@ -8,8 +8,8 @@ import android.database.Cursor;
 
 import com.br.managertranschool.architecture.BaseDAO;
 import com.br.managertranschool.business.filter.ClienteLocalidadeFilter;
-import com.br.managertranschool.business.vo.ClienteVO;
 import com.br.managertranschool.business.vo.ClienteLocalidadeVO;
+import com.br.managertranschool.business.vo.ClienteVO;
 
 
 /**
@@ -50,7 +50,7 @@ public class ClienteLocalidadeDAO extends BaseDAO{
     @Override
     protected void setNomeColunaId() {
 
-        super.colunaId = ClienteLocalidadeVO.ID_ROTA;
+        super.colunaId = "";
         
     }
 
@@ -63,7 +63,7 @@ public class ClienteLocalidadeDAO extends BaseDAO{
         super.colunas = ClienteLocalidadeVO.getNomesColunas();
         
     }
-
+    
     /**
      * Método obtem um objeto clienteLocalidade através do cursor passado por parametro.
      * 
@@ -96,7 +96,43 @@ public class ClienteLocalidadeDAO extends BaseDAO{
         return values;
     }
     
+    /**
+     * Método obtem lista de Cliente-Localidade de acordo com o filtro.
+     * 
+     * @param filter - Filtro de Cliente-Localidade {@link ClienteLocalidadeFilter}.
+     * @return - Lista de entidades.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public List<ClienteLocalidadeVO> pesquisar(ClienteLocalidadeFilter filter) {
 
+        List<ClienteLocalidadeVO> clienteLocalidadeList = new ArrayList<ClienteLocalidadeVO>();
+
+        if (filter.getClienteLocalidade() != null) {
+            ContentValues values = new ContentValues();
+            ClienteLocalidadeVO clienteLocalidade;
+
+            if (!super.isNullOrEmpty(filter.getClienteLocalidade().getClienteId())) {
+                values.put(ClienteLocalidadeVO.CLIENTE_ID, filter.getClienteLocalidade().getClienteId());
+            }
+
+            if (!super.isNullOrEmpty(filter.getClienteLocalidade().getLocalidadeId())) {
+                values.put(ClienteLocalidadeVO.LOCALIDADE_ID, filter.getClienteLocalidade().getLocalidadeId());
+            }
+
+            Cursor cursor = super.pesquisar(values);
+
+            if (cursor != null) {
+                do {
+                    clienteLocalidade = this.getClienteLocalidade(cursor);
+                    clienteLocalidadeList.add(clienteLocalidade);
+                } while (cursor.moveToNext());
+                cursor.close();
+            }
+            super.dataBase.close();
+        }
+        
+        return clienteLocalidadeList;
+    }
     
     /**
      * Método insere uma nova clienteLocalidade na base.
@@ -110,17 +146,21 @@ public class ClienteLocalidadeDAO extends BaseDAO{
         super.salvar(values);
         super.dataBase.close();
     }
-
     
     /**
-     * Método deleta ClienteLocalidade da base de acordo com o id.
+     * Método deleta ClienteLocalidade da base de acordo com os ids de localidade e cliente.
      * 
-     * @param id - Id da clienteLocalidade.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
+     * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
      * @throws Exception Exceção da camada de persistência.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
-    public void delete(Long id) throws Exception {   
-        super.delete(id);
+    public void delete(ClienteLocalidadeVO clienteLocalidade) throws Exception {   
+        
+        ContentValues values = new ContentValues();
+        values.put(ClienteLocalidadeVO.LOCALIDADE_ID, clienteLocalidade.getLocalidadeId());
+        values.put(ClienteLocalidadeVO.CLIENTE_ID, clienteLocalidade.getClienteId());
+        
+        super.delete(values);
         super.dataBase.close();
     }
         

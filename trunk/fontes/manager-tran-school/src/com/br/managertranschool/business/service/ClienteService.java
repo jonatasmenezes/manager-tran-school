@@ -9,7 +9,9 @@ import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseService;
 import com.br.managertranschool.business.filter.ClienteFilter;
 import com.br.managertranschool.business.list.TipoMensagemList;
+import com.br.managertranschool.business.vo.ClienteLocalidadeVO;
 import com.br.managertranschool.business.vo.ClienteVO;
+import com.br.managertranschool.business.vo.PagamentoVO;
 import com.br.managertranschool.dao.ClienteDAO;
 
 /**
@@ -22,6 +24,12 @@ public class ClienteService extends BaseService {
     
     @Inject
     private ClienteDAO clienteDAO;
+    
+    @Inject
+    private PagamentoService pagamentoService;
+    
+    @Inject
+    private ClienteLocalidadeService clienteLocalidadeService;
     
     /**
      * Construtor padrão.
@@ -53,7 +61,7 @@ public class ClienteService extends BaseService {
     }
 
     /**
-     * Método responsável em obter lista de usuários.
+     * Método responsável em obter lista de clientes.
      * 
      * @param filter - Filtro de Cliente {@link ClienteFilter}.
      * @return - Lista de usuários.
@@ -72,7 +80,7 @@ public class ClienteService extends BaseService {
     }
 
     /**
-     * Método responsável em inserir um novo usuário.
+     * Método responsável em inserir um novo cliente.
      * 
      * @param cliente - Objeto {@link ClienteVO}.
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
@@ -88,7 +96,32 @@ public class ClienteService extends BaseService {
     }
 
     /**
-     * Método responsável em atualizar dados do usuário.
+     * Método responsável em inserir um novo cliente com localidade e pagamento.
+     * 
+     * @param cliente - Objeto {@link ClienteVO}. 
+     * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
+     * @param pagamento - Objeto {@link PagamentoVO}.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public void salvar(ClienteVO cliente, ClienteLocalidadeVO clienteLocalidade, PagamentoVO pagamento) {
+
+        this.validarCamposObrigatorios(cliente, clienteLocalidade, pagamento);
+        
+        if (super.isValido()) {
+            clienteDAO.salvar(cliente);
+            
+            pagamento.setClienteId(cliente.getId());
+            pagamentoService.salvar(pagamento);
+            
+            clienteLocalidade.setClienteId(cliente.getId());
+            clienteLocalidadeService.salvar(clienteLocalidade);    
+            
+            super.addMensagem(R.string.inclusao_sucesso, TipoMensagemList.INFORMACAO);
+        }
+    }
+    
+    /**
+     * Método responsável em atualizar dados do clientes.
      * 
      * @param cliente - Objeto {@link ClienteVO}.
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
@@ -160,6 +193,34 @@ public class ClienteService extends BaseService {
        
         if (super.isNullOrEmpty(cliente.getBairro())) {
             super.addMensagem(R.string.cliente_bairro_obrigatorio, TipoMensagemList.ERRO);
+        }
+    }
+    
+    /**
+     * Método valida se campos obrigatorios foram informados.
+     * 
+     * @param cliente - Objeto ClienteVO
+     * @param cliente - Objeto ClienteLocalidadeVO
+     * @param cliente - Objeto PagamentoVO
+     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
+     */
+    private void validarCamposObrigatorios(ClienteVO cliente, ClienteLocalidadeVO clienteLocalidade, PagamentoVO pagamento) {
+        this.validarCamposObrigatorios(cliente);
+               
+        if (super.isNullOrEmpty(clienteLocalidade.getLocalidadeId())) {
+            super.addMensagem(R.string.cliente_localidade_id_localidade_obrigatorio, TipoMensagemList.ERRO);
+        }
+        
+        if (super.isNullOrEmpty(pagamento.getTipoPagamento())) {
+            super.addMensagem(R.string.pagamento_tipo_pagamento_obrigatorio, TipoMensagemList.ERRO);
+        }
+        
+        if (super.isNullOrEmpty(pagamento.getValor())) {
+            super.addMensagem(R.string.pagamento_valor, TipoMensagemList.ERRO);
+        }
+        
+        if (super.isNullOrEmpty(pagamento.getVencimento())) {
+            super.addMensagem(R.string.pagamento_data_vencimento_obrigatorio, TipoMensagemList.ERRO);
         }
     }
     

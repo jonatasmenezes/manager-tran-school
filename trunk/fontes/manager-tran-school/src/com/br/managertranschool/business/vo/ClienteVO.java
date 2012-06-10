@@ -63,6 +63,18 @@ public class ClienteVO implements Serializable {
 
         super();
     }
+    
+    /**
+     * Construtor padrão com argumentos.
+     * 
+     * @param id - Id do cliente.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public ClienteVO(Long id) {
+
+        super();
+        this.id = id;
+    }
 
     /**
      * Método obtem nome das colunas da tabela CLIENTE

@@ -31,6 +31,17 @@ public class ClienteLocalidadeVO implements Serializable {
 
         super();
     }
+    
+    /**
+     * Construtor padrão com argumentos
+     * 
+     * @param clienteId - Id do cliente.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public ClienteLocalidadeVO(Long clienteId) {
+
+        super();
+    }
 
     /**
      * Método obtem nome das colunas da tabela CLIENTE_LOCALIDADE

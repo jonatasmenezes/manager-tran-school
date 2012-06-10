@@ -1,6 +1,8 @@
 package com.br.managertranschool.business.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -66,6 +68,12 @@ public class LocalidadeService extends BaseService {
         localidadeList = localidadeDAO.pesquisar(filter);
         if (localidadeList.isEmpty()) {
             super.addMensagem(R.string.pesquisa_nao_encontrou_resultados, TipoMensagemList.INFORMACAO);
+        } else {
+            Collections.sort(localidadeList, new Comparator<LocalidadeVO>() {
+                public int compare(LocalidadeVO localidade1, LocalidadeVO localidade2) {
+                    return localidade1.getDescricao().compareToIgnoreCase(localidade2.getDescricao());
+                }
+            });
         }
         
         return localidadeList;
