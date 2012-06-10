@@ -133,11 +133,11 @@ public class UsuarioService extends BaseService {
 
         UsuarioVO usuarioReturn = null;
         
-        if (!super.isNullOrEmpty(usuario.getLogin())) {
+        if (super.isNullOrEmpty(usuario.getLogin())) {
             super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNullOrEmpty(usuario.getSenha())) {
+        if (super.isNullOrEmpty(usuario.getSenha())) {
             super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
         }
        

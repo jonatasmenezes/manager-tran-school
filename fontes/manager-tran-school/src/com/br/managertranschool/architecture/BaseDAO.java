@@ -108,7 +108,13 @@ public abstract class BaseDAO {
                 selection.append(" AND ");
             }
             selection.append(entry.getKey());
-            selection.append("=?");
+            
+            if (String.valueOf(entry.getValue()).contains("%")) {
+                selection.append(" LIKE ? ");
+            } else {
+                selection.append("=?");
+            }
+            
             selectionArgs[count] = String.valueOf(entry.getValue());
             count++;
         }
@@ -136,6 +142,37 @@ public abstract class BaseDAO {
         String[] whereArgs = new String[]{String.valueOf(id)};
         
         int linhasAfetadas = dataBase.delete(this.table, whereClause, whereArgs);
+        
+        if (linhasAfetadas <= 0) {
+            throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
+        }
+    }
+    
+    /**
+     * Método executa delete do objeto através dos argumentos passados por parametro.
+     * @param values - Argumentos clausula where.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception Registro não foi encontrado.
+     */
+    protected void delete(ContentValues values) throws Exception {
+
+        dataBase = context.openOrCreateDatabase(DatabaseCreate.NOME_DATABASE, Context.MODE_PRIVATE, null);
+        
+        StringBuilder whereClause = new StringBuilder();
+        String[] whereArgs = new String[values.size()];
+        int count = 0;
+        
+        for (Entry<String, Object> entry : values.valueSet()) {
+            if (count != 0) {
+                whereClause.append(" AND ");
+            }
+            whereClause.append(entry.getKey());
+            whereClause.append("=?");
+            whereArgs[count] = String.valueOf(entry.getValue());
+            count++;
+        }
+               
+        int linhasAfetadas = dataBase.delete(this.table, whereClause.toString(), whereArgs);
         
         if (linhasAfetadas <= 0) {
             throw new RegistroNaoEncontradoException(R.string.registro_nao_encontrado);
@@ -254,5 +291,26 @@ public abstract class BaseDAO {
         }
         
         return retorno;
+    }
+    
+    /**
+     * Método verificar se objeto é nulo ou vazio no caso de String.
+     * 
+     * @param object - Objeto a ser verificado.
+     * @return True se não nulo e não vazio.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected boolean isNullOrEmpty(Object object) {
+
+        boolean isNull = true;
+
+        if (object != null) {
+            isNull = false;
+            if (object instanceof String) {
+                isNull = object.toString().trim().length() == 0;
+            }
+        }
+
+        return isNull;
     }
 }

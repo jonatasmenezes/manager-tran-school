@@ -140,23 +140,23 @@ public class UsuarioDAO extends BaseDAO {
             ContentValues values = new ContentValues();
             UsuarioVO usuario;
 
-            if (filter.getUsuario().getId() != null) {
+            if (!super.isNullOrEmpty(filter.getUsuario().getId())) {
                 values.put(UsuarioVO.ID_USUARIO, filter.getUsuario().getId());
             }
 
-            if (filter.getUsuario().getLogin() != null) {
+            if (!super.isNullOrEmpty(filter.getUsuario().getLogin())) {
                 values.put(UsuarioVO.TX_LOGIN, filter.getUsuario().getLogin());
             }
 
-            if (filter.getUsuario().getNome() != null) {
-                values.put(UsuarioVO.TX_NOME, filter.getUsuario().getNome());
+            if (!super.isNullOrEmpty(filter.getUsuario().getNome())) {
+                values.put(UsuarioVO.TX_NOME, "%" + filter.getUsuario().getNome() + "%");
             }
 
-            if (filter.getUsuario().getSenha() != null) {
+            if (!super.isNullOrEmpty(filter.getUsuario().getSenha())) {
                 values.put(UsuarioVO.TX_SENHA, filter.getUsuario().getSenha());
             }
 
-            if (filter.getUsuario().getTipoUsuario() != null) {
+            if (!super.isNullOrEmpty(filter.getUsuario().getTipoUsuario())) {
                 values.put(UsuarioVO.TIPO_USUARIO, filter.getUsuario().getTipoUsuario());
             }
 

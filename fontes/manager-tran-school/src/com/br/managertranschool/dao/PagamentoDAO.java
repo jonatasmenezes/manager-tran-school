@@ -1,5 +1,6 @@
 package com.br.managertranschool.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class PagamentoDAO extends BaseDAO{
 
         PagamentoVO pagamento = new PagamentoVO();
         pagamento.setId(cursor.getLong(cursor.getColumnIndexOrThrow(PagamentoVO.ID_PAGAMENTO)));
-        pagamento.setValor(cursor.getDouble(cursor.getColumnIndex(PagamentoVO.VALOR)));
+        pagamento.setValor(new BigDecimal(cursor.getDouble(cursor.getColumnIndex(PagamentoVO.VALOR))));
         pagamento.setClienteId(cursor.getLong(cursor.getColumnIndex(PagamentoVO.CLIENTE_ID)));
         pagamento.setTipoPagamento(cursor.getInt(cursor.getColumnIndex(PagamentoVO.TIPO_PAGAMENTO)));
         pagamento.setVencimento(super.obterDate(cursor.getString(cursor.getColumnIndex(PagamentoVO.DT_VENCIMENTO))));
@@ -94,7 +95,7 @@ public class PagamentoDAO extends BaseDAO{
         ContentValues values = new ContentValues();
         values.put(PagamentoVO.CLIENTE_ID, pagamento.getClienteId());
         values.put(PagamentoVO.DT_VENCIMENTO, super.obterDateString(pagamento.getVencimento()));
-        values.put(PagamentoVO.VALOR, pagamento.getValor());
+        values.put(PagamentoVO.VALOR, pagamento.getValor().doubleValue());
         values.put(PagamentoVO.TIPO_PAGAMENTO, pagamento.getTipoPagamento());
         
         return values;
@@ -152,7 +153,7 @@ public class PagamentoDAO extends BaseDAO{
             }
             
             if (filter.getPagamento().getValor() != null) {
-                values.put(PagamentoVO.VALOR, filter.getPagamento().getValor());
+                values.put(PagamentoVO.VALOR, filter.getPagamento().getValor().doubleValue());
             }
             
             if (filter.getPagamento().getVencimento() != null) {

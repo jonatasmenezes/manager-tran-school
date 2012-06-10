@@ -2,10 +2,10 @@
 <resources>
 
     <!-- Campos -->
+    <string name="localidade_localidade">Localidade</string>
     <string name="localidade_latitude">Latitude</string>
     <string name="localidade_longitude">Longitude</string>
     <string name="localidade_descricao">Descrição</string>
-    <string name="localidade_id">Id</string>
 
     <!-- Mensagens -->
     <string name="localidade_id_obrigatorio">O id é obrigatório.</string>

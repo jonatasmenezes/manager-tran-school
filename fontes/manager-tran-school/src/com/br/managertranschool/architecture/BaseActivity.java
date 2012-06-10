@@ -1,12 +1,15 @@
 package com.br.managertranschool.architecture;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import roboguice.activity.RoboActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.br.managertranschool.R;
@@ -76,6 +79,48 @@ public class BaseActivity extends RoboActivity {
         }
     }
 
+    /**
+     * Método obtem item selecionado do Spinner (Drop Down List)
+     * 
+     * @param spinner - Objeto Spinner.
+     * @return Map do item selecionado.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected Map<String, String> getSelectedItem(Spinner spinner) {
+
+        if (spinner.getSelectedItem() instanceof HashMap<?, ?>) {
+            
+            return (Map<String, String>) spinner.getSelectedItem();
+        }
+        
+        return new HashMap<String, String>();
+    }
+    
+    /**
+     * Método obtem posição no spinner através da chave e do valor que pretende obter a posição.
+     * 
+     * @param spinner - Componente {@link Spinner}
+     * @param chave - Key do map.
+     * @param valor - Valor do item do map.
+     * @return Posição no {@link Spinner}
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    protected int obterPosicaoSpinner(Spinner spinner, String chave, Object valor) {
+        
+        for (int i = 0; i < spinner.getCount(); i++) {
+            
+            Map<String, String> item = (Map<String, String>) spinner.getItemAtPosition(i);
+            
+            String valorSpinner = item.get(chave);
+            
+            if (valorSpinner.equalsIgnoreCase(String.valueOf(valor))) {
+                return i;
+            }
+        }        
+        
+        return 0;        
+    }
+    
     /**
      * Método trata exceptions geradas pelo aplicativo gerando log e informando ao usuário que ocorreu um erro.
      * 

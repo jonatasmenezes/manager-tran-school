@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class UsuarioVO implements Serializable {
 
     public static final String TABLE = "USUARIO";
-    
+
     private static final long serialVersionUID = -7635966082812185598L;
 
     public static final String ID_USUARIO = "ID_USUARIO";
@@ -47,6 +47,18 @@ public class UsuarioVO implements Serializable {
     /**
      * Construtor utilizando argumentos.
      * 
+     * @param id - Id do usuario.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public UsuarioVO(Long id) {
+
+        super();
+        this.id = id;
+    }
+
+    /**
+     * Construtor utilizando argumentos.
+     * 
      * @param login - Login do usuario.
      * @param senha - Senha do usuario.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
@@ -57,8 +69,6 @@ public class UsuarioVO implements Serializable {
         this.login = login;
         this.senha = senha;
     }
-
-
 
     /**
      * Método obtem nome das colunas da tabela USUARIO

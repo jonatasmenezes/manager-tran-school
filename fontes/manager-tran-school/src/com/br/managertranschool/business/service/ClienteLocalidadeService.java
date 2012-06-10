@@ -10,7 +10,6 @@ import com.br.managertranschool.architecture.BaseService;
 import com.br.managertranschool.business.filter.ClienteLocalidadeFilter;
 import com.br.managertranschool.business.list.TipoMensagemList;
 import com.br.managertranschool.business.vo.ClienteLocalidadeVO;
-import com.br.managertranschool.business.vo.RotaVO;
 import com.br.managertranschool.dao.ClienteLocalidadeDAO;
 
 /**
@@ -20,10 +19,10 @@ import com.br.managertranschool.dao.ClienteLocalidadeDAO;
  * @since 07/05/2012
  */
 public class ClienteLocalidadeService extends BaseService {
-    
+
     @Inject
     private ClienteLocalidadeDAO clienteLocalidadeDAO;
-    
+
     /**
      * Construtor padrão.
      * 
@@ -34,7 +33,25 @@ public class ClienteLocalidadeService extends BaseService {
         super();
     }
 
+    /**
+     * Método responsável em obter lista de entidades {@link ClienteLocalidadeVO}.
+     * 
+     * @param filter - Filtro da entidade {@link ClienteLocalidadeFilter}.
+     * @return - Lista de entidades.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public List<ClienteLocalidadeVO> pesquisar(ClienteLocalidadeFilter filter) {
 
+        List<ClienteLocalidadeVO> clienteLocalidadeList = new ArrayList<ClienteLocalidadeVO>();
+        
+        clienteLocalidadeList = clienteLocalidadeDAO.pesquisar(filter);
+        if (clienteLocalidadeList.isEmpty()) {
+            super.addMensagem(R.string.pesquisa_nao_encontrou_resultados, TipoMensagemList.INFORMACAO);
+        }
+        
+        return clienteLocalidadeList;
+    }
+    
     /**
      * Método responsável em inserir um novo usuário.
      * 
@@ -43,34 +60,31 @@ public class ClienteLocalidadeService extends BaseService {
      */
     public void salvar(ClienteLocalidadeVO clienteLocalidade) {
 
-        this.validarCamposObrigatorios(clienteLocalidade);
-        
+        this.validarIdObrigatorio(clienteLocalidade);
+
         if (super.isValido()) {
-            clienteLocalidadeDAO.salvar(clienteLocalidade); 
+            clienteLocalidadeDAO.salvar(clienteLocalidade);
             super.addMensagem(R.string.inclusao_sucesso, TipoMensagemList.INFORMACAO);
         }
     }
-
-
 
     /**
      * Método responsável em excluir dados do clienteLocalidade.
      * 
      * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     * @throws Exception 
+     * @throws Exception
      */
     public void delete(ClienteLocalidadeVO clienteLocalidade) throws Exception {
 
         this.validarIdObrigatorio(clienteLocalidade);
-        
+
         if (super.isValido()) {
-            clienteLocalidadeDAO.delete(clienteLocalidade.getId()); 
+            clienteLocalidadeDAO.delete(clienteLocalidade);
             super.addMensagem(R.string.exclusao_sucesso, TipoMensagemList.INFORMACAO);
         }
     }
 
-      
     /**
      * Método valida se id foi informado.
      * 
@@ -78,30 +92,13 @@ public class ClienteLocalidadeService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(ClienteLocalidadeVO clienteLocalidade) {
+
         if (super.isNullOrEmpty(clienteLocalidade.getClienteId())) {
-            super.addMensagem(R.string.clienteLocalidade_id_obrigatorio, TipoMensagemList.ERRO);
-        }
-        
-        if (super.isNullOrEmpty(clienteLocalidade.getLocalidadeId())) {
-            super.addMensagem(R.string.clienteLocalidade_id_obrigatorio, TipoMensagemList.ERRO);
-        }
-    }
-    
-    /**
-     * Método valida se campos obrigatorios foram informados.
-     * 
-     * @param rota - Objeto ClieteLocalidadeVO
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     */
-    private void validarCamposObrigatorios(ClienteLocalidadeVO clienteLocalidade) {
-        if (super.isNullOrEmpty(clienteLocalidade.getClienteId())) {
-            super.addMensagem(R.string.clienteLocalidade_id_obrigatorio, TipoMensagemList.ERRO);
-        }
-        
-        if (super.isNullOrEmpty(clienteLocalidade.getLocalidadeId())) {
-            super.addMensagem(R.string.clienteLocalidade_id_obrigatorio, TipoMensagemList.ERRO);
+            super.addMensagem(R.string.cliente_localidade_id_cliente_obrigatorio, TipoMensagemList.ERRO);
         }
 
+        if (super.isNullOrEmpty(clienteLocalidade.getLocalidadeId())) {
+            super.addMensagem(R.string.cliente_localidade_id_localidade_obrigatorio, TipoMensagemList.ERRO);
+        }
     }
-    
 }

@@ -150,44 +150,44 @@ public class ClienteDAO extends BaseDAO{
             ContentValues values = new ContentValues();
             ClienteVO cliente;
 
-            if (filter.getCliente().getId() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getId())) {
                 values.put(ClienteVO.ID_CLIENTE, filter.getCliente().getId());
             }
             
-            if (filter.getCliente().getCep() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getCep())) {
                 values.put(ClienteVO.CEP, filter.getCliente().getCep());
             }
             
-            if (filter.getCliente().getCidadeId() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getCidadeId())) {
                 values.put(ClienteVO.CIDADE_ID, filter.getCliente().getCidadeId());
             }
             
-            if (filter.getCliente().getCpf() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getCpf())) {
                 values.put(ClienteVO.CPF, filter.getCliente().getCpf());
             }
 
-            if (filter.getCliente().getTelefonePrimario() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getTelefonePrimario())) {
                 values.put(ClienteVO.NR_TELEFONE_PRIMARIO, filter.getCliente().getTelefonePrimario());
             }
 
-            if (filter.getCliente().getTelefoneSecundario() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getTelefoneSecundario())) {
                 values.put(ClienteVO.NR_TELEFONE_SECUNDARIO, filter.getCliente().getTelefoneSecundario());
             }
             
-            if (filter.getCliente().getBairro() != null) {
-                values.put(ClienteVO.TX_BAIRRO, filter.getCliente().getBairro());
+            if (!super.isNullOrEmpty(filter.getCliente().getBairro())) {
+                values.put(ClienteVO.TX_BAIRRO, "%" + filter.getCliente().getBairro() + "%");
             }
             
-            if (filter.getCliente().getEmail() != null) {
+            if (!super.isNullOrEmpty(filter.getCliente().getEmail())) {
                 values.put(ClienteVO.TX_EMAIL, filter.getCliente().getEmail());
             }
             
-            if (filter.getCliente().getEndereco() != null) {
-                values.put(ClienteVO.TX_ENDERECO, filter.getCliente().getEndereco());
+            if (!super.isNullOrEmpty(filter.getCliente().getEndereco())) {
+                values.put(ClienteVO.TX_ENDERECO, "%" + filter.getCliente().getEndereco() + "%");
             }
             
-            if (filter.getCliente().getNome() != null) {
-                values.put(ClienteVO.TX_NOME, filter.getCliente().getNome());
+            if (!super.isNullOrEmpty(filter.getCliente().getNome())) {
+                values.put(ClienteVO.TX_NOME, "%" + filter.getCliente().getNome() + "%");
             }
             
             Cursor cursor = super.pesquisar(values);

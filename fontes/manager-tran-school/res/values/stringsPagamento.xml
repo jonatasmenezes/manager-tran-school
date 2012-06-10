@@ -11,6 +11,6 @@
     <string name="pagamento_id_cliente_obrigatorio">O id do cliente é obrigatório.</string>
     <string name="pagamento_tipo_pagamento_obrigatorio">O tipo de pagamento é obrigatório.</string>
     <string name="pagamento_valor_obrigatorio">O valor do pagamento é obrigatório.</string>
-    <string name="pagamento_data_vencimento_obrigatorio">A data do vencimento é obrigatório.</string>
+    <string name="pagamento_data_vencimento_obrigatorio">O dia de vencimento é obrigatório.</string>
     
 </resources>

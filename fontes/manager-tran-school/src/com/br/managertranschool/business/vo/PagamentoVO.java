@@ -1,6 +1,7 @@
 package com.br.managertranschool.business.vo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -12,9 +13,9 @@ import java.util.Date;
 public class PagamentoVO implements Serializable {
 
     public static final String TABLE = "PAGAMENTO";
-    
+
     private static final long serialVersionUID = -2318798736906167441L;
-    
+
     public static final String ID_PAGAMENTO = "ID_PAGAMENTO";
 
     private Long id;
@@ -26,14 +27,15 @@ public class PagamentoVO implements Serializable {
     public static final String TIPO_PAGAMENTO = "TIPO_PAGAMENTO";
 
     private Integer tipoPagamento;
-    
+
     public static final String VALOR = "VALOR";
 
-    private Double valor; 
-    
+    private BigDecimal valor;
+
     public static final String DT_VENCIMENTO = "DT_VENCIMENTO";
 
     private Date vencimento;
+
     /**
      * Construtor padrão.
      * 
@@ -42,6 +44,18 @@ public class PagamentoVO implements Serializable {
     public PagamentoVO() {
 
         super();
+    }
+    
+    /**
+     * Construtor padão com argumento.
+     * 
+     * @param clienteId - Id do cliente
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public PagamentoVO(Long clienteId) {
+
+        super();
+        this.clienteId = clienteId;
     }
 
     /**
@@ -106,7 +120,7 @@ public class PagamentoVO implements Serializable {
     /**
      * @return the valor
      */
-    public Double getValor() {
+    public BigDecimal getValor() {
 
         return valor;
     }
@@ -114,11 +128,11 @@ public class PagamentoVO implements Serializable {
     /**
      * @param valor - the valor to set
      */
-    public void setValor(Double valor) {
+    public void setValor(BigDecimal valor) {
 
         this.valor = valor;
     }
- 
+
     /**
      * @return the vencimento
      */
@@ -134,7 +148,5 @@ public class PagamentoVO implements Serializable {
 
         this.vencimento = vencimento;
     }
- 
-    
 
 }
