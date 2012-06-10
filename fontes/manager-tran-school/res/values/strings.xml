@@ -34,6 +34,7 @@
     <string name="label_incluir_usuario">INCLUIR USUÁRIO</string>
     <string name="label_incluir_cliente">INCLUIR CLIENTE</string>
     <string name="label_incluir_localidade">INCLUIR LOCALIDADE</string>
+    <string name="label_efetuar_pagamento">EFETUAR PAGAMENTO</string>
     
     <!-- Menu da Home -->
     <string name="home_usuarios">Usuários</string>

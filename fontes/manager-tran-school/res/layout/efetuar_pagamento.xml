@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/label_efetuar_pagamento"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="@string/label_efetuar_pagamento"
+        android:textSize="30sp" />
+
+    <TableRow
+        android:id="@+id/table_row_header"
+        android:padding="20dp" >
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/label_pagamento_realizado_cliente"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/pagamento_relizado_cliente"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/pagamentoRealizadoCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_pagamento_realizado_mes_ano_referente"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/pagamento_realizado_mes_ano_referente"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/pagamento_realizado_mes_ano_referente"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_salvar"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80dp"
+            android:text="@string/btn_salvar" />
+        <Button
+            android:id="@+id/btn_cancelar"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/btn_cancelar" />
+
+    </RelativeLayout>
+
+</TableLayout>

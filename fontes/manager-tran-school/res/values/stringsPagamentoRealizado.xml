@@ -6,6 +6,8 @@
     <string name="pagamento_realizado_pagamento_id">Id do Pagamento</string>
     <string name="pagamento_realizado_data">Data de Pagamento</string>
     <string name="pagamento_realizado_mes_ano_referente">Referencia</string>
+    <string name="pagamento_relizado_cliente">Cliente</string>
+    
     
 
     <!-- Mensagens -->
