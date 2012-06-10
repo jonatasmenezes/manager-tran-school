@@ -130,7 +130,7 @@ public class PagamentoService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(PagamentoVO pagamento) {
-        if (!super.isNotNullAndNotEmpty(pagamento.getId())) {
+        if (super.isNullOrEmpty(pagamento.getId())) {
             super.addMensagem(R.string.pagamento_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -142,20 +142,20 @@ public class PagamentoService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarCamposObrigatorios(PagamentoVO pagamento) {
-        if (!super.isNotNullAndNotEmpty(pagamento.getValor())) {
+        if (super.isNullOrEmpty(pagamento.getValor())) {
             super.addMensagem(R.string.pagamento_valor_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(pagamento.getTipoPagamento())) {
+        if (super.isNullOrEmpty(pagamento.getTipoPagamento())) {
             super.addMensagem(R.string.pagamento_tipo_pagamento_obrigatorio, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(pagamento.getVencimento())) {
-            super.addMensagem(R.string.pagamento_vencimento_obrigatorio, TipoMensagemList.ERRO);
+        if (super.isNullOrEmpty(pagamento.getVencimento())) {
+            super.addMensagem(R.string.pagamento_data_vencimento, TipoMensagemList.ERRO);
         }
         
-        if (!super.isNotNullAndNotEmpty(pagamento.getClienteId())) {
-            super.addMensagem(R.string.pagamento_cliente_id_obrigatorio, TipoMensagemList.ERRO);
+        if (super.isNullOrEmpty(pagamento.getClienteId())) {
+            super.addMensagem(R.string.pagamento_id_cliente_obrigatorio, TipoMensagemList.ERRO);
         }
        
     }
