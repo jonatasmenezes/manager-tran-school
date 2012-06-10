@@ -20,7 +20,7 @@ public class CidadeVO implements Serializable {
 
     public static final String ESTADO_ID = "ESTADO_ID";
 
-    private String estadoId;
+    private Long estadoId;
 
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
@@ -42,7 +42,7 @@ public class CidadeVO implements Serializable {
      * @param estadoId - Id do estado.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
-    public CidadeVO(String estadoId) {
+    public CidadeVO(Long estadoId) {
 
         super();
         this.estadoId = estadoId;
@@ -78,7 +78,7 @@ public class CidadeVO implements Serializable {
     /**
      * @return the estadoId
      */
-    public String getEstadoId() {
+    public Long getEstadoId() {
 
         return estadoId;
     }
@@ -86,7 +86,7 @@ public class CidadeVO implements Serializable {
     /**
      * @param estadoId - the estadoId to set
      */
-    public void setEstadoId(String estadoId) {
+    public void setEstadoId(Long estadoId) {
 
         this.estadoId = estadoId;
     }
