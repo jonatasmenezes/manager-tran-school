@@ -71,14 +71,14 @@ public class InserirLocalidadeActivity extends BaseActivity implements OnClickLi
         try {
             if (v.getId() == R.id.btn_salvar) {
 
-                Long latitude = null;
-                Long longitude = null;
+                Double latitude = null;
+                Double longitude = null;
                 if (localidadeLatitude.getText().toString() != null) {
-                    latitude = Long.valueOf(localidadeLatitude.getText().toString());
+                    latitude = Double.valueOf(localidadeLatitude.getText().toString());                    
                 }
                 
                 if (localidadeLongitude.getText().toString() != null) {
-                    longitude = Long.valueOf(localidadeLongitude.getText().toString());
+                    longitude = Double.valueOf(localidadeLongitude.getText().toString());
                 }
                 
                 
@@ -91,7 +91,7 @@ public class InserirLocalidadeActivity extends BaseActivity implements OnClickLi
                 }
                 
                 if (longitude != null){
-                    localidade.setLatitude(longitude);
+                    localidade.setLongitude(longitude);
                 } 
                 localidade.setDescricao(descricao);
 
