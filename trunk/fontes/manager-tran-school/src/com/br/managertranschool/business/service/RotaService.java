@@ -130,7 +130,7 @@ public class RotaService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarIdObrigatorio(RotaVO rota) {
-        if (!super.isNotNullAndNotEmpty(rota.getId())) {
+        if (super.isNullOrEmpty(rota.getId())) {
             super.addMensagem(R.string.rota_id_obrigatorio, TipoMensagemList.ERRO);
         }
     }
@@ -142,7 +142,7 @@ public class RotaService extends BaseService {
      * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void validarCamposObrigatorios(RotaVO rota) {
-        if (!super.isNotNullAndNotEmpty(rota.getDescricao())) {
+        if (super.isNullOrEmpty(rota.getDescricao())) {
             super.addMensagem(R.string.rota_descricao_obrigatorio, TipoMensagemList.ERRO);
         }
 
