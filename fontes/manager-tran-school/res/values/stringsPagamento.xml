@@ -4,7 +4,7 @@
     <!-- Campos -->
     <string name="pagamento_tipo_pagamento">Tipo de Pagamento</string>
     <string name="pagamento_valor">Valor</string>
-    <string name="pagamento_data_vencimento">Dt. Vencimento</string>
+    <string name="pagamento_data_vencimento">Dia Vencimento</string>
 
     <!-- Mensagens -->
     <string name="pagamento_id_obrigatorio">O id é obrigatório.</string>
