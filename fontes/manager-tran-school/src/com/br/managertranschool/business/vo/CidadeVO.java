@@ -20,7 +20,7 @@ public class CidadeVO implements Serializable {
 
     public static final String ESTADO_ID = "ESTADO_ID";
 
-    private Long estadoId;
+    private String estadoId;
 
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
@@ -36,6 +36,18 @@ public class CidadeVO implements Serializable {
         super();
     }
 
+    /**
+     * Construtor padrão com argumentos.
+     * 
+     * @param estadoId - Id do estado.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public CidadeVO(String estadoId) {
+
+        super();
+        this.estadoId = estadoId;
+    }
+    
     /**
      * Método obtem nome das colunas da tabela CIDADE
      * 
@@ -66,7 +78,7 @@ public class CidadeVO implements Serializable {
     /**
      * @return the estadoId
      */
-    public Long getEstadoId() {
+    public String getEstadoId() {
 
         return estadoId;
     }
@@ -74,7 +86,7 @@ public class CidadeVO implements Serializable {
     /**
      * @param estadoId - the estadoId to set
      */
-    public void setEstadoId(Long estadoId) {
+    public void setEstadoId(String estadoId) {
 
         this.estadoId = estadoId;
     }

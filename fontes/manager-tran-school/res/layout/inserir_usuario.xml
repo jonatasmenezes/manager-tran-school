@@ -8,7 +8,6 @@
     <TextView
         android:id="@+id/label_login"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
         android:gravity="center"
         android:text="@string/label_incluir_usuario"
         android:textSize="30sp" />

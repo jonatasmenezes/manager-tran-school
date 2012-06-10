@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
             List<UsuarioVO> usuarioList = usuarioService.pesquisar(new UsuarioFilter(new UsuarioVO()));
 
             if (!usuarioList.isEmpty() && usuarioList.size() <= 1) {
-                // TODO: Alerta para o usuário.
+                super.exibirInformacao(super.getString(R.string.necessario_incluir_usuario_inicial));
                 
                 it = new Intent(this, InserirUsuarioActivity.class);
                 it.putExtra("activityChamadora", this.getClass().getName());
