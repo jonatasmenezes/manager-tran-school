@@ -63,7 +63,8 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener {
         int codigo = Integer.valueOf(item.get(CODIGO));
         
         if (HomeMenuList.CLIENTES.getCodigo() == codigo) {
-            super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.CLIENTES.getDescricao()));
+            Intent it = new Intent(this, PesquisarClienteActivity.class); 
+            super.startActivity(it);
         } else if (HomeMenuList.USUARIOS.getCodigo() == codigo) {
             Intent it = new Intent(this, PesquisarUsuarioActivity.class); 
             super.startActivity(it);
@@ -71,8 +72,9 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener {
             super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.ROTAS.getDescricao()));
         } else if (HomeMenuList.LOCALIDADES.getCodigo() == codigo) {
             super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.LOCALIDADES.getDescricao()));
-        }      
-        
+        }  else if (HomeMenuList.PAGAMENTOS.getCodigo() == codigo) {
+            super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.PAGAMENTOS.getDescricao()));
+        }     
     }
     
     /**
