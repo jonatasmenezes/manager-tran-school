@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/label_localidade"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:text="@string/label_pesquisar_localidade"
+        android:textSize="30sp" />
+
+    <TableRow
+        android:id="@+id/table_row_header"
+        android:padding="20dp" >
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_localidade_descricao"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/localidade_descricao"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/localidadeDescricao"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:inputType="text"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_novo"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="90dp"
+            android:text="@string/btn_novo" />
+        <Button
+            android:id="@+id/btn_pesquisar"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/btn_pesquisar" />
+
+    </RelativeLayout>
+
+    <ListView
+		 android:id="@+id/localidades_list"  
+		 android:layout_width="fill_parent"  
+		 android:layout_height="wrap_content">  
+	 </ListView>
+    
+</TableLayout>

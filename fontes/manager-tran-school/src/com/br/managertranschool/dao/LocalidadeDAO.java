@@ -144,7 +144,7 @@ public class LocalidadeDAO extends BaseDAO{
             }
             
             if (filter.getLocalidade().getDescricao() != null) {
-                values.put(LocalidadeVO.TX_DESCRICAO, filter.getLocalidade().getDescricao());
+                values.put(LocalidadeVO.TX_DESCRICAO, "%" + filter.getLocalidade().getDescricao() + "%");
             }
             
             if (filter.getLocalidade().getLatitude() != null) {
