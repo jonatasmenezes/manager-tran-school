@@ -17,7 +17,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     private String[] scriptDropTables;
 
-    private String[] scriptInsertDados;
+    private String[][] scriptInsertDados;
 
     /**
      * Construtor utilizando dos argumentos: Contexto do app, nome da base, versão da base, script de criação da base,
@@ -32,7 +32,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     public SQLiteHelper(Context context, String nomeDatabase, int versaoDatabase, String[] scriptCreateTables,
-        String[] scriptDropTables, String[] scriptInsertDados) {
+        String[] scriptDropTables, String[][] scriptInsertDados) {
 
         super(context, nomeDatabase, null, versaoDatabase);
         Log.i(this.getClass().getName(), context + nomeDatabase + versaoDatabase);
@@ -58,10 +58,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
 
         // Inserir dados na base de dados.
-        for (String script : scriptInsertDados) {
-            Log.i(this.getClass().getName(), script);
-            database.execSQL(script);
-        }
+        for (String[] arrayScripts : scriptInsertDados) {
+            for (String script : arrayScripts) {                
+                Log.i(this.getClass().getName(), script);
+                database.execSQL(script);
+            }            
+        }        
     }
 
     /*

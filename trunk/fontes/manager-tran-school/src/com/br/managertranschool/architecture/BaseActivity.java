@@ -47,7 +47,7 @@ public class BaseActivity extends RoboActivity {
                     
                     if (item.getTipo().equals(TipoMensagemList.INFORMACAO)) {
                         if (mensagensInfo.length() > 1) {
-                            mensagensInfo.append("/n");
+                            mensagensInfo.append("\n");
                         }
                         
                         if (item.getParametros() != null) {                        
@@ -57,7 +57,7 @@ public class BaseActivity extends RoboActivity {
                         }
                     } else {
                         if (mensagensErro.length() > 1) {
-                            mensagensInfo.append("/n");
+                            mensagensErro.append("\n");
                         }
                         
                         mensagensErro.append(" - ");

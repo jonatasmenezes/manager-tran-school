@@ -60,18 +60,18 @@ public class BaseService {
      * @return True se não nulo e não vazio.
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
-    protected boolean isNotNullAndNotEmpty(Object object) {
+    protected boolean isNullOrEmpty(Object object) {
 
-        boolean isNotNull = false;
+        boolean isNull = true;
 
         if (object != null) {
-            isNotNull = true;
+            isNull = false;
             if (object instanceof String) {
-                isNotNull = object.toString().trim() != "";
+                isNull = object.toString().trim().length() == 0;
             }
         }
 
-        return isNotNull;
+        return isNull;
     }
     
     /**
@@ -99,7 +99,8 @@ public class BaseService {
      */
     public List<MensagemVO> getMensagens() {
 
-        List<MensagemVO> retorno = this.mensagens;
+        List<MensagemVO> retorno = new ArrayList<MensagemVO>();
+        retorno.addAll(this.mensagens);
         this.mensagens.clear();
         return retorno;
     }
