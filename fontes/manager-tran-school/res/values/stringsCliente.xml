@@ -5,13 +5,13 @@
     <string name="cliente_id">Id</string>
     <string name="cliente_nome">Nome</string>
     <string name="cliente_endereco">Endereço</string>
-    <string name="cliente_cidade_id">Cidade</string>
+    <string name="cliente_cidade">Cidade</string>
     <string name="cliente_cep">CEP</string>
     <string name="cliente_cpf">CPF</string>
     <string name="cliente_bairro">Bairro</string>
     <string name="cliente_email">Email</string>
-    <string name="cliente_telefone_primario">Telefone Primário</string>
-    <string name="cliente_telefone_secundario">Telefone Secundário</string>
+    <string name="cliente_telefone_primario">Telefone 1</string>
+    <string name="cliente_telefone_secundario">Telefone 2</string>
 
     <!-- Mensagens -->
     <string name="cliente_id_obrigatorio">O id é obrigatório.</string>

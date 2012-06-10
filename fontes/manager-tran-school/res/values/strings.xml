@@ -16,7 +16,7 @@
     <string name="inclusao_sucesso">Incluído(a) com sucesso!</string>
     <string name="alteracao_sucesso">Alterado(a) com sucesso!</string>
     <string name="exclusao_sucesso">Excluido(a) com sucesso!</string>
-    <string name="necessario_incluir_usuario_inicial">É necessário incluir um usuário inicial utilização.</string>
+    <string name="necessario_incluir_usuario_inicial">Atenção! É necessário incluir um usuário inicial para a utilização.</string>
 
     <!-- Alerta -->
     <string name="alert_titulo">Atenção!</string>
@@ -25,8 +25,24 @@
     <string name="tipo_usuario_administrador">Administrador</string>
     <string name="tipo_usuario_padrao">Padrão</string>
     
+    <!-- Enum de tipo de pagamento -->
+    <string name="tipo_pagamento_mensal">Mensal</string>
+    <string name="tipo_pagamento_avulso">Avulso</string>
+    
     <!-- Label -->
     <string name="label_login">LOGIN</string>
     <string name="label_incluir_usuario">INCLUIR USUÁRIO</string>
+    <string name="label_incluir_cliente">INCLUIR CLIENTE</string>
+    
+    <!-- Menu da Home -->
+    <string name="home_usuarios">Usuários</string>
+    <string name="home_clientes">Clientes</string>
+    <string name="home_rotas">Rotas</string>
+    <string name="home_localidades">Localidades</string>
+    
+    <string name="home_usuarios_descricao">Incluir e atualizar usuários.</string>
+    <string name="home_clientes_descricao">Incluir e atualizar clientes.</string>
+    <string name="home_rotas_descricao">Incluir e atualziar rotas.</string>
+    <string name="home_localidades_descricao">Incluir e atualziar localidades.</string>
     
 </resources>
