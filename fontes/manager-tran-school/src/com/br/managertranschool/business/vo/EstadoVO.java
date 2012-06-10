@@ -16,7 +16,7 @@ public class EstadoVO implements Serializable {
 
     public static final String ID_ESTADO = "ID_ESTADO";
 
-    private String id;
+    private Long id;
 
     public static final String TX_DESCRICAO = "TX_DESCRICAO";
 
@@ -46,7 +46,7 @@ public class EstadoVO implements Serializable {
     /**
      * @return the id
      */
-    public String getId() {
+    public Long getId() {
 
         return id;
     }
@@ -54,7 +54,7 @@ public class EstadoVO implements Serializable {
     /**
      * @param id - the id to set
      */
-    public void setId(String id) {
+    public void setId(Long id) {
 
         this.id = id;
     }

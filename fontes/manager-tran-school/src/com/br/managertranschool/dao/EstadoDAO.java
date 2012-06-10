@@ -74,7 +74,7 @@ public class EstadoDAO extends BaseDAO{
     private EstadoVO getEstado(Cursor cursor) {
 
         EstadoVO estado = new EstadoVO();
-        estado.setId(cursor.getString(cursor.getColumnIndexOrThrow(EstadoVO.ID_ESTADO)));
+        estado.setId(cursor.getLong(cursor.getColumnIndexOrThrow(EstadoVO.ID_ESTADO)));
         estado.setDescricao(cursor.getString(cursor.getColumnIndex(EstadoVO.TX_DESCRICAO)));
         
         return estado;

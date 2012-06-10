@@ -75,7 +75,7 @@ public class CidadeDAO extends BaseDAO{
         CidadeVO cidade = new CidadeVO();
         cidade.setId(cursor.getLong(cursor.getColumnIndexOrThrow(CidadeVO.ID_CIDADE)));
         cidade.setDescricao(cursor.getString(cursor.getColumnIndex(CidadeVO.TX_DESCRICAO)));
-        cidade.setEstadoId(cursor.getString(cursor.getColumnIndex(CidadeVO.ESTADO_ID)));
+        cidade.setEstadoId(cursor.getLong(cursor.getColumnIndex(CidadeVO.ESTADO_ID)));
         
         return cidade;
     }
