@@ -75,13 +75,14 @@ public class ClienteDAO extends BaseDAO{
         ClienteVO cliente = new ClienteVO();
         cliente.setId(cursor.getLong(cursor.getColumnIndexOrThrow(ClienteVO.ID_CLIENTE)));
         cliente.setNome(cursor.getString(cursor.getColumnIndex(ClienteVO.TX_NOME)));
+        cliente.setCpf(cursor.getString(cursor.getColumnIndex(ClienteVO.CPF)));
         cliente.setEndereco(cursor.getString(cursor.getColumnIndex(ClienteVO.TX_ENDERECO)));
         cliente.setEmail(cursor.getString(cursor.getColumnIndex(ClienteVO.TX_EMAIL)));
         cliente.setBairro(cursor.getString(cursor.getColumnIndex(ClienteVO.TX_BAIRRO)));
-        cliente.setCep(cursor.getLong(cursor.getColumnIndex(ClienteVO.CEP)));
+        cliente.setCep(cursor.getString(cursor.getColumnIndex(ClienteVO.CEP)));
         cliente.setCidadeId(cursor.getLong(cursor.getColumnIndex(ClienteVO.CIDADE_ID)));
-        cliente.setTelefonePrimario(cursor.getLong(cursor.getColumnIndex(ClienteVO.NR_TELEFONE_PRIMARIO)));
-        cliente.setTelefoneSecundario(cursor.getLong(cursor.getColumnIndex(ClienteVO.NR_TELEFONE_SECUNDARIO)));
+        cliente.setTelefonePrimario(cursor.getString(cursor.getColumnIndex(ClienteVO.NR_TELEFONE_PRIMARIO)));
+        cliente.setTelefoneSecundario(cursor.getString(cursor.getColumnIndex(ClienteVO.NR_TELEFONE_SECUNDARIO)));
 
         return cliente;
     }

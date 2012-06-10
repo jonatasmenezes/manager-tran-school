@@ -119,24 +119,14 @@ public class InserirClienteActivity extends BaseActivity implements OnClickListe
                 
                 ClienteVO cliente = new ClienteVO();
                 cliente.setNome(nome);
-                if (cpf != null) {
-                    cliente.setCpf(Long.valueOf(cpf));
-                }
-                if (cep != null) {
-                    cliente.setCep(Long.valueOf(cep));
-                }
+                cliente.setCpf(cpf);
+                cliente.setCep(cep);
 
                 cliente.setEndereco(endereco);
                 cliente.setBairro(bairro);
                 cliente.setEmail(email);
-                if (telefone1 != null) {
-                    
-                    cliente.setTelefonePrimario(Long.valueOf(telefone1));
-                }
-                if (telefone2 != null) {
-                    
-                    cliente.setTelefoneSecundario(Long.valueOf(telefone2));
-                }
+                cliente.setTelefonePrimario(telefone1);
+                cliente.setTelefoneSecundario(telefone2);
                 
                 cliente.setCidadeId(cidade);
                 
