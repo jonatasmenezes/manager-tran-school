@@ -32,12 +32,13 @@
     <string name="tipo_pagamento_avulso">Avulso</string>
     
     <!-- Label -->
-        <string name="label_login">LOGIN</string>
+    <string name="label_login">LOGIN</string>
     <string name="label_incluir_usuario">INCLUIR USUÁRIO</string>
     <string name="label_pesquisar_usuario">USUÁRIOS</string>
     <string name="label_incluir_cliente">INCLUIR CLIENTE</string>
     <string name="label_pesquisar_cliente">CLIENTES</string>
     <string name="label_incluir_localidade">INCLUIR LOCALIDADE</string>
+    <string name="label_pesquisar_localidade">LOCALIDADES</string>
     <string name="label_efetuar_pagamento">EFETUAR PAGAMENTO</string>
     
     <!-- Menu da Home -->
