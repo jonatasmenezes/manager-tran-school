@@ -50,7 +50,7 @@ public class PagamentoFilter  implements Serializable{
     /**
      * @param pagamento - the pagamento to set
      */
-    public void setEstado(PagamentoVO pagamento) {
+    public void setPagamento(PagamentoVO pagamento) {
 
         this.pagamento = pagamento;
     }
