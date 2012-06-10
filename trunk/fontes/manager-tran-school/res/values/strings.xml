@@ -40,16 +40,19 @@
     <string name="label_incluir_localidade">INCLUIR LOCALIDADE</string>
     <string name="label_pesquisar_localidade">LOCALIDADES</string>
     <string name="label_efetuar_pagamento">EFETUAR PAGAMENTO</string>
+    <string name="label_spinner_selecione">Selecione</string>
     
     <!-- Menu da Home -->
     <string name="home_usuarios">Usuários</string>
     <string name="home_clientes">Clientes</string>
     <string name="home_rotas">Rotas</string>
     <string name="home_localidades">Localidades</string>
+    <string name="home_pagamentos">Pagamentos</string>
     
     <string name="home_usuarios_descricao">Incluir e atualizar usuários.</string>
     <string name="home_clientes_descricao">Incluir e atualizar clientes.</string>
     <string name="home_rotas_descricao">Incluir e atualziar rotas.</string>
     <string name="home_localidades_descricao">Incluir e atualziar localidades.</string>
+    <string name="home_pagamentos_descricao">Pesquisar pagamentos e verificar pagamentos realizados.</string>
     
 </resources>

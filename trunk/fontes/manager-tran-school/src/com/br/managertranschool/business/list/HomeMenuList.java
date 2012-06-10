@@ -13,7 +13,8 @@ public enum HomeMenuList {
     USUARIOS(1, R.string.home_usuarios, R.string.home_usuarios_descricao),
     CLIENTES(2, R.string.home_clientes, R.string.home_clientes_descricao),
     ROTAS(3, R.string.home_rotas, R.string.home_rotas_descricao),
-    LOCALIDADES(4, R.string.home_localidades, R.string.home_localidades_descricao);
+    LOCALIDADES(4, R.string.home_localidades, R.string.home_localidades_descricao),
+    PAGAMENTOS(4, R.string.home_pagamentos, R.string.home_pagamentos_descricao);
 
     private int codigo;
 
