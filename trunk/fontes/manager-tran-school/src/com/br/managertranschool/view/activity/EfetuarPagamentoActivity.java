@@ -1,6 +1,7 @@
 package com.br.managertranschool.view.activity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,28 +10,27 @@ import javax.inject.Inject;
 
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
-import com.br.managertranschool.business.filter.CidadeFilter;
 import com.br.managertranschool.business.filter.ClienteFilter;
 import com.br.managertranschool.business.filter.PagamentoFilter;
 import com.br.managertranschool.business.service.ClienteService;
-import com.br.managertranschool.business.service.LocalidadeService;
 import com.br.managertranschool.business.service.PagamentoRealizadoService;
 import com.br.managertranschool.business.service.PagamentoService;
-import com.br.managertranschool.business.vo.CidadeVO;
 import com.br.managertranschool.business.vo.ClienteVO;
-import com.br.managertranschool.business.vo.LocalidadeVO;
 import com.br.managertranschool.business.vo.PagamentoRealizadoVO;
 import com.br.managertranschool.business.vo.PagamentoVO;
 
@@ -66,12 +66,54 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     private Button btnCancelar;
     
     private String activityChamadora;
+    
+    @InjectView(R.id.pagamento_realizado_mes_ano_referente)
+    private Button mPickDate;
+    
+    @InjectView(R.id.label_pagamento_realizado_mes_ano_referente)
+    private TextView mDateDisplay;
+    
+    private int mYear;
+    private int mMonth;
+    private int mDay;
 
+    static final int DATE_DIALOG_ID = 0;
+    
+    // the callback received when the user "sets" the date in the dialog
+    private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+
+                public void onDateSet(DatePicker view, int year, 
+                                      int monthOfYear, int dayOfMonth) {
+                    mYear = year;
+                    mMonth = monthOfYear;
+                    mDay = dayOfMonth;
+                    updateDisplay();
+                }
+
+            };
+    
+    
+
+    
+    
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+        case DATE_DIALOG_ID:
+            return new DatePickerDialog(this,
+                        mDateSetListener,
+                        mYear, mMonth, mDay);
+        }
+        return null;
+    }
     /*
      * (non-Javadoc)
      * 
      * @see com.br.managertranschool.architecture.BaseActivity#onCreate(android.os.Bundle)
      */
+    
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -85,10 +127,38 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         pagamentoRealizadoCliente.setAdapter(adapter);
           
         this.btnSalvar.setOnClickListener(this);
-        this.btnCancelar.setOnClickListener(this);    
+        this.btnCancelar.setOnClickListener(this);   
+
+        
+        // add a click listener to the button
+        mPickDate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(DATE_DIALOG_ID);
+            }
+        });
+
+        // get the current date
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        // display the current date (this method is below)
+        updateDisplay();
+        
        
     }
-
+    
+    private void updateDisplay() {
+        mDateDisplay.setText(
+            new StringBuilder()
+                    // Month is 0 based so add 1
+                    .append(mMonth + 1).append("-")
+                    .append(mDay).append("-")
+                    .append(mYear).append(" "));
+    }
+    
+    
     /*
      * (non-Javadoc)
      * 
@@ -113,7 +183,7 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
                 
                            
                 pagamentoRealizado.setPagamentoId(pagamentoId);
-                pagamentoRealizado.setReferencia(referencia);
+                //pagamentoRealizado.setReferencia(referencia);
 
                 pagamentoRealizadoService.salvar(pagamentoRealizado);
                 
