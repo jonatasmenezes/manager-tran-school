@@ -34,23 +34,20 @@
             android:gravity="left" />
     </TableRow>
 
-    <TableRow>
-
+    <TableRow>      
         <TextView
             android:id="@+id/label_pagamento_realizado_mes_ano_referente"
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="@string/pagamento_realizado_mes_ano_referente"
+            android:text=""
             android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/pagamento_realizado_mes_ano_referente"
-            android:layout_width="20dp"
+	    <Button 
+		    android:id="@+id/pagamento_realizado_mes_ano_referente"
+            android:layout_width="185dp"
             android:layout_height="40dp"
             android:gravity="left"
-            android:inputType="text"
-            android:textSize="15sp" />
+	        android:text="@string/pagamento_realizado_referente"/>	        
     </TableRow>
 
     <RelativeLayout
