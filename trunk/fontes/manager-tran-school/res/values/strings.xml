@@ -48,11 +48,16 @@
     <string name="home_rotas">Rotas</string>
     <string name="home_localidades">Localidades</string>
     <string name="home_pagamentos">Pagamentos</string>
-    
+    <string name="home_teste_mapa">Teste de mapa</string>     
     <string name="home_usuarios_descricao">Incluir e atualizar usuários.</string>
     <string name="home_clientes_descricao">Incluir e atualizar clientes.</string>
     <string name="home_rotas_descricao">Incluir e atualziar rotas.</string>
     <string name="home_localidades_descricao">Incluir e atualziar localidades.</string>
     <string name="home_pagamentos_descricao">Pesquisar pagamentos e verificar pagamentos realizados.</string>
+    <string name="home_teste_mapa_descricao">Teste para exibir o mapa.</string>
+    
+    <!-- Menu da Aplicação -->
+    <string name="menu_home">Home</string>
+    <string name="menu_exit">Voltar</string>
     
 </resources>

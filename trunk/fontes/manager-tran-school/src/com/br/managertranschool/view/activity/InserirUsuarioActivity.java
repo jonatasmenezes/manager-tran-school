@@ -50,12 +50,12 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
 
     @InjectView(R.id.btn_salvar)
     private Button btnSalvar;
-    
+
     @InjectView(R.id.btn_cancelar)
     private Button btnCancelar;
-    
+
     private String activityChamadora;
-    
+
     private Long idUsuario;
 
     /*
@@ -69,16 +69,17 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
         super.onCreate(savedInstanceState);
         this.activityChamadora = super.getIntent().getStringExtra("activityChamadora");
         this.idUsuario = super.getIntent().getLongExtra(UsuarioVO.ID_USUARIO, Long.MIN_VALUE);
-        
-        String[] from = {"Nome"};
-        int[] to = {android.R.id.text1};
-        
-        SimpleAdapter adapter = new SimpleAdapter(this, this.obterTiposUsuario(), android.R.layout.simple_spinner_item, from, to);
+
+        String[] from = { "Nome" };
+        int[] to = { android.R.id.text1 };
+
+        SimpleAdapter adapter = new SimpleAdapter(this, this.obterTiposUsuario(), android.R.layout.simple_spinner_item,
+            from, to);
         usuarioTipoUsuario.setAdapter(adapter);
-        
+
         this.btnSalvar.setOnClickListener(this);
         this.btnCancelar.setOnClickListener(this);
-        
+
         if (this.idUsuario != null && this.idUsuario > 0) {
             this.carregarDadosUsuario();
         }
@@ -98,11 +99,11 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
                 String login = usuarioLogin.getText().toString();
                 String senha = usuarioSenha.getText().toString();
                 Integer tipo = null;
-                
+
                 Map<String, String> item = super.getSelectedItem(usuarioTipoUsuario);
-                
+
                 tipo = Integer.valueOf(item.get("Codigo"));
-                
+
                 UsuarioVO usuario = new UsuarioVO();
                 usuario.setNome(nome);
                 usuario.setLogin(login);
@@ -113,25 +114,24 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
                     usuario.setId(this.idUsuario);
                     usuarioService.atualizar(usuario);
                 } else {
-                    
+
                     usuarioService.salvar(usuario);
                 }
-                
-                
+
                 if (usuarioService.isValido()) {
-                    
+
                     if (MainActivity.class.getName().equalsIgnoreCase(activityChamadora)) {
-                        Intent it = new Intent(this, HomeActivity.class); 
+                        Intent it = new Intent(this, HomeActivity.class);
                         super.startActivity(it);
                     } else {
-                        super.finalize();
+                        super.finish();
                     }
                 }
-                
-                super.setMessages(usuarioService.getMensagens());                
+
+                super.setMessages(usuarioService.getMensagens());
 
             } else if (v.getId() == R.id.btn_cancelar) {
-                super.finalize();
+                super.finish();
             }
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);
@@ -140,7 +140,7 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
         }
 
     }
-    
+
     /**
      * Método obtem lista de tipos de usuários do drop down.
      * 
@@ -148,17 +148,18 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
     private List<Map<String, String>> obterTiposUsuario() {
-        List<Map<String, String>> retornoList = new ArrayList<Map<String,String>>();
-        
+
+        List<Map<String, String>> retornoList = new ArrayList<Map<String, String>>();
+
         Map<String, String> map;
-        
+
         for (TipoUsuarioList tipo : TipoUsuarioList.values()) {
             map = new HashMap<String, String>();
             map.put("Codigo", String.valueOf(tipo.getCodigo()));
             map.put("Nome", super.getString(tipo.getNome()));
             retornoList.add(map);
         }
-        
+
         return retornoList;
     }
 
@@ -173,7 +174,8 @@ public class InserirUsuarioActivity extends BaseActivity implements OnClickListe
         this.usuarioNome.setText(usuario.getNome());
         this.usuarioLogin.setText(usuario.getLogin());
         this.usuarioSenha.setText(usuario.getSenha());
-        this.usuarioTipoUsuario.setSelection(super.obterPosicaoSpinner(this.usuarioTipoUsuario, "Codigo", usuario.getTipoUsuario()));
+        this.usuarioTipoUsuario.setSelection(super.obterPosicaoSpinner(this.usuarioTipoUsuario, "Codigo",
+            usuario.getTipoUsuario()));
     }
-    
+
 }

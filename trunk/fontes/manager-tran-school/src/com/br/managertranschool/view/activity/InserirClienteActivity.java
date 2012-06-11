@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
+import android.os.Process;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -213,13 +214,13 @@ public class InserirClienteActivity extends BaseActivity implements OnClickListe
                 }                
                 
                 if (clienteService.isValido()) {
-                    super.finalize();
+                    super.finish();
                 }
                 
                 super.setMessages(clienteService.getMensagens());                
 
             } else if (v.getId() == R.id.btn_cancelar) {
-                super.finalize();
+                super.finish();
             }
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);

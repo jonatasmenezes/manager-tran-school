@@ -29,7 +29,7 @@
 
         <EditText
             android:id="@+id/localidadeDescricao"
-            android:layout_width="185dp"
+            android:layout_width="225dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="text"

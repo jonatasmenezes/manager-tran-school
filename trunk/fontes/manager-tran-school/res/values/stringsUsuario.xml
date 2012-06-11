@@ -10,8 +10,11 @@
     <!-- Mensagens -->
     <string name="usuario_id_obrigatorio">O id é obrigatório.</string>
     <string name="usuario_login_obrigatorio">O login é obrigatório.</string>
+    <string name="usuario_login_ja_cadastrado">Login já cadastrado! Favor alterar.</string>
     <string name="usuario_senha_obrigatorio">A senha é obrigatória.</string>
     <string name="usuario_tipo_obrigatorio">O tipo de usuário é obrigatório.</string>
     <string name="usuario_nome_obrigatorio">O nome é obrigatório.</string>
+
+    <string name="usuario_login_senha_incorreto">Login ou a senha inserida está incorreto.</string>
     
 </resources>

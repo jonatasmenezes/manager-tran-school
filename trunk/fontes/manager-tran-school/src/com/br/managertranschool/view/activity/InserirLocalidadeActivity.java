@@ -14,7 +14,6 @@ import com.br.managertranschool.architecture.BaseActivity;
 import com.br.managertranschool.business.service.LocalidadeService;
 import com.br.managertranschool.business.vo.LocalidadeVO;
 
-
 /**
  * Classe activity responsavel pela view de inserir nova localidade.
  * 
@@ -38,11 +37,11 @@ public class InserirLocalidadeActivity extends BaseActivity implements OnClickLi
 
     @InjectView(R.id.btn_salvar)
     private Button btnSalvar;
-    
+
     @InjectView(R.id.btn_cancelar)
     private Button btnCancelar;
-    
-    private String activityChamadora;
+
+    private Long idLocalidade;
 
     /*
      * (non-Javadoc)
@@ -53,12 +52,14 @@ public class InserirLocalidadeActivity extends BaseActivity implements OnClickLi
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        activityChamadora = super.getIntent().getStringExtra("activityChamadora");
-        
-          
+        idLocalidade = super.getIntent().getLongExtra(LocalidadeVO.ID_LOCALIDADE, Long.MIN_VALUE);
+
         this.btnSalvar.setOnClickListener(this);
-        this.btnCancelar.setOnClickListener(this);    
-       
+        this.btnCancelar.setOnClickListener(this);
+
+        if (this.idLocalidade != null && this.idLocalidade > 0) {
+            // TODO this.carregarDadosLocalidade();
+        }
     }
 
     /*
@@ -71,42 +72,31 @@ public class InserirLocalidadeActivity extends BaseActivity implements OnClickLi
         try {
             if (v.getId() == R.id.btn_salvar) {
 
-                Double latitude = null;
-                Double longitude = null;
-                if (localidadeLatitude.getText().toString() != null) {
-                    latitude = Double.valueOf(localidadeLatitude.getText().toString());                    
-                }
-                
-                if (localidadeLongitude.getText().toString() != null) {
-                    longitude = Double.valueOf(localidadeLongitude.getText().toString());
-                }
-                
-                
+                String latitude = localidadeLatitude.getText().toString();
+                String longitude = localidadeLongitude.getText().toString();
                 String descricao = localidadeDescricao.getText().toString();
-               
-                
+
                 LocalidadeVO localidade = new LocalidadeVO();
-                if (latitude != null){
-                    localidade.setLatitude(latitude);
+                if (latitude != null && latitude.trim().length() > 0) {
+                    localidade.setLatitude(Double.valueOf(latitude));
                 }
-                
-                if (longitude != null){
-                    localidade.setLongitude(longitude);
-                } 
+
+                if (longitude != null && longitude.trim().length() > 0) {
+                    localidade.setLongitude(Double.valueOf(longitude));
+                }
+
                 localidade.setDescricao(descricao);
 
                 localidadeService.salvar(localidade);
-                
+
                 if (localidadeService.isValido()) {
-                    
-                    super.finalize();
+                    super.finish();
                 }
-                
-                super.setMessages(localidadeService.getMensagens());      
-                            
+
+                super.setMessages(localidadeService.getMensagens());
 
             } else if (v.getId() == R.id.btn_cancelar) {
-                super.finalize();
+                super.finish();
             }
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);

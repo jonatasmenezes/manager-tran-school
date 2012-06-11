@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/label_cliente_nome"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:text="@string/cliente_nome"
@@ -30,7 +30,7 @@
 
         <EditText
             android:id="@+id/clienteNome"
-            android:layout_width="185dp"
+            android:layout_width="245dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="text"
@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/label_cliente_cpf"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:text="@string/cliente_cpf"
@@ -50,7 +50,7 @@
 
         <EditText
             android:id="@+id/clienteCpf"
-            android:layout_width="20dp"
+            android:layout_width="245dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="number"
@@ -62,7 +62,7 @@
 
         <TextView
             android:id="@+id/label_cliente_bairro"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:text="@string/cliente_bairro"
@@ -70,7 +70,7 @@
 
         <EditText
             android:id="@+id/clienteBairro"
-            android:layout_width="20dp"
+            android:layout_width="245dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="text"
@@ -81,7 +81,7 @@
     <TableRow>
         <TextView
             android:id="@+id/label_cliente_cidade"
-            android:layout_width="125dp"
+            android:layout_width="65dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:text="@string/cliente_cidade"
