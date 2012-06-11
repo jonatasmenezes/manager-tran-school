@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Campos -->
-    <string name="pagamento_tipo_pagamento">Tipo de Pagamento</string>
+    <string name="pagamento_tipo_pagamento">Pagamento</string>
     <string name="pagamento_valor">Valor</string>
     <string name="pagamento_data_vencimento">Dia Vencimento</string>
 

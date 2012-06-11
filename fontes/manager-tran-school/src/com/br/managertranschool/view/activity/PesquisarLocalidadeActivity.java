@@ -131,13 +131,11 @@ public class PesquisarLocalidadeActivity extends BaseActivity implements OnClick
             map = new HashMap<String, String>();
             map.put(LocalidadeVO.ID_LOCALIDADE, String.valueOf(localidade.getId()));
             map.put(LocalidadeVO.TX_DESCRICAO, localidade.getDescricao());
-            map.put(LocalidadeVO.NR_LATITUDE, String.valueOf(localidade.getLatitude()));
-            map.put(LocalidadeVO.NR_LATITUDE, String.valueOf(localidade.getLongitude()));
             mapList.add(map);
         }
         
         String[] from = {LocalidadeVO.TX_DESCRICAO};
-        int[] to = {android.R.id.text1, android.R.id.text2};
+        int[] to = {android.R.id.text1};
         
         SimpleAdapter adapter = new SimpleAdapter(this, mapList, android.R.layout.simple_list_item_2, from, to);
         localidadesList.setAdapter(adapter);

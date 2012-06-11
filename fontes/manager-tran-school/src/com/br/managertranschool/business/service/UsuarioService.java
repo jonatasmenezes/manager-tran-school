@@ -148,6 +148,8 @@ public class UsuarioService extends BaseService {
             
             if (!usuarioList.isEmpty()) {
                 usuarioReturn = usuarioList.get(0);
+            } else {
+                super.addMensagem(R.string.usuario_login_senha_incorreto, TipoMensagemList.ERRO);
             }
         }
         
@@ -175,7 +177,15 @@ public class UsuarioService extends BaseService {
     private void validarCamposObrigatorios(UsuarioVO usuario) {
         if (super.isNullOrEmpty(usuario.getLogin())) {
             super.addMensagem(R.string.usuario_login_obrigatorio, TipoMensagemList.ERRO);
-        }
+        } else {
+            UsuarioVO usuario2 = new UsuarioVO();
+            usuario2.setLogin(usuario.getLogin());
+            List<UsuarioVO> usuarioList = usuarioDAO.pesquisar(new UsuarioFilter(usuario2));
+            if (!usuarioList.isEmpty()) {
+                super.addMensagem(R.string.usuario_login_ja_cadastrado, TipoMensagemList.ERRO);
+            }
+        }      
+        
         if (super.isNullOrEmpty(usuario.getSenha())) {
             super.addMensagem(R.string.usuario_senha_obrigatorio, TipoMensagemList.ERRO);
         }

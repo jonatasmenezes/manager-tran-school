@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import roboguice.inject.ContentView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
@@ -38,22 +39,29 @@ public class MainActivity extends BaseActivity {
             
             List<UsuarioVO> usuarioList = usuarioService.pesquisar(new UsuarioFilter(new UsuarioVO()));
 
-            if (!usuarioList.isEmpty() && usuarioList.size() <= 1) {
+            if (usuarioList.isEmpty() || usuarioList.size() == 1) {
                 super.exibirInformacao(super.getString(R.string.necessario_incluir_usuario_inicial));
                 
                 it = new Intent(this, InserirUsuarioActivity.class);
                 it.putExtra("activityChamadora", this.getClass().getName());
-                super.startActivity(it);
             } else {
                 it = new Intent(this, LoginActivity.class);
             }
             
-            super.startActivity(it);                        
             super.setMessages(usuarioService.getMensagens());
-
+            super.startActivity(it);                     
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);
         }
 
+    }
+    
+    /* (non-Javadoc)
+     * @see com.br.managertranschool.architecture.BaseActivity#onCreateOptionsMenu(android.view.Menu)
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    
+        return false;
     }
 }

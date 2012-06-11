@@ -29,7 +29,7 @@
 
         <EditText
             android:id="@+id/usuarioNome"
-            android:layout_width="185dp"
+            android:layout_width="245dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="text"
@@ -48,7 +48,7 @@
 
         <EditText
             android:id="@+id/usuarioLogin"
-            android:layout_width="20dp"
+            android:layout_width="245dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="text"
