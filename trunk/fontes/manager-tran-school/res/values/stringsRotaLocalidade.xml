@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Mensagens -->
+    <string name="rota_localidade_id_localidade_obrigatorio">A localidade é obrigatória.</string>
+    <string name="rota_localidade_id_rota_obrigatorio">O id da rota é obrigatório.</string>
+    
+</resources>

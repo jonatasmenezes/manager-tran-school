@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Mensagens -->
+    <string name="cliente_rota_id_cliente_obrigatorio">O cliente é obrigatório.</string>
+    <string name="cliente_rota_id_rota_obrigatorio">O id da rota é obrigatório.</string>
+    
+</resources>
