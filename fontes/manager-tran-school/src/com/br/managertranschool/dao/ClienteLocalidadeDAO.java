@@ -13,7 +13,7 @@ import com.br.managertranschool.business.vo.ClienteVO;
 
 
 /**
- * Classe de acesso a dados da tabela ROTA
+ * Classe de acesso a dados da tabela CLIENTE_LOCALIDADE
  * 
  * @author Jeferson Almeida (jef.henrique.07@gmail.com)
  * @since 09/06/2012
