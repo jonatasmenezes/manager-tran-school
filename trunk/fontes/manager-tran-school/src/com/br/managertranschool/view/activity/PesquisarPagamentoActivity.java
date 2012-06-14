@@ -19,16 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
-import com.br.managertranschool.business.filter.CidadeFilter;
 import com.br.managertranschool.business.filter.ClienteFilter;
-import com.br.managertranschool.business.service.CidadeService;
 import com.br.managertranschool.business.service.ClienteService;
-import com.br.managertranschool.business.service.PagamentoRealizadoService;
-import com.br.managertranschool.business.vo.CidadeVO;
 import com.br.managertranschool.business.vo.ClienteVO;
 
 /**
@@ -40,8 +34,6 @@ import com.br.managertranschool.business.vo.ClienteVO;
 @ContentView(R.layout.pesquisar_pagamento)
 public class PesquisarPagamentoActivity extends BaseActivity implements OnClickListener, OnItemClickListener {
     
-    @Inject
-    private PagamentoRealizadoService pagamentoRealizadoService;
     
     @Inject
     private ClienteService clienteService;
@@ -52,8 +44,6 @@ public class PesquisarPagamentoActivity extends BaseActivity implements OnClickL
     @InjectView(R.id.clientes_list)
     private ListView clientesList;
     
-    @InjectView(R.id.btn_novo)
-    private Button btnNovo;
     
     @InjectView(R.id.btn_pesquisar)
     private Button btnPesquisar;
@@ -70,6 +60,7 @@ public class PesquisarPagamentoActivity extends BaseActivity implements OnClickL
         
         
         this.btnPesquisar.setOnClickListener(this);
+        
         clientesList.setOnItemClickListener(this);
     }
 
@@ -101,10 +92,7 @@ public class PesquisarPagamentoActivity extends BaseActivity implements OnClickL
                 
                 super.setMessages(clienteService.getMensagens());          
 
-            } else if (v.getId() == R.id.btn_novo) {
-                Intent it = new Intent(this, InserirClienteActivity.class); 
-                super.startActivity(it);
-            }
+            } 
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);
         } catch (Throwable e) {

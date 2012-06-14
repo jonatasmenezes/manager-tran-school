@@ -9,7 +9,7 @@
     <string name="btn_pesquisar">Pesquisar</string>
     <string name="btn_novo">Novo</string>
 	<string name="btn_voltar">Voltar</string>
-    <string name="btn_efetuar_pagamento">Efetuar Pagamento</string>
+    <string name="btn_efetuar_pagamento">Pagar</string>
     
     <!-- Mensagens -->
     <string name="hello">Olá! Bem Vindo!</string>
