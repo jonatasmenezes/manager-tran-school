@@ -69,7 +69,7 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener {
         } else if (HomeMenuList.USUARIOS.getCodigo() == codigo) {
             it = new Intent(this, PesquisarUsuarioActivity.class); 
         } else if (HomeMenuList.ROTAS.getCodigo() == codigo) {
-            super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.ROTAS.getDescricao()));
+            it = new Intent(this, PesquisarRotaActivity.class); 
         } else if (HomeMenuList.LOCALIDADES.getCodigo() == codigo) {
             it = new Intent(this, PesquisarLocalidadeActivity.class); 
         } else if (HomeMenuList.PAGAMENTOS.getCodigo() == codigo) {

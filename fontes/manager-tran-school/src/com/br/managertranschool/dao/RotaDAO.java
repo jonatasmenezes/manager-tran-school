@@ -135,15 +135,15 @@ public class RotaDAO extends BaseDAO{
             ContentValues values = new ContentValues();
             RotaVO rota;
 
-            if (filter.getRota().getId() != null) {
+            if (!super.isNullOrEmpty(filter.getRota().getId())) {
                 values.put(RotaVO.ID_ROTA, filter.getRota().getId());
             }
             
-            if (filter.getRota().getDescricao() != null) {
-                values.put(RotaVO.TX_DESCRICAO, filter.getRota().getDescricao());
+            if (!super.isNullOrEmpty(filter.getRota().getDescricao())) {
+                values.put(RotaVO.TX_DESCRICAO,  "%" + filter.getRota().getDescricao() +  "%");
             }
             
-            if (filter.getRota().getLocalPartida() != null) {
+            if (!super.isNullOrEmpty(filter.getRota().getLocalPartida())) {
                 values.put(RotaVO.LOCAL_PARTIDA, filter.getRota().getLocalPartida());
             }
             

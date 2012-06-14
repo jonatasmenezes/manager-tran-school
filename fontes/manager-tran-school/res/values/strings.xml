@@ -42,8 +42,10 @@
     <string name="label_incluir_localidade">INCLUIR LOCALIDADE</string>
     <string name="label_pesquisar_localidade">LOCALIDADES</string>
     <string name="label_mapa_localidade">MAPA DA LOCALIDADE</string>
+    <string name="label_mapa_rota">MAPA DA ROTA</string>
     <string name="label_efetuar_pagamento">EFETUAR PAGAMENTO</string>
     <string name="label_pesquisa_pagamento">PESQUISAR PAGAMENTO</string>
+    <string name="label_pesquisar_rota">ROTAS</string>
     <string name="label_spinner_selecione">Selecione</string>
     
     <!-- Menu da Home -->

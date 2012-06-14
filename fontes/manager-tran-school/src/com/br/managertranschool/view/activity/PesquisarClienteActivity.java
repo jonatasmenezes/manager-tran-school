@@ -166,7 +166,7 @@ public class PesquisarClienteActivity extends BaseActivity implements OnClickLis
             map.put(ClienteVO.TX_NOME, cliente.getNome());
             map.put("Descricao", super.getString(R.string.cliente_cpf) + ": " + cliente.getCpf() 
                 + " - " + super.getString(R.string.cliente_telefone_primario) + ": " + cliente.getTelefonePrimario()
-                + " - " + super.getString(R.string.cliente_bairro) + ": " + cliente.getBairro());
+                + " \n" + super.getString(R.string.cliente_bairro) + ": " + cliente.getBairro());
             mapList.add(map);
         }
         

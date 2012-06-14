@@ -140,23 +140,23 @@ public class PagamentoDAO extends BaseDAO{
             ContentValues values = new ContentValues();
             PagamentoVO pagamento;
 
-            if (filter.getPagamento().getId() != null) {
+            if (!super.isNullOrEmpty(filter.getPagamento().getId())) {
                 values.put(PagamentoVO.ID_PAGAMENTO, filter.getPagamento().getId());
             }
             
-            if (filter.getPagamento().getClienteId() != null) {
+            if (!super.isNullOrEmpty(filter.getPagamento().getClienteId())) {
                 values.put(PagamentoVO.CLIENTE_ID, filter.getPagamento().getClienteId());
             }
             
-            if (filter.getPagamento().getTipoPagamento() != null) {
+            if (!super.isNullOrEmpty(filter.getPagamento().getTipoPagamento())) {
                 values.put(PagamentoVO.TIPO_PAGAMENTO, filter.getPagamento().getTipoPagamento());
             }
             
-            if (filter.getPagamento().getValor() != null) {
+            if (!super.isNullOrEmpty(filter.getPagamento().getValor())) {
                 values.put(PagamentoVO.VALOR, filter.getPagamento().getValor().doubleValue());
             }
             
-            if (filter.getPagamento().getVencimento() != null) {
+            if (!super.isNullOrEmpty(filter.getPagamento().getVencimento())) {
                 values.put(PagamentoVO.DT_VENCIMENTO, super.obterDateString(filter.getPagamento().getVencimento()));
             }
             
