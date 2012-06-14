@@ -2,6 +2,7 @@ package com.br.managertranschool.view.activity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,11 +27,15 @@ import android.widget.TextView;
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
 import com.br.managertranschool.business.filter.ClienteFilter;
+import com.br.managertranschool.business.filter.ClienteLocalidadeFilter;
 import com.br.managertranschool.business.filter.PagamentoFilter;
 import com.br.managertranschool.business.service.ClienteService;
 import com.br.managertranschool.business.service.PagamentoRealizadoService;
 import com.br.managertranschool.business.service.PagamentoService;
+import com.br.managertranschool.business.vo.CidadeVO;
+import com.br.managertranschool.business.vo.ClienteLocalidadeVO;
 import com.br.managertranschool.business.vo.ClienteVO;
+import com.br.managertranschool.business.vo.LocalidadeVO;
 import com.br.managertranschool.business.vo.PagamentoRealizadoVO;
 import com.br.managertranschool.business.vo.PagamentoVO;
 
@@ -48,65 +53,30 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     private PagamentoRealizadoService pagamentoRealizadoService;
     
     @Inject
-    private ClienteService clienteService;
+    private PagamentoService pagamentoService;
     
     @Inject
-    private PagamentoService pagamentoService;
+    private ClienteService clienteService;
 
     @InjectView(R.id.pagamentoRealizadoCliente)
     private Spinner pagamentoRealizadoCliente;
 
     @InjectView(R.id.pagamento_realizado_mes_ano_referente)
     private EditText pagamentoRealizadoReferencia;
+    
+    @InjectView(R.id.label_efetuar_pagamento)
+    private TextView clienteNome;
 
-    @InjectView(R.id.btn_salvar)
-    private Button btnSalvar;
+    @InjectView(R.id.btn_efetuar_pagamento)
+    private Button btn_efetuar_pagamento;
     
     @InjectView(R.id.btn_cancelar)
     private Button btnCancelar;
     
-    private String activityChamadora;
+    private Long idCliente;
     
-    @InjectView(R.id.pagamento_realizado_mes_ano_referente)
-    private Button mPickDate;
-    
-    @InjectView(R.id.label_pagamento_realizado_mes_ano_referente)
-    private TextView mDateDisplay;
-    
-    private int mYear;
-    private int mMonth;
-    private int mDay;
-
-    static final int DATE_DIALOG_ID = 0;
-    
-    // the callback received when the user "sets" the date in the dialog
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-
-                public void onDateSet(DatePicker view, int year, 
-                                      int monthOfYear, int dayOfMonth) {
-                    mYear = year;
-                    mMonth = monthOfYear;
-                    mDay = dayOfMonth;
-                    updateDisplay();
-                }
-
-            };
-    
-    
-
-    
-    
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-        case DATE_DIALOG_ID:
-            return new DatePickerDialog(this,
-                        mDateSetListener,
-                        mYear, mMonth, mDay);
-        }
-        return null;
-    }
+    private Long idPagamento;
+  
     /*
      * (non-Javadoc)
      * 
@@ -118,7 +88,10 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        activityChamadora = super.getIntent().getStringExtra("activityChamadora");
+        
+        this.idCliente = super.getIntent().getLongExtra(ClienteVO.ID_CLIENTE, Long.MIN_VALUE);
+        
+        carregarDadosCliente();
         
         String[] from = {ClienteVO.TX_NOME};
         int[] to = {android.R.id.text1};
@@ -126,38 +99,11 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         SimpleAdapter adapter = new SimpleAdapter(this, this.obterClientes(), android.R.layout.simple_spinner_item, from, to);
         pagamentoRealizadoCliente.setAdapter(adapter);
           
-        this.btnSalvar.setOnClickListener(this);
+        this.btn_efetuar_pagamento.setOnClickListener(this);
         this.btnCancelar.setOnClickListener(this);   
-
-        
-        // add a click listener to the button
-        mPickDate.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                showDialog(DATE_DIALOG_ID);
-            }
-        });
-
-        // get the current date
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-
-        // display the current date (this method is below)
-        updateDisplay();
-        
        
     }
-    
-    private void updateDisplay() {
-        mDateDisplay.setText(
-            new StringBuilder()
-                    // Month is 0 based so add 1
-                    .append(mMonth + 1).append("-")
-                    .append(mDay).append("-")
-                    .append(mYear).append(" "));
-    }
-    
+   
     
     /*
      * (non-Javadoc)
@@ -167,22 +113,15 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     public void onClick(View v) {
 
         try {
-            if (v.getId() == R.id.btn_salvar) {
+            if (v.getId() == R.id.btn_efetuar_pagamento) {
 
-             
-                Long clienteId = null;
-                
-                Map<String, String> selectedItem = (Map<String, String>) pagamentoRealizadoCliente.getSelectedItem();
-                
-                clienteId = Long.valueOf(selectedItem.get("Codigo"));
-               
-                Long pagamentoId = obterIdPagamento(clienteId);
-                             
+                String referencia = pagamentoRealizadoReferencia.getText().toString();            
                 
                 PagamentoRealizadoVO pagamentoRealizado = new PagamentoRealizadoVO();
                 
                            
-                pagamentoRealizado.setPagamentoId(pagamentoId);
+                pagamentoRealizado.setPagamentoId(idPagamento);
+                pagamentoRealizado.setDataPagamento(new Date());
                 //pagamentoRealizado.setReferencia(referencia);
 
                 pagamentoRealizadoService.salvar(pagamentoRealizado);
@@ -230,23 +169,22 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     }
     
     /**
-     * Método obtem lista de id do pagamento do cliente.
+     * Método que busca os dados de cliente.
      * 
-     * @return Lista de {@link Map}.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
-    private Long obterIdPagamento(Long clienteId) {
+    private void carregarDadosCliente() {
 
+        ClienteVO cliente = clienteService.buscarPorId(new ClienteVO(this.idCliente));
+
+        List<PagamentoVO> pagamentoList = pagamentoService.pesquisar(new PagamentoFilter(new PagamentoVO(this.idCliente)));
         
-        PagamentoVO pagamento = new PagamentoVO();
-        pagamento.setClienteId(clienteId);
-        PagamentoFilter pagamentoFilter = new PagamentoFilter();
-        pagamentoFilter.setPagamento(pagamento);
+        this.clienteNome.setText(cliente.getNome());
+        PagamentoVO pagamento = pagamentoList.get(0);
         
-        List <PagamentoVO> pagamentoList = this.pagamentoService.pesquisar(pagamentoFilter);      
-        pagamento = pagamentoList.get(0);
-        
-        return pagamento.getId();
+        this.idPagamento = pagamento.getId();
+
+
     }
 
 }
