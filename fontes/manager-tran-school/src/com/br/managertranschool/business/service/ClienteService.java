@@ -139,6 +139,37 @@ public class ClienteService extends BaseService {
     }
 
     /**
+     * Método responsável em atualizar o cliente com localidade e pagamento.
+     * 
+     * @param cliente - Objeto {@link ClienteVO}. 
+     * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
+     * @param pagamento - Objeto {@link PagamentoVO}.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public void atualizar(ClienteVO cliente, ClienteLocalidadeVO clienteLocalidade, PagamentoVO pagamento) throws Exception {
+
+        this.validarIdObrigatorio(cliente);
+        
+        if (super.isValido()) {
+            
+            clienteLocalidade.setClienteId(cliente.getId());
+            pagamento.setClienteId(cliente.getId());
+            
+            this.validarCamposObrigatorios(cliente, clienteLocalidade, pagamento);
+            
+            if (super.isValido()) {
+                clienteDAO.atualizar(cliente);
+                
+                pagamentoService.atualizar(pagamento);
+                
+                clienteLocalidadeService.atualizar(clienteLocalidade);    
+                
+                super.addMensagem(R.string.alteracao_sucesso, TipoMensagemList.INFORMACAO);
+            }
+        }
+    }
+    
+    /**
      * Método responsável em excluir dados do cliente.
      * 
      * @param cliente - Objeto {@link ClienteVO}.

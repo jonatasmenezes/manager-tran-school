@@ -14,8 +14,7 @@ public enum HomeMenuList {
     CLIENTES(2, R.string.home_clientes, R.string.home_clientes_descricao),
     ROTAS(3, R.string.home_rotas, R.string.home_rotas_descricao),
     LOCALIDADES(4, R.string.home_localidades, R.string.home_localidades_descricao),
-    PAGAMENTOS(5, R.string.home_pagamentos, R.string.home_pagamentos_descricao),
-    TESTEMAPA(6, R.string.home_teste_mapa, R.string.home_teste_mapa_descricao);
+    PAGAMENTOS(5, R.string.home_pagamentos, R.string.home_pagamentos_descricao);
 
     private int codigo;
 

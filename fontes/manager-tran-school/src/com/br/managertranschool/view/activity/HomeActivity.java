@@ -62,23 +62,23 @@ public class HomeActivity extends BaseActivity implements OnItemClickListener {
         
         int codigo = Integer.valueOf(item.get(CODIGO));
         
+        Intent it = null;
+        
         if (HomeMenuList.CLIENTES.getCodigo() == codigo) {
-            Intent it = new Intent(this, PesquisarClienteActivity.class); 
-            super.startActivity(it);
+            it = new Intent(this, PesquisarClienteActivity.class); 
         } else if (HomeMenuList.USUARIOS.getCodigo() == codigo) {
-            Intent it = new Intent(this, PesquisarUsuarioActivity.class); 
-            super.startActivity(it);
+            it = new Intent(this, PesquisarUsuarioActivity.class); 
         } else if (HomeMenuList.ROTAS.getCodigo() == codigo) {
             super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.ROTAS.getDescricao()));
         } else if (HomeMenuList.LOCALIDADES.getCodigo() == codigo) {
-            Intent it = new Intent(this, PesquisarLocalidadeActivity.class); 
-            super.startActivity(it);
+            it = new Intent(this, PesquisarLocalidadeActivity.class); 
         } else if (HomeMenuList.PAGAMENTOS.getCodigo() == codigo) {
-            super.exibirInformacao("Ainda não implementado: " + super.getString(HomeMenuList.PAGAMENTOS.getDescricao()));
-        } else if (HomeMenuList.TESTEMAPA.getCodigo() == codigo) {
-            Intent it = new Intent(this, MapLocalidadeActivity.class); 
+            it = new Intent(this, PesquisarPagamentoActivity.class);
+        }
+        
+        if (it != null) {
             super.startActivity(it);
-        }     
+        }
     }
     
     /**

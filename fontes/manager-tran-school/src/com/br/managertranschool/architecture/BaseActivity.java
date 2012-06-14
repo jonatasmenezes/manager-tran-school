@@ -47,6 +47,15 @@ public class BaseActivity extends RoboActivity {
     }
     
     /* (non-Javadoc)
+     * @see roboguice.activity.RoboActivity#onDestroy()
+     */
+    @Override
+    protected void onDestroy() {
+    
+        super.onDestroy();
+    }
+    
+    /* (non-Javadoc)
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
     @Override

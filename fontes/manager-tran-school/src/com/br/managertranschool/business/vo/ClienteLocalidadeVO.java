@@ -41,6 +41,7 @@ public class ClienteLocalidadeVO implements Serializable {
     public ClienteLocalidadeVO(Long clienteId) {
 
         super();
+        this.clienteId = clienteId;
     }
 
     /**

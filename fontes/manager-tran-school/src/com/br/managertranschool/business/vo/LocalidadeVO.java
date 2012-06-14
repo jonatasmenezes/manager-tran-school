@@ -39,6 +39,18 @@ public class LocalidadeVO implements Serializable {
 
         super();
     }
+    
+    /**
+     * Construtor com argumentos
+     * 
+     * @param id - Id da localidade.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public LocalidadeVO(Long id) {
+
+        super();
+        this.id = id;
+    }
 
     /**
      * Método obtem nome das colunas da tabela LOCALIDADE

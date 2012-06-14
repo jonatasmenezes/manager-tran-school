@@ -6,10 +6,10 @@
     android:padding="5dp" >
 
     <TextView
-        android:id="@+id/label_localidade"
+        android:id="@+id/label_mapa_localidade"
         android:layout_width="wrap_content"
         android:gravity="center"
-        android:text="@string/label_incluir_localidade"
+        android:text="@string/label_mapa_localidade"
         android:textSize="30sp" />
 
     <TableRow
@@ -17,88 +17,25 @@
         android:padding="20dp" >
     </TableRow>
 
-    <TableRow>
+    <com.google.android.maps.MapView
+        android:id="@+id/map_localidade"
+        android:layout_width="fill_parent"
+        android:layout_height="328dp"
+        android:layout_weight="1.19"
+        android:apiKey="0N5zkz_l6SGJL03filPDIhUVG8Pbjt5B1sZRH_Q"
+        android:clickable="true" />
 
-        <TextView
-            android:id="@+id/label_localidade_descricao"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="@string/localidade_descricao"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/localidadeDescricao"
-            android:layout_width="225dp"
-            android:layout_height="40dp"
-            android:gravity="left"
-            android:inputType="text"
-            android:textSize="15sp" />
-    </TableRow>
-    
-    <TableRow>
-
-        <TextView
-            android:id="@+id/label_localidade_latitude"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="@string/localidade_latitude"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/localidadeLatitude"
-            android:layout_width="225dp"
-            android:layout_height="40dp"
-            android:gravity="left"
-            android:inputType="text"
-            android:textSize="15sp" />
-    </TableRow>
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/label_localidade_longitude"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="@string/localidade_longitude"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/localidadeLongitude"
-            android:layout_width="225dp"
-            android:layout_height="40dp"
-            android:gravity="left"
-            android:inputType="text"
-            android:textSize="15sp" />
-    </TableRow>
-        
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btn_salvar"
+            android:id="@+id/btn_voltar"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="80dp"
-            android:text="@string/btn_salvar" />
-        <Button
-            android:id="@+id/btn_cancelar"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="@string/btn_cancelar" />
-
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/btn_voltar" />
     </RelativeLayout>
 
-    <com.google.android.maps.MapView
-        android:id="@+id/map_localidade"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    android:clickable="true"
-	    android:apiKey="0N5zkz_l6SGJL03filPDIhUVG8Pbjt5B1sZRH_Q"/>
-    
 </TableLayout>

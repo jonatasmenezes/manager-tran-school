@@ -69,6 +69,23 @@ public class ClienteLocalidadeService extends BaseService {
     }
 
     /**
+     * Método responsável em atualizar dados.
+     * 
+     * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
+     * @throws Exception
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public void atualizar(ClienteLocalidadeVO clienteLocalidade) throws Exception {
+
+        this.validarIdObrigatorio(clienteLocalidade);
+        
+        if (super.isValido()) {
+            clienteLocalidadeDAO.atualizar(clienteLocalidade); 
+            super.addMensagem(R.string.alteracao_sucesso, TipoMensagemList.INFORMACAO);
+        }
+    }
+    
+    /**
      * Método responsável em excluir dados do clienteLocalidade.
      * 
      * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
