@@ -138,6 +138,7 @@ public class MapRotaActivity extends BaseMapActivity {
             overlayList.add(mapaOverlay);
             MapController mapController = this.mapView.getController();            
             mapController.setZoom(16);
+            mapController.setCenter(locationOverlay.getMyLocation());
             
             BigDecimal dist = new BigDecimal((distancia/1000)/1000);
             DecimalFormat df = new DecimalFormat( "#0.00" );
