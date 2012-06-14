@@ -33,6 +33,18 @@ public class ClienteRotaVO implements Serializable {
     }
 
     /**
+     * Construtor.
+     * 
+     * @param rotaId - Id da rota.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    public ClienteRotaVO(Long rotaId) {
+
+        super();
+        this.rotaId = rotaId;
+    }
+
+    /**
      * Método obtem nome das colunas da tabela CLIENTE_ROTA
      * 
      * @return Array de string

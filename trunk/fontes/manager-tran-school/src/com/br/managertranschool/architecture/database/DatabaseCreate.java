@@ -93,7 +93,7 @@ public class DatabaseCreate {
      */
     private String[][] getScriptInsert() {
 
-        return new String[][] { this.getInsertIntoUsuario(), this.getInsertIntoEstado(), this.getInsertIntoCidade(), this.getInsertIntoLocalidade() };
+        return new String[][] { this.getInsertIntoUsuario(), this.getInsertIntoEstado(), this.getInsertIntoCidade(), this.getInsertIntoLocalidade(), this.getInsertIntoDadosRota() };
     }
 
     /**
@@ -878,7 +878,49 @@ public class DatabaseCreate {
         { 
             defaultInsertLocalidade + " VALUES (-12.998578, -38.448458, 'Fernando Menezes de Góes - Costa Azul'); ",
             defaultInsertLocalidade + " VALUES (-12.981684, -38.463907, 'Shopping Iguatemi'); ",
-            defaultInsertLocalidade + " VALUES (-13.007819, -38.518324, 'Av. Oceânica - Barra'); ",
+            defaultInsertLocalidade + " VALUES (-13.007819, -38.518324, 'Av. Oceânica - Barra'); "
+        };
+
+        return scriptsInsert;
+    }
+    
+    /**
+     * Método obtém script de insert das tabelas para funcionalidade Rota.
+     * 
+     * @return Script
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private String[] getInsertIntoDadosRota() {
+
+        String defaultClienteInsert = "INSERT INTO " + ClienteVO.TABLE + " (" + ClienteVO.TX_NOME + ", " + ClienteVO.TX_ENDERECO + ", " + ClienteVO.CIDADE_ID + ", " + ClienteVO.CEP + ", " + ClienteVO.TX_EMAIL + ", " + ClienteVO.CPF + ", " + ClienteVO.TX_BAIRRO + ", " + ClienteVO.NR_TELEFONE_PRIMARIO + ", " + ClienteVO.NR_TELEFONE_SECUNDARIO + ")";
+        
+        String defaultClienteLocalidadeInsert = "INSERT INTO " + ClienteLocalidadeVO.TABLE + " (" + ClienteLocalidadeVO.CLIENTE_ID + ", " + ClienteLocalidadeVO.LOCALIDADE_ID + ")";
+
+        String defaultPagamentoInsert = "INSERT INTO " + PagamentoVO.TABLE + " (" + PagamentoVO.CLIENTE_ID + ", " + PagamentoVO.TIPO_PAGAMENTO + ", " + PagamentoVO.VALOR + ", " + PagamentoVO.DT_VENCIMENTO + ")";
+        
+        String defaultClienteRotaInsert = "INSERT INTO " + ClienteRotaVO.TABLE + " (" + ClienteRotaVO.CLIENTE_ID + ", " + ClienteRotaVO.ROTA_ID + ")";
+        
+        String defaultRotaLocalidadeInsert = "INSERT INTO " + RotaLocalidadeVO.TABLE + " (" + RotaLocalidadeVO.ROTA_ID + ", " + RotaLocalidadeVO.LOCALIDADE_ID + ")";
+        
+        String[] scriptsInsert = 
+        { 
+            defaultClienteInsert + " VALUES ('Cliente Teste 1', 'Endereco Teste 1', 290010, 41000000, 'email@email.com', 00000000001, 'Bairro Teste 1', '071 3000 2000', '071 3000 2000'); ",
+            defaultClienteInsert + " VALUES ('Cliente Teste 2', 'Endereco Teste 2', 290010, 41000000, 'email@email.com', 00000000002, 'Bairro Teste 2', '071 3000 2000', '071 3000 2000'); ",
+            
+            defaultClienteLocalidadeInsert + " VALUES (1, 1); ",
+            defaultClienteLocalidadeInsert + " VALUES (2, 2); ",
+            
+            defaultPagamentoInsert + " VALUES (1, 1, 10, '2000-01-15 00:00:00'); ",
+            defaultPagamentoInsert + " VALUES (2, 1, 20, '2000-01-15 00:00:00'); ",
+            
+            "INSERT INTO " + RotaVO.TABLE + " (" + RotaVO.TX_DESCRICAO + ", " + RotaVO.LOCAL_PARTIDA + ")" + " VALUES ('Rota Teste 1', 1); ",
+            
+            defaultClienteRotaInsert + " VALUES (1, 1); ",
+            defaultClienteRotaInsert + " VALUES (2, 1); ",
+            
+            defaultRotaLocalidadeInsert + " VALUES (1, 1); ",
+            defaultRotaLocalidadeInsert + " VALUES (1, 2); ",
+            
         };
 
         return scriptsInsert;

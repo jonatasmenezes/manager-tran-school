@@ -139,19 +139,19 @@ public class LocalidadeDAO extends BaseDAO{
             ContentValues values = new ContentValues();
             LocalidadeVO localidade;
 
-            if (filter.getLocalidade().getId() != null) {
+            if (!super.isNullOrEmpty(filter.getLocalidade().getId())) {
                 values.put(LocalidadeVO.ID_LOCALIDADE, filter.getLocalidade().getId());
             }
             
-            if (filter.getLocalidade().getDescricao() != null) {
+            if (!super.isNullOrEmpty(filter.getLocalidade().getDescricao())) {
                 values.put(LocalidadeVO.TX_DESCRICAO, "%" + filter.getLocalidade().getDescricao() + "%");
             }
             
-            if (filter.getLocalidade().getLatitude() != null) {
+            if (!super.isNullOrEmpty(filter.getLocalidade().getLatitude())) {
                 values.put(LocalidadeVO.NR_LATITUDE, filter.getLocalidade().getLatitude());
             }
             
-            if (filter.getLocalidade().getLongitude() != null) {
+            if (!super.isNullOrEmpty(filter.getLocalidade().getLongitude())) {
                 values.put(LocalidadeVO.NR_LONGITUDE, filter.getLocalidade().getLongitude());
             }
             

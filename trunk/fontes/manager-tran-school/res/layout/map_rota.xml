@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:padding="5dp" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/label_mapa_rota"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:text="@string/label_mapa_rota"
+        android:textSize="30sp" />
+
+    <TableRow
+        android:id="@+id/table_row_header"
+        android:padding="20dp" >
+    </TableRow>
+
+    <com.google.android.maps.MapView
+        android:id="@+id/map_rota"
+        android:layout_width="fill_parent"
+        android:layout_height="328dp"
+        android:layout_weight="1.19"
+        android:apiKey="0N5zkz_l6SGJL03filPDIhUVG8Pbjt5B1sZRH_Q"
+        android:clickable="true" />
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="left"
+	        android:text="@string/rota_distancia"
+	        android:id="@+id/label_rota_distancia" />
+	    <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="right"
+	        android:id="@+id/rotaDistancia"/>
+	    
+    </RelativeLayout>
+
+</TableLayout>

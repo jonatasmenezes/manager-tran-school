@@ -6,7 +6,10 @@
     <string name="rota_local_partida">Ponto de partida</string>
     <string name="rota_descricao">Descrição</string>
     
-
+	<!-- Label -->
+    <string name="rota_distancia">Distância da Rota:</string>
+    <string name="rota_qtde_passageiros">Quantidade de Passageiros:</string>
+    
     <!-- Mensagens -->
     <string name="rota_id_obrigatorio">O id é obrigatório.</string>
     <string name="rota_descricao_obrigatorio">A descrição é obrigatória.</string>

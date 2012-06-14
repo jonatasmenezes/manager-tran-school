@@ -118,7 +118,7 @@ public class PesquisarLocalidadeActivity extends BaseActivity implements OnClick
     }
     
     /**
-     * Método carrega ListView de usuários.
+     * Método carrega ListView de localidades.
      * 
      * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
      */
