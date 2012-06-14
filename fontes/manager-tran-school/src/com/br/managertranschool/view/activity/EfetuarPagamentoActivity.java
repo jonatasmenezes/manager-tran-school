@@ -1,5 +1,6 @@
 package com.br.managertranschool.view.activity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +31,8 @@ import com.br.managertranschool.architecture.BaseActivity;
 import com.br.managertranschool.business.filter.ClienteFilter;
 import com.br.managertranschool.business.filter.ClienteLocalidadeFilter;
 import com.br.managertranschool.business.filter.PagamentoFilter;
+import com.br.managertranschool.business.filter.PagamentoRealizadoFilter;
+import com.br.managertranschool.business.filter.UsuarioFilter;
 import com.br.managertranschool.business.service.ClienteService;
 import com.br.managertranschool.business.service.PagamentoRealizadoService;
 import com.br.managertranschool.business.service.PagamentoService;
@@ -38,6 +42,7 @@ import com.br.managertranschool.business.vo.ClienteVO;
 import com.br.managertranschool.business.vo.LocalidadeVO;
 import com.br.managertranschool.business.vo.PagamentoRealizadoVO;
 import com.br.managertranschool.business.vo.PagamentoVO;
+import com.br.managertranschool.business.vo.UsuarioVO;
 
 
 /**
@@ -58,14 +63,14 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     @Inject
     private ClienteService clienteService;
 
-    @InjectView(R.id.pagamentoRealizadoCliente)
-    private Spinner pagamentoRealizadoCliente;
-
     @InjectView(R.id.pagamento_realizado_mes_ano_referente)
     private EditText pagamentoRealizadoReferencia;
     
     @InjectView(R.id.label_efetuar_pagamento)
     private TextView clienteNome;
+    
+    @InjectView(R.id.pagamentos_list)
+    private ListView pagamentosList;
 
     @InjectView(R.id.btn_efetuar_pagamento)
     private Button btn_efetuar_pagamento;
@@ -76,6 +81,8 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     private Long idCliente;
     
     private Long idPagamento;
+    
+    
   
     /*
      * (non-Javadoc)
@@ -90,15 +97,17 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         super.onCreate(savedInstanceState);
         
         this.idCliente = super.getIntent().getLongExtra(ClienteVO.ID_CLIENTE, Long.MIN_VALUE);
+        PagamentoRealizadoVO pagamentoRealizado = new PagamentoRealizadoVO();
         
         carregarDadosCliente();
         
-        String[] from = {ClienteVO.TX_NOME};
-        int[] to = {android.R.id.text1};
+        pagamentoRealizado.setPagamentoId(this.idPagamento);
         
-        SimpleAdapter adapter = new SimpleAdapter(this, this.obterClientes(), android.R.layout.simple_spinner_item, from, to);
-        pagamentoRealizadoCliente.setAdapter(adapter);
-          
+        List<PagamentoRealizadoVO> pagamentosVOList = pagamentoRealizadoService.pesquisar(new PagamentoRealizadoFilter(pagamentoRealizado));
+        
+        
+        carregarListaPagamentos(pagamentosVOList);
+        
         this.btn_efetuar_pagamento.setOnClickListener(this);
         this.btnCancelar.setOnClickListener(this);   
        
@@ -115,14 +124,18 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         try {
             if (v.getId() == R.id.btn_efetuar_pagamento) {
 
-                String referencia = pagamentoRealizadoReferencia.getText().toString();            
+                String referencia = pagamentoRealizadoReferencia.getText().toString();
+                
+
                 
                 PagamentoRealizadoVO pagamentoRealizado = new PagamentoRealizadoVO();
                 
                            
                 pagamentoRealizado.setPagamentoId(idPagamento);
-                pagamentoRealizado.setDataPagamento(new Date());
-                //pagamentoRealizado.setReferencia(referencia);
+                
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");                
+                pagamentoRealizado.setDataPagamento(new Date());                           
+                pagamentoRealizado.setReferencia(format.parse("01/"+referencia));
 
                 pagamentoRealizadoService.salvar(pagamentoRealizado);
                 
@@ -145,33 +158,11 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
 
     }
     
-
-    /**
-     * Método obtem lista de clientes do drop down.
-     * 
-     * @return Lista de {@link Map}.
-     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
-     */
-    private List<Map<String, String>> obterClientes() {
-        List<Map<String, String>> retornoList = new ArrayList<Map<String,String>>();
-        Map<String, String> map;
-        
-        List<ClienteVO> clienteList = this.clienteService.pesquisar(new ClienteFilter());
-        
-        for (ClienteVO cliente : clienteList) {
-            map = new HashMap<String, String>();
-            map.put(ClienteVO.ID_CLIENTE, String.valueOf(cliente.getId()));
-            map.put(ClienteVO.TX_NOME, cliente.getNome());
-            retornoList.add(map);
-        }        
-                    
-        return retornoList;
-    }
     
     /**
      * Método que busca os dados de cliente.
      * 
-     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
      */
     private void carregarDadosCliente() {
 
@@ -186,5 +177,33 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
 
 
     }
+    
+    /**
+     * Método carrega ListView de pagamentosRealizado.
+     * 
+     * @author Jeferson Almeida (jef.henrique.07@gmail.com)
+     */
+    private void carregarListaPagamentos(List<PagamentoRealizadoVO> pagamentoRealizadoVOList) {
+        List<Map<String, String>> mapList = new ArrayList<Map<String,String>>();
+        
+        Map<String, String> map;
+        
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
+        
+        for (PagamentoRealizadoVO pagamentoRealizado : pagamentoRealizadoVOList) {
+            map = new HashMap<String, String>();
+            map.put(PagamentoRealizadoVO.DT_PAGAMENTO, String.valueOf(pagamentoRealizado.getId()));
+            map.put(PagamentoRealizadoVO.MES_ANO_REFERENTE, "Referência:"+format2.format(pagamentoRealizado.getReferencia()));
+            map.put("Descricao", super.getString(R.string.pagamento_realizado_data) + ": " + format.format(pagamentoRealizado.getDataPagamento()));
+            mapList.add(map);
+        }
+        
+        String[] from = {PagamentoRealizadoVO.MES_ANO_REFERENTE, "Descricao"};
+        int[] to = {android.R.id.text1, android.R.id.text2};
+        
+        SimpleAdapter adapter = new SimpleAdapter(this, mapList, android.R.layout.simple_list_item_2, from, to);
+        pagamentosList.setAdapter(adapter);
+    } 
 
 }
