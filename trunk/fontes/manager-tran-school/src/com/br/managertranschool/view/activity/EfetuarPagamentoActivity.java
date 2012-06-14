@@ -2,7 +2,6 @@ package com.br.managertranschool.view.activity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,37 +11,25 @@ import javax.inject.Inject;
 
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.br.managertranschool.R;
 import com.br.managertranschool.architecture.BaseActivity;
-import com.br.managertranschool.business.filter.ClienteFilter;
-import com.br.managertranschool.business.filter.ClienteLocalidadeFilter;
 import com.br.managertranschool.business.filter.PagamentoFilter;
 import com.br.managertranschool.business.filter.PagamentoRealizadoFilter;
-import com.br.managertranschool.business.filter.UsuarioFilter;
 import com.br.managertranschool.business.service.ClienteService;
 import com.br.managertranschool.business.service.PagamentoRealizadoService;
 import com.br.managertranschool.business.service.PagamentoService;
-import com.br.managertranschool.business.vo.CidadeVO;
-import com.br.managertranschool.business.vo.ClienteLocalidadeVO;
 import com.br.managertranschool.business.vo.ClienteVO;
-import com.br.managertranschool.business.vo.LocalidadeVO;
 import com.br.managertranschool.business.vo.PagamentoRealizadoVO;
 import com.br.managertranschool.business.vo.PagamentoVO;
-import com.br.managertranschool.business.vo.UsuarioVO;
 
 
 /**
@@ -66,7 +53,7 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     @InjectView(R.id.pagamento_realizado_mes_ano_referente)
     private EditText pagamentoRealizadoReferencia;
     
-    @InjectView(R.id.label_efetuar_pagamento)
+    @InjectView(R.id.label_pagamento_relizado_cliente_nome)
     private TextView clienteNome;
     
     @InjectView(R.id.pagamentos_list)
@@ -75,14 +62,14 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     @InjectView(R.id.btn_efetuar_pagamento)
     private Button btn_efetuar_pagamento;
     
-    @InjectView(R.id.btn_cancelar)
-    private Button btnCancelar;
+    @InjectView(R.id.btn_voltar)
+    private Button btnVoltar;
     
     private Long idCliente;
     
     private Long idPagamento;
     
-    
+    private List<PagamentoRealizadoVO> pagamentosVOList;
   
     /*
      * (non-Javadoc)
@@ -97,19 +84,15 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         super.onCreate(savedInstanceState);
         
         this.idCliente = super.getIntent().getLongExtra(ClienteVO.ID_CLIENTE, Long.MIN_VALUE);
-        PagamentoRealizadoVO pagamentoRealizado = new PagamentoRealizadoVO();
+        
         
         carregarDadosCliente();
         
-        pagamentoRealizado.setPagamentoId(this.idPagamento);
-        
-        List<PagamentoRealizadoVO> pagamentosVOList = pagamentoRealizadoService.pesquisar(new PagamentoRealizadoFilter(pagamentoRealizado));
-        
-        
-        carregarListaPagamentos(pagamentosVOList);
+
         
         this.btn_efetuar_pagamento.setOnClickListener(this);
-        this.btnCancelar.setOnClickListener(this);   
+        
+        this.btnVoltar.setOnClickListener(this);   
        
     }
    
@@ -138,16 +121,19 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
                 pagamentoRealizado.setReferencia(format.parse("01/"+referencia));
 
                 pagamentoRealizadoService.salvar(pagamentoRealizado);
+                carregarListaPagamentos(this.pagamentosVOList);
                 
                 if (pagamentoRealizadoService.isValido()) {
                     
                     super.finalize();
                 }
                 
-                super.setMessages(pagamentoRealizadoService.getMensagens());      
+                
+                super.setMessages(pagamentoRealizadoService.getMensagens());
+                
                             
 
-            } else if (v.getId() == R.id.btn_cancelar) {
+            } else if (v.getId() == R.id.btn_voltar) {
                 super.finalize();
             }
         } catch (Exception e) {
@@ -174,7 +160,16 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         PagamentoVO pagamento = pagamentoList.get(0);
         
         this.idPagamento = pagamento.getId();
-
+        
+        //
+        PagamentoRealizadoVO pagamentoRealizado = new PagamentoRealizadoVO();
+        
+        pagamentoRealizado.setPagamentoId(this.idPagamento);
+        
+        this.pagamentosVOList = pagamentoRealizadoService.pesquisar(new PagamentoRealizadoFilter(pagamentoRealizado));
+        if (this.pagamentosVOList != null && !(this.pagamentosVOList.isEmpty())) {         
+            carregarListaPagamentos(this.pagamentosVOList);
+        }
 
     }
     
@@ -189,7 +184,7 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         Map<String, String> map;
         
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format2 = new SimpleDateFormat("MM-yyyy");
         
         for (PagamentoRealizadoVO pagamentoRealizado : pagamentoRealizadoVOList) {
             map = new HashMap<String, String>();
@@ -204,6 +199,8 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         
         SimpleAdapter adapter = new SimpleAdapter(this, mapList, android.R.layout.simple_list_item_2, from, to);
         pagamentosList.setAdapter(adapter);
+        
+        super.setMessages(pagamentoRealizadoService.getMensagens());
     } 
 
 }

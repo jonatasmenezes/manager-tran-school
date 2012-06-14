@@ -1,7 +1,6 @@
 package com.br.managertranschool.business.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -155,12 +154,6 @@ public class PagamentoRealizadoService extends BaseService {
             super.addMensagem(R.string.pagamento_realizado_pagamento_id_obrigatorio, TipoMensagemList.ERRO);
         }
         
-    }
-    
-    public void efetuarPagamento(PagamentoRealizadoVO pagamentoRealizado){
-        
-        pagamentoRealizado.setDataPagamento(new Date());
-        salvar(pagamentoRealizado);
     }
     
 }

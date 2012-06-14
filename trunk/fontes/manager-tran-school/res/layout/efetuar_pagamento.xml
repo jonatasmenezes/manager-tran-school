@@ -16,23 +16,40 @@
         android:id="@+id/table_row_header"
         android:padding="20dp" >
     </TableRow>
-
-
+    
+    
     <TableRow>      
         <TextView
-            android:id="@+id/label_pagamento_realizado_mes_ano_referente"
-            android:layout_width="60dp"
+            android:id="@+id/label_pagamento_relizado_cliente"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/pagamento_relizado_cliente"
+            android:textSize="15sp" />      
+        <TextView
+            android:id="@+id/label_pagamento_relizado_cliente_nome"
+            android:layout_width="185dp"
             android:layout_height="40dp"
             android:gravity="center"
             android:text=""
             android:textSize="15sp" />
+	</TableRow>
+
+    <TableRow>      
+        <TextView
+            android:id="@+id/label_pagamento_realizado_mes_ano_referente"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/pagamento_realizado_mes_ano_referente"
+            android:textSize="15sp" />
 	    <EditText
             android:id="@+id/pagamento_realizado_mes_ano_referente"
-            android:layout_width="185dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:gravity="left"
             android:inputType="text"
-            android:maxLength="80"
+            android:maxLength="7"
             android:textSize="15sp" />	        
     </TableRow>
 
@@ -48,11 +65,11 @@
             android:layout_marginRight="80dp"
             android:text="@string/btn_efetuar_pagamento" />
         <Button
-            android:id="@+id/btn_cancelar"
+            android:id="@+id/btn_voltar"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/btn_cancelar" />
+            android:text="@string/btn_voltar" />
 
     </RelativeLayout>
     
