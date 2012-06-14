@@ -60,7 +60,7 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
     private ListView pagamentosList;
 
     @InjectView(R.id.btn_efetuar_pagamento)
-    private Button btn_efetuar_pagamento;
+    private Button btnEfetuarPagamento;
     
     @InjectView(R.id.btn_voltar)
     private Button btnVoltar;
@@ -85,12 +85,9 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         
         this.idCliente = super.getIntent().getLongExtra(ClienteVO.ID_CLIENTE, Long.MIN_VALUE);
         
-        
         carregarDadosCliente();
         
-
-        
-        this.btn_efetuar_pagamento.setOnClickListener(this);
+        this.btnEfetuarPagamento.setOnClickListener(this);
         
         this.btnVoltar.setOnClickListener(this);   
        
@@ -109,11 +106,7 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
 
                 String referencia = pagamentoRealizadoReferencia.getText().toString();
                 
-
-                
                 PagamentoRealizadoVO pagamentoRealizado = new PagamentoRealizadoVO();
-                
-                           
                 pagamentoRealizado.setPagamentoId(idPagamento);
                 
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");                
@@ -121,20 +114,17 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
                 pagamentoRealizado.setReferencia(format.parse("01/"+referencia));
 
                 pagamentoRealizadoService.salvar(pagamentoRealizado);
-                carregarListaPagamentos(this.pagamentosVOList);
                 
                 if (pagamentoRealizadoService.isValido()) {
                     
-                    super.finalize();
-                }
-                
+                    super.finish();
+                }              
                 
                 super.setMessages(pagamentoRealizadoService.getMensagens());
-                
                             
 
             } else if (v.getId() == R.id.btn_voltar) {
-                super.finalize();
+                super.finish();
             }
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);
@@ -183,7 +173,7 @@ public class EfetuarPagamentoActivity extends BaseActivity implements OnClickLis
         
         Map<String, String> map;
         
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         SimpleDateFormat format2 = new SimpleDateFormat("MM-yyyy");
         
         for (PagamentoRealizadoVO pagamentoRealizado : pagamentoRealizadoVOList) {
