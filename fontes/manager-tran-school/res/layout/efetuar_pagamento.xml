@@ -42,12 +42,14 @@
             android:gravity="center"
             android:text=""
             android:textSize="15sp" />
-	    <Button 
-		    android:id="@+id/pagamento_realizado_mes_ano_referente"
+	    <EditText
+            android:id="@+id/pagamento_realizado_mes_ano_referente"
             android:layout_width="185dp"
             android:layout_height="40dp"
             android:gravity="left"
-	        android:text="@string/pagamento_realizado_referente"/>	        
+            android:inputType="text"
+            android:maxLength="80"
+            android:textSize="15sp" />	        
     </TableRow>
 
     <RelativeLayout
@@ -55,12 +57,12 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btn_salvar"
+            android:id="@+id/btn_efetuar_pagamento"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="80dp"
-            android:text="@string/btn_salvar" />
+            android:text="@string/btn_efetuar_pagamento" />
         <Button
             android:id="@+id/btn_cancelar"
             android:layout_width="80dp"

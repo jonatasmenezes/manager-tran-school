@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TextView
+        android:id="@+id/label_pesquisar_pagamento"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:text="@string/label_pesquisa_pagamento"
+        android:textSize="30sp" />
+
+    <TableRow
+        android:id="@+id/table_row_header"
+        android:padding="20dp" >
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/label_cliente_nome"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/cliente_nome"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/clienteNome"
+            android:layout_width="245dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:inputType="text"
+            android:maxLength="80"
+            android:textSize="15sp" />
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_pesquisar"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/btn_pesquisar" />
+
+    </RelativeLayout>
+
+    <ListView
+	 android:id="@+id/clientes_list"  
+	 android:layout_width="fill_parent"  
+	 android:layout_height="wrap_content">  
+ 	</ListView>
+    
+</TableLayout>
