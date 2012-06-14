@@ -91,6 +91,8 @@ public class MapRotaActivity extends BaseMapActivity {
             ClienteLocalidadeVO clienteLocalidade;
             LocalidadeVO localidade;
             
+            GeoPoint pontocentral = null;
+            
             for (ClienteRotaVO clienteRotaVO : clienteRotaList) {
                 cliente = clienteService.buscarPorId(new ClienteVO(clienteRotaVO.getClienteId()));
                 
@@ -122,10 +124,14 @@ public class MapRotaActivity extends BaseMapActivity {
                     location = new Location(localidade.getDescricao());
                     location.setLatitude(latitude);
                     location.setLongitude(longitude);
-                    
-                    
-                    
+                                        
                     pontoMapa = new GeoPoint((int) latitude, (int) longitude);
+                    
+                    int i = 0;
+                    if (i == 0) {
+                        pontocentral = pontoMapa; 
+                    }
+                    i++;
                     overlay = new OverlayItem(pontoMapa, cliente.getNome(), localidade.getDescricao());
                     mapaOverlay.add(overlay);
                 }
@@ -138,7 +144,10 @@ public class MapRotaActivity extends BaseMapActivity {
             overlayList.add(mapaOverlay);
             MapController mapController = this.mapView.getController();            
             mapController.setZoom(16);
-            mapController.setCenter(locationOverlay.getMyLocation());
+            if (pontocentral != null) {
+                
+                mapController.setCenter(pontocentral);
+            }
             
             BigDecimal dist = new BigDecimal((distancia/1000)/1000);
             DecimalFormat df = new DecimalFormat( "#0.00" );
