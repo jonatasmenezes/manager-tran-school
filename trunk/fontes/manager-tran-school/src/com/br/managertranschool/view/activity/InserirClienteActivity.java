@@ -1,9 +1,9 @@
 package com.br.managertranschool.view.activity;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
-import android.os.Process;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -110,6 +109,8 @@ public class InserirClienteActivity extends BaseActivity implements OnClickListe
     
     private Long idCliente;
     
+    private Long idPagamento;
+    
     /*
      * (non-Javadoc)
      * 
@@ -200,14 +201,23 @@ public class InserirClienteActivity extends BaseActivity implements OnClickListe
                 
                 // Pagamento - TODO
                 pagamento.setTipoPagamento(tipoPagamento);
-                pagamento.setVencimento(new Date());
-                pagamento.setValor(BigDecimal.TEN);
+                
+                if (diaVencimento != null && diaVencimento.length() > 0) {
+                    
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    pagamento.setVencimento(format.parse(diaVencimento + "/00/0000"));
+                }
+                
+                if (pagamentoValor != null && pagamentoValor.length() > 0) {
+                    
+                    pagamento.setValor(new BigDecimal(pagamentoValor));
+                }
                 
                 if (this.idCliente != null && this.idCliente > 0) {
                     cliente.setId(this.idCliente);
-                    // TODO
-                    clienteLocalidadeVO.setClienteId(this.idCliente);
-                    // clienteService.atualizar(cliente, clienteLocalidadeVO, pagamento);
+                    pagamento.setId(this.idPagamento);
+                    
+                    clienteService.atualizar(cliente, clienteLocalidadeVO, pagamento);
                 } else {
                     
                     clienteService.salvar(cliente, clienteLocalidadeVO, pagamento);
@@ -325,9 +335,11 @@ public class InserirClienteActivity extends BaseActivity implements OnClickListe
         
         if (!pagamentoList.isEmpty()) {
             PagamentoVO pagamento = pagamentoList.get(0);
+            
+            this.idPagamento = pagamento.getId();
             Calendar calendar = Calendar.getInstance();
-            // TODO calendar.setTime(pagamento.getVencimento());
-            this.clienteDataVencimento.setText(calendar.DAY_OF_MONTH);
+            calendar.setTime(pagamento.getVencimento());
+            this.clienteDataVencimento.setText(String.valueOf(calendar.DAY_OF_MONTH));
             this.clientePagamentoValor.setText(pagamento.getValor().toString());
             this.clienteTipoPagamento.setSelection(super.obterPosicaoSpinner(
                 this.clienteTipoPagamento, "Codigo", pagamento.getTipoPagamento()));

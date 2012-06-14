@@ -112,7 +112,7 @@ public class PesquisarLocalidadeActivity extends BaseActivity implements OnClick
         
         long idLocalidade = Long.valueOf(item.get(LocalidadeVO.ID_LOCALIDADE));
      
-        Intent it = new Intent(this, InserirLocalidadeActivity.class);
+        Intent it = new Intent(this, MapLocalidadeActivity.class);
         it.putExtra(LocalidadeVO.ID_LOCALIDADE, idLocalidade);
         super.startActivity(it);
     }

@@ -93,7 +93,7 @@ public class DatabaseCreate {
      */
     private String[][] getScriptInsert() {
 
-        return new String[][] { this.getInsertIntoUsuario(), this.getInsertIntoEstado(), this.getInsertIntoCidade() };
+        return new String[][] { this.getInsertIntoUsuario(), this.getInsertIntoEstado(), this.getInsertIntoCidade(), this.getInsertIntoLocalidade() };
     }
 
     /**
@@ -859,6 +859,26 @@ public class DatabaseCreate {
         String[] scriptsInsert = 
         { 
             defaultInsertUsuario + " VALUES ('" + usuario.getLogin() + "', '" + usuario.getSenha() + "', " + usuario.getTipoUsuario() + ", '" + usuario.getNome() + "'); "
+        };
+
+        return scriptsInsert;
+    }
+    
+    /**
+     * Método obtém script de insert da tabela LOCALIDADE para exemplo de uso.
+     * 
+     * @return Script
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     */
+    private String[] getInsertIntoLocalidade() {
+
+        String defaultInsertLocalidade = "INSERT INTO " + LocalidadeVO.TABLE + " (" + LocalidadeVO.NR_LATITUDE + ", " + LocalidadeVO.NR_LONGITUDE + ", " + LocalidadeVO.TX_DESCRICAO + ")";
+        
+        String[] scriptsInsert = 
+        { 
+            defaultInsertLocalidade + " VALUES (-12.998578, -38.448458, 'Fernando Menezes de Góes - Costa Azul'); ",
+            defaultInsertLocalidade + " VALUES (-12.981684, -38.463907, 'Shopping Iguatemi'); ",
+            defaultInsertLocalidade + " VALUES (-13.007819, -38.518324, 'Av. Oceânica - Barra'); ",
         };
 
         return scriptsInsert;

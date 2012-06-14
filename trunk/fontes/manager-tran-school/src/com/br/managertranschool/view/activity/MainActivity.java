@@ -49,7 +49,8 @@ public class MainActivity extends BaseActivity {
             }
             
             super.setMessages(usuarioService.getMensagens());
-            super.startActivity(it);                     
+            super.startActivity(it);  
+            super.finish();
         } catch (Exception e) {
             super.tratarException(this.getClass().getName(), e);
         }

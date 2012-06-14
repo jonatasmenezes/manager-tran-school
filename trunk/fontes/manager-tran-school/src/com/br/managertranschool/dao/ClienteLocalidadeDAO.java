@@ -13,7 +13,7 @@ import com.br.managertranschool.business.vo.ClienteVO;
 
 
 /**
- * Classe de acesso a dados da tabela CLIENTE_LOCALIDADE
+ * Classe de acesso a dados da tabela ROTA
  * 
  * @author Jeferson Almeida (jef.henrique.07@gmail.com)
  * @since 09/06/2012
@@ -144,6 +144,24 @@ public class ClienteLocalidadeDAO extends BaseDAO{
 
         ContentValues values = this.getContentValues(clienteLocalidade);        
         super.salvar(values);
+        super.dataBase.close();
+    }
+    
+    /**
+     * Método atualiza clienteLocalidade na base de dados.
+     * 
+     * @param clienteLocalidade - Objeto {@link ClienteLocalidadeVO}.
+     * @author Jonatas O. Menezes (menezes.jonatas@hotmail.com)
+     * @throws Exception Exceção da camada de persistência.
+     */
+    public void atualizar(ClienteLocalidadeVO clienteLocalidade) throws Exception {
+
+        ContentValues values = new ContentValues();
+        values.put(ClienteLocalidadeVO.LOCALIDADE_ID, clienteLocalidade.getLocalidadeId());
+
+        super.colunaId = ClienteLocalidadeVO.CLIENTE_ID;
+        
+        super.atualizar(clienteLocalidade.getClienteId(), values);  
         super.dataBase.close();
     }
     

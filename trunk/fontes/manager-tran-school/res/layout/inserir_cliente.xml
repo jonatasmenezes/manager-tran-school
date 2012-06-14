@@ -27,7 +27,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_nome"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_nome"
@@ -35,7 +35,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteNome"
-	            android:layout_width="185dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="text"
@@ -47,7 +47,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_cpf"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_cpf"
@@ -55,7 +55,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteCpf"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="number"
@@ -67,7 +67,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_cep"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_cep"
@@ -75,7 +75,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteCep"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="number"
@@ -87,7 +87,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_endereco"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_endereco"
@@ -95,7 +95,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteEndereco"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="text"
@@ -107,7 +107,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_bairro"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_bairro"
@@ -115,7 +115,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteBairro"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="text"
@@ -126,7 +126,7 @@
 	    <TableRow>
 	        <TextView
 	            android:id="@+id/label_cliente_cidade"
-	            android:layout_width="125dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_cidade"
@@ -134,7 +134,7 @@
 	
 	        <Spinner
 	            android:id="@+id/clienteCidade"
-	            android:layout_width="wrap_content"
+	            android:layout_width="195dp"
 	            android:layout_height="wrap_content"
 	            android:gravity="left" />
 	    </TableRow>
@@ -142,7 +142,7 @@
 	    <TableRow>
 	        <TextView
 	            android:id="@+id/label_localidade"
-	            android:layout_width="125dp"
+	            android:layout_width="115dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/localidade_localidade"
@@ -150,7 +150,7 @@
 	
 	        <Spinner
 	            android:id="@+id/clienteLocalidade"
-	            android:layout_width="wrap_content"
+	            android:layout_width="140dp"
 	            android:layout_height="wrap_content"
 	            android:gravity="left" />
 	    </TableRow>
@@ -159,7 +159,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_email"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_email"
@@ -167,7 +167,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteEmail"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="textEmailAddress"
@@ -179,7 +179,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_telefone1"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_telefone_primario"
@@ -187,7 +187,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteTelefone1"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="phone"
@@ -199,7 +199,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_cliente_telefone2"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/cliente_telefone_secundario"
@@ -207,7 +207,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteTelefone2"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="phone"
@@ -218,7 +218,7 @@
 		<TableRow>
 	        <TextView
 	            android:id="@+id/label_pagamento_tipo_pagamento"
-	            android:layout_width="125dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/pagamento_tipo_pagamento"
@@ -226,7 +226,7 @@
 	
 	        <Spinner
 	            android:id="@+id/clienteTipoPagamento"
-	            android:layout_width="wrap_content"
+	            android:layout_width="140dp"
 	            android:layout_height="wrap_content"
 	            android:gravity="left" />
 	    </TableRow>    
@@ -235,7 +235,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_pagamento_data_vencimento"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/pagamento_data_vencimento"
@@ -243,7 +243,7 @@
 	
 	        <EditText
 	            android:id="@+id/clienteDataVencimento"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="number"
@@ -255,7 +255,7 @@
 	
 	        <TextView
 	            android:id="@+id/label_pagamento_valor"
-	            android:layout_width="60dp"
+	            android:layout_width="110dp"
 	            android:layout_height="40dp"
 	            android:gravity="center"
 	            android:text="@string/pagamento_valor"
@@ -263,7 +263,7 @@
 	
 	        <EditText
 	            android:id="@+id/clientePagamentoValor"
-	            android:layout_width="20dp"
+	            android:layout_width="140dp"
 	            android:layout_height="40dp"
 	            android:gravity="left"
 	            android:inputType="numberDecimal"

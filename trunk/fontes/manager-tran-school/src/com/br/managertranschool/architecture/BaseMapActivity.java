@@ -38,6 +38,14 @@ public class BaseMapActivity extends RoboMapActivity {
         super();
     }
 
+    /* (non-Javadoc)
+     * @see com.google.android.maps.MapActivity#isRouteDisplayed()
+     */
+    @Override
+    protected boolean isRouteDisplayed() {
+        return false;
+    }
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,13 +173,4 @@ public class BaseMapActivity extends RoboMapActivity {
             alerta.show();
         }
     }
-
-    /* (non-Javadoc)
-     * @see com.google.android.maps.MapActivity#isRouteDisplayed()
-     */
-    @Override
-    protected boolean isRouteDisplayed() {
-        return false;
-    }
-
 }
