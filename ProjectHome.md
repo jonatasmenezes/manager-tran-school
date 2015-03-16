@@ -1,0 +1,1 @@
+Aplicação para dispositivo com Android que armazena informações e ajuda na gestão do transporte escolar e transporte particular de pessoas, contemplando funções administrativas e de controle de rotas.
